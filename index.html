@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TheRevenueProtocol -- Results Based Lead Generation</title>
+<meta name="description" content="Results based lead generation. Only pay for each qualified and shown meeting. We build your entire outbound engine from scratch: infrastructure, targeting, messaging, delivery.">
+<link rel="icon" href="https://framerusercontent.com/images/pbvYwK3r1tg6tglaoLkA8LMaeY.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Inter:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0a0f1f;--bg-alt:#0f1629;--card:#141b2d;--deep:#1a2236;
+  --border:rgba(255,255,255,0.08);--border-light:rgba(255,255,255,0.05);
+  --txt:#f1f5f9;--body:#cbd5e1;--sub:#94a3b8;--sub2:#64748b;--vmuted:#475569;
+  --indigo:#4347f3;--blue:#0d81f1;--amber:#f7aa1e;
+  --green:#16a34a;--red:#ef4444;
+  --dm:'DM Sans',system-ui,sans-serif;
+  --inter:'Inter',system-ui,sans-serif;
+  --max:960px;--r:20px;
+  --dark:#060a16;--dark2:#1e1b4b;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--dm);font-size:18px;font-weight:400;color:var(--body);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:var(--indigo);text-decoration:none}
+
+/* ═══════ TYPOGRAPHY ═══════ */
+h1{font-family:var(--inter);font-size:clamp(36px,6vw,72px);font-weight:900;color:var(--txt);line-height:1.0;letter-spacing:-0.04em}
+h2{font-family:var(--inter);font-size:clamp(28px,4vw,42px);font-weight:800;color:var(--txt);line-height:1.15;letter-spacing:-0.04em}
+h3{font-family:var(--inter);font-size:clamp(16px,2vw,20px);font-weight:700;color:var(--txt);line-height:1.4;letter-spacing:-0.02em}
+.label{font-family:var(--inter);font-size:13px;font-weight:700;color:var(--sub);text-transform:uppercase;letter-spacing:0.08em}
+.gradient-text{background:linear-gradient(120deg,var(--indigo),var(--blue),var(--indigo));background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer 6s linear infinite}
+@keyframes shimmer{0%{background-position:0% 50%}100%{background-position:200% 50%}}
+
+/* ═══════ LAYOUT ═══════ */
+.wrap{width:min(var(--max),calc(100% - 48px));margin:0 auto}
+.section{padding:5rem 0}
+.section-border{border-top:1px solid var(--border)}
+
+/* ═══════ BUTTONS ═══════ */
+.btn{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(180deg,var(--indigo) 0%,var(--blue) 100%);color:#fff;font-family:var(--dm);font-size:18px;font-weight:600;padding:16px 28px;border-radius:200px;border:none;cursor:pointer;transition:opacity .2s,transform .2s;letter-spacing:-0.02em}
+.btn:hover{opacity:.9;transform:translateY(-1px)}
+.btn-sm{font-size:14px;padding:10px 20px}
+.btn-arrow::after{content:"→";font-size:18px}
+
+/* ═══════ NAV ═══════ */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,15,31,0.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--border-light);height:56px;display:flex;align-items:center;padding:0 1.5rem;transition:background .2s,box-shadow .2s}
+nav.scrolled{background:rgba(10,15,31,0.95);box-shadow:0 1px 8px rgba(0,0,0,0.3)}
+nav .nav-inner{display:flex;align-items:center;justify-content:space-between;width:100%;max-width:1200px;margin:0 auto}
+nav .logo{color:#fff;font-family:var(--inter);font-size:15px;font-weight:700;letter-spacing:-0.02em;display:flex;align-items:center;gap:8px;text-decoration:none}
+nav .nav-links{display:flex;align-items:center;gap:24px}
+nav .nav-links a{font-family:var(--inter);font-size:14px;font-weight:500;color:var(--sub);text-decoration:none;transition:color .2s;position:relative;padding:6px 0}
+nav .nav-links a:hover{color:var(--indigo)}
+nav .nav-links a.active{color:var(--indigo)}
+nav .nav-links a.active::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:2px;background:linear-gradient(90deg,var(--indigo),var(--blue));border-radius:2px}
+@media(max-width:780px){nav .nav-links{display:none}}
+
+/* ═══════ HERO ═══════ */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:8rem 0 4rem;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:1200px;height:600px;background:radial-gradient(ellipse at center,rgba(67,71,243,0.2),transparent 60%);pointer-events:none;z-index:0}
+.hero .wrap{position:relative;z-index:1}
+.hero .pill{display:inline-block;background:rgba(67,71,243,0.15);color:#a5b4fc;font-family:var(--inter);font-size:13px;font-weight:700;padding:7px 18px;border-radius:200px;margin-bottom:1.75rem;border:1px solid rgba(67,71,243,0.3);text-transform:uppercase;letter-spacing:0.08em}
+.hero h1{max-width:900px;margin:0 auto 1rem}
+.hero .hero-sub{max-width:640px;margin:0 auto 2.5rem;color:var(--sub);font-size:17px;line-height:1.65}
+.hero .fine-print{color:var(--sub2);font-size:14px;max-width:560px;margin:1rem auto 0;line-height:1.5}
+
+/* ─── VSL placeholder ─── */
+.vsl-wrap{max-width:780px;margin:0 auto 2.5rem}
+.vsl-frame{position:relative;width:100%;aspect-ratio:16/9;border-radius:20px;overflow:hidden;background:#0f172a;box-shadow:0 30px 80px rgba(15,23,42,0.25),0 0 0 1px rgba(255,255,255,0.05);transition:transform .3s,box-shadow .3s}
+.vsl-frame:hover{transform:translateY(-4px);box-shadow:0 40px 100px rgba(15,23,42,0.35),0 0 0 1px rgba(255,255,255,0.05)}
+.vsl-placeholder{position:absolute;inset:0;background:linear-gradient(135deg,#1e293b,#0f172a);display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;cursor:pointer}
+.vsl-placeholder::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(67,71,243,0.25),transparent 60%);pointer-events:none}
+.vsl-play{position:relative;width:88px;height:88px;border-radius:50%;background:linear-gradient(180deg,var(--indigo),var(--blue));border:none;color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 0 0 0 rgba(67,71,243,0.4);animation:pulse 2.4s ease-in-out infinite;transition:transform .2s}
+.vsl-play:hover{transform:scale(1.06)}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(67,71,243,0.5)}70%{box-shadow:0 0 0 24px rgba(67,71,243,0)}100%{box-shadow:0 0 0 0 rgba(67,71,243,0)}}
+.vsl-label{position:relative;font-family:var(--inter);font-size:14px;font-weight:600;margin-top:1.25rem;color:#fff;letter-spacing:0.04em;text-transform:uppercase}
+.vsl-sub{position:relative;font-size:12px;color:rgba(255,255,255,0.5);margin-top:4px;font-family:var(--inter)}
+.vsl-sub code{background:rgba(255,255,255,0.08);padding:2px 6px;border-radius:4px;font-family:'SF Mono',Menlo,monospace;font-size:11px;color:rgba(255,255,255,0.75)}
+
+/* ═══════ YOUTUBE CAROUSEL ═══════ */
+.yt-section{padding:3rem 0 4rem;background:var(--bg);overflow:hidden}
+.yt-header{text-align:center;margin-bottom:2rem}
+.yt-header h2{font-size:clamp(22px,3vw,32px);margin-bottom:6px}
+.yt-header p{color:var(--sub);font-size:15px}
+.yt-carousel-wrap{position:relative;max-width:1200px;margin:0 auto;padding:0 1.5rem}
+.yt-carousel{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding:8px 0}
+.yt-carousel::-webkit-scrollbar{display:none}
+.yt-card{flex:0 0 320px;scroll-snap-align:start;position:relative;border-radius:16px;overflow:hidden;background:#0f172a;cursor:pointer;transition:transform .25s,box-shadow .25s;box-shadow:0 8px 24px rgba(15,23,42,0.12)}
+.yt-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(15,23,42,0.18)}
+.yt-thumb{position:relative;width:100%;aspect-ratio:16/9;overflow:hidden}
+.yt-thumb img{width:100%;height:100%;object-fit:cover;transition:transform .3s}
+.yt-card:hover .yt-thumb img{transform:scale(1.05)}
+.yt-play-btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:56px;height:56px;border-radius:50%;background:linear-gradient(180deg,var(--indigo),var(--blue));display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(67,71,243,0.4);transition:transform .2s}
+.yt-card:hover .yt-play-btn{transform:translate(-50%,-50%) scale(1.1)}
+.yt-play-btn svg{margin-left:3px}
+.yt-title{padding:14px 16px;font-family:var(--inter);font-size:13px;font-weight:600;color:#cbd5e1;line-height:1.35;background:var(--card);border-top:1px solid var(--border-light)}
+.yt-nav{display:flex;justify-content:center;gap:10px;margin-top:1.5rem}
+.yt-nav button{width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,0.12);background:var(--card);cursor:pointer;display:flex;align-items:center;justify-content:center;color:#94a3b8;font-size:18px;transition:all .2s}
+.yt-nav button:hover{border-color:var(--indigo);color:#a5b4fc;background:rgba(67,71,243,0.1)}
+@media(max-width:640px){.yt-card{flex:0 0 280px}}
+
+/* ═══════ LOGO MARQUEE ═══════ */
+.logo-bar{padding:3rem 0 2.75rem;background:var(--dark);position:relative;overflow:hidden;border-top:1px solid var(--border-light);border-bottom:1px solid var(--border-light)}
+.logo-bar::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 50% 50%,rgba(67,71,243,0.12),transparent 70%);pointer-events:none}
+.logo-bar-eyebrow{position:relative;font-family:var(--inter);font-size:11px;font-weight:700;color:rgba(203,213,225,0.55);text-transform:uppercase;letter-spacing:0.18em;text-align:center;margin-bottom:2rem}
+.marquee{position:relative;overflow:hidden;width:100%;-webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 10%,#000 90%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0%,#000 10%,#000 90%,transparent 100%)}
+.marquee-track{display:flex;align-items:center;gap:5rem;width:max-content;animation:marquee 50s linear infinite;will-change:transform}
+.marquee:hover .marquee-track{animation-play-state:paused}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.marquee-logo{height:36px;width:auto;max-width:170px;object-fit:contain;flex-shrink:0;filter:brightness(0) invert(1);opacity:0.65;transition:opacity .3s,transform .3s}
+.marquee-logo:hover{opacity:1;transform:scale(1.06)}
+@media(max-width:640px){
+  .marquee-track{gap:3.5rem;animation-duration:38s}
+  .marquee-logo{height:28px;max-width:130px}
+  .logo-bar{padding:2.25rem 0 2rem}
+  .logo-bar-eyebrow{margin-bottom:1.5rem}
+}
+@media(prefers-reduced-motion:reduce){.marquee-track{animation:none}}
+
+/* ═══════ RESULTS ═══════ */
+.results-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:1.75rem}
+.result-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:1.75rem;transition:transform .25s,box-shadow .25s,border-color .25s;display:flex;flex-direction:column}
+.result-card:hover{transform:translateY(-4px);box-shadow:0 20px 50px rgba(0,0,0,0.3);border-color:rgba(67,71,243,0.3)}
+.result-card .client-tag{display:inline-flex;align-items:center;gap:8px;padding:7px 14px;background:rgba(67,71,243,0.12);border:1px solid rgba(67,71,243,0.25);border-radius:200px;margin-bottom:1.25rem;align-self:flex-start}
+.result-card .client-dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 0 3px rgba(22,163,74,0.18);flex-shrink:0;animation:pulseDot 2.4s ease-in-out infinite}
+.result-card .client-label{font-family:var(--inter);font-size:12px;font-weight:700;color:#a5b4fc;text-transform:uppercase;letter-spacing:0.06em;white-space:nowrap}
+@keyframes pulseDot{0%,100%{box-shadow:0 0 0 3px rgba(22,163,74,0.18)}50%{box-shadow:0 0 0 6px rgba(22,163,74,0.08)}}
+.result-card .big-num{font-family:var(--inter);font-size:clamp(32px,4vw,42px);font-weight:900;color:var(--txt);letter-spacing:-0.04em;margin-bottom:8px;line-height:1.05;background:linear-gradient(135deg,#fff 0%,#a5b4fc 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.result-card .desc{font-size:15px;color:var(--sub);margin-bottom:14px;line-height:1.6}
+.result-card .proof-img{width:100%;border-radius:12px;overflow:hidden;border:1px solid var(--border-light);cursor:pointer;margin-top:auto}
+.result-card .proof-img.pad{background:var(--deep);padding:14px}
+.result-card .proof-img+.proof-img{margin-top:10px}
+.result-card .proof-img img{width:100%;height:auto;display:block;transition:transform .3s}
+.result-card .proof-img:hover img{transform:scale(1.02)}
+.result-stats{display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap}
+.result-stat-chip{display:inline-flex;align-items:center;gap:5px;padding:5px 12px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:8px;font-family:var(--inter);font-size:12px;font-weight:600;color:var(--sub)}
+.result-stat-chip .num{color:#a5b4fc;font-weight:800}
+.confidential-proof{position:relative;border-radius:14px;overflow:hidden;border:1px solid var(--border-light);background:var(--dark);margin-top:12px}
+.confidential-proof:first-of-type{margin-top:0}
+.confidential-proof+.confidential-proof{margin-top:10px}
+.confidential-proof .proof-img{position:relative;border-radius:0;border:none;background:var(--deep);margin-top:0}
+.confidential-proof .proof-img.pad{padding:14px}
+.confidential-proof .proof-img::before{content:"";position:absolute;top:0;left:0;right:0;height:18%;background:linear-gradient(180deg,var(--dark) 0%,var(--dark) 70%,rgba(10,15,31,0));pointer-events:none;z-index:2}
+.confidential-proof .proof-img::after{content:"";position:absolute;top:0;left:0;right:0;height:14%;background-image:repeating-linear-gradient(45deg,rgba(99,102,241,0.18) 0,rgba(99,102,241,0.18) 8px,transparent 8px,transparent 16px);pointer-events:none;z-index:3;border-bottom:1px solid rgba(99,102,241,0.3)}
+
+/* ═══════ TESTIMONIAL ═══════ */
+.testimonial-wrap{position:relative;max-width:760px;margin:2rem auto 0;background:#ffffff;border-radius:24px;padding:3rem 2.5rem;text-align:center;box-shadow:0 30px 80px rgba(0,0,0,0.25)}
+.testimonial-wrap::before{content:"";position:absolute;inset:0;border-radius:24px;padding:1.5px;background:linear-gradient(135deg,rgba(67,71,243,0.5),rgba(13,129,241,0.2) 40%,rgba(67,71,243,0) 70%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
+.testimonial-wrap::after{content:"\201C";position:absolute;top:-12px;left:50%;transform:translateX(-50%);width:64px;height:64px;border-radius:50%;background:linear-gradient(180deg,var(--indigo),var(--blue));color:#fff;font-family:Georgia,serif;font-size:64px;line-height:0.9;display:flex;align-items:center;justify-content:center;padding-top:18px;box-shadow:0 12px 32px rgba(67,71,243,0.35)}
+.testimonial-wrap .t-logo{margin:1rem auto 1.5rem}
+.testimonial-wrap .t-quote{font-size:19px;line-height:1.65;color:#211a43;font-style:italic;margin-bottom:1.75rem;max-width:620px;margin-left:auto;margin-right:auto}
+.testimonial-wrap .t-name{font-family:var(--inter);font-size:15px;font-weight:700;color:#211a43;margin-bottom:2px}
+.testimonial-wrap .t-role{font-size:13px;color:#64748b}
+.testimonial-wrap .t-stat{display:inline-block;margin-top:1.75rem;background:linear-gradient(135deg,rgba(67,71,243,0.1),rgba(13,129,241,0.1));border:1px solid rgba(67,71,243,0.2);color:#4347f3;font-family:var(--inter);font-size:14px;font-weight:700;padding:10px 20px;border-radius:200px}
+
+/* ═══════ HOW IT WORKS (6 layers -- GrowthFlare style) ═══════ */
+.how-intro{text-align:center;max-width:560px;margin:0 auto 2.5rem;color:var(--sub)}
+.layers-stack{display:flex;flex-direction:column;gap:0;margin-top:2.5rem}
+.layer{position:relative;display:flex;align-items:stretch;border:1px solid var(--border);border-bottom:none;background:var(--card);transition:background .2s;overflow:hidden}
+.layer:first-child{border-radius:var(--r) var(--r) 0 0}
+.layer:last-child{border-bottom:1px solid var(--border);border-radius:0 0 var(--r) var(--r)}
+.layer:hover{background:rgba(67,71,243,0.04)}
+.layer-num-col{width:80px;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:rgba(67,71,243,0.06);border-right:1px solid var(--border)}
+.layer-num{font-family:var(--inter);font-size:clamp(28px,3vw,36px);font-weight:900;background:linear-gradient(180deg,var(--indigo),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:-0.04em}
+.layer-content{flex:1;padding:2rem 2.25rem;display:flex;flex-direction:column;justify-content:center;min-height:100px}
+.layer-tag{font-family:var(--inter);font-size:11px;font-weight:700;color:#a5b4fc;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:6px}
+.layer h3{font-size:clamp(17px,2vw,20px);margin-bottom:8px;letter-spacing:-0.02em}
+.layer p{font-size:14px;color:var(--sub);line-height:1.6;max-width:640px}
+.layer-icon-col{width:80px;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:var(--vmuted);opacity:0.4}
+@media(max-width:640px){
+  .layer{flex-wrap:wrap}
+  .layer-num-col{width:100%;height:auto;padding:1rem 0 0;border-right:none;border-bottom:1px solid var(--border)}
+  .layer-content{padding:1.25rem 1.5rem}
+  .layer-icon-col{display:none}
+}
+
+/* ═══════ COMMON CONCERNS ═══════ */
+.concerns-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:2rem}
+.concern-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:2rem 1.75rem;transition:transform .25s,box-shadow .25s}
+.concern-card:hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(15,23,42,0.08)}
+.concern-q{font-family:var(--inter);font-size:16px;font-weight:700;color:var(--txt);margin-bottom:12px;line-height:1.35;font-style:italic}
+.concern-q::before{content:"\201C";color:#a5b4fc;font-size:24px;font-family:Georgia,serif;line-height:0;vertical-align:middle;margin-right:2px}
+.concern-q::after{content:"\201D";color:#a5b4fc;font-size:24px;font-family:Georgia,serif;line-height:0;vertical-align:middle;margin-left:2px}
+.concern-a{font-size:14px;color:var(--sub);line-height:1.65}
+@media(max-width:780px){.concerns-grid{grid-template-columns:1fr}}
+
+/* ═══════ ROI CALCULATOR (jumpzebra style) ═══════ */
+.calc-card{background:var(--card);border:1px solid var(--border);border-radius:24px;padding:2.5rem;box-shadow:0 30px 80px rgba(15,23,42,0.06)}
+.tier-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:2rem}
+.tier-btn{position:relative;border:2px solid var(--border);border-radius:16px;padding:1.5rem;text-align:left;background:var(--card);cursor:pointer;transition:all .2s}
+.tier-btn:hover{border-color:rgba(67,71,243,0.4)}
+.tier-btn.active{border-color:var(--indigo);background:rgba(67,71,243,0.04);box-shadow:0 4px 16px rgba(67,71,243,0.12)}
+.tier-calls{font-family:var(--inter);font-size:clamp(32px,4vw,40px);font-weight:900;color:var(--txt);letter-spacing:-0.04em;line-height:1}
+.tier-label{font-family:var(--inter);font-size:12px;font-weight:600;color:var(--sub);text-transform:uppercase;letter-spacing:0.06em;margin-top:4px}
+.tier-period{font-family:var(--inter);font-size:11px;color:var(--vmuted);margin-top:8px}
+.calc-inputs{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:2rem}
+.calc-input-group{display:flex;flex-direction:column;gap:6px}
+.calc-input-group label{font-family:var(--inter);font-size:13px;font-weight:600;color:var(--txt)}
+.calc-input-group .calc-hint{font-size:11px;color:var(--vmuted);margin-top:2px}
+.calc-input-group input{width:100%;padding:12px 14px;border:1px solid rgba(255,255,255,0.12);border-radius:12px;font-family:var(--inter);font-size:16px;font-weight:600;color:#fff;background:rgba(255,255,255,0.05);outline:none;transition:border-color .2s}
+.calc-input-group input:focus{border-color:var(--indigo);box-shadow:0 0 0 3px rgba(67,71,243,0.1)}
+.calc-results{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;padding:2rem;background:linear-gradient(135deg,#0f172a,var(--dark2));border-radius:16px}
+.calc-result-box{text-align:center;padding:1rem;border-radius:12px}
+.calc-result-box.featured{background:rgba(67,71,243,0.15);border:1px solid rgba(67,71,243,0.3)}
+.calc-result-label{font-family:var(--inter);font-size:11px;font-weight:700;color:rgba(203,213,225,0.7);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px}
+.calc-result-value{font-family:var(--inter);font-size:clamp(24px,3vw,36px);font-weight:900;color:#fff;letter-spacing:-0.03em;line-height:1}
+.calc-result-note{font-family:var(--inter);font-size:11px;color:rgba(203,213,225,0.5);margin-top:6px}
+.calc-disclaimer{font-size:12px;color:var(--sub2);font-style:italic;margin-top:1.5rem;text-align:center}
+@media(max-width:640px){
+  .calc-card{padding:1.75rem}
+  .tier-grid{grid-template-columns:1fr}
+  .calc-inputs{grid-template-columns:1fr}
+  .calc-results{grid-template-columns:1fr;gap:10px}
+}
+
+/* ═══════ FAQ ═══════ */
+.faq-item{border-bottom:1px solid var(--border)}
+.faq-q{display:flex;align-items:center;justify-content:space-between;padding:18px 0;cursor:pointer;gap:14px}
+.faq-q h3{font-size:16px;flex:1}
+.faq-icon{width:24px;height:24px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:20px;color:var(--sub);transition:transform .2s;font-family:var(--inter);font-weight:300}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease}
+.faq-a .faq-body{padding:0 0 18px;font-size:16px;color:var(--sub);line-height:1.6}
+.faq-item.open .faq-a{max-height:600px}
+.faq-item.open .faq-icon{transform:rotate(45deg)}
+
+/* ═══════ GUARANTEE ═══════ */
+.guarantee-card{max-width:740px;margin:0 auto;background:rgba(67,71,243,0.08);border:1px solid rgba(67,71,243,0.25);border-radius:24px;padding:3rem 2.5rem;text-align:center;position:relative;overflow:hidden}
+.guarantee-card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--indigo),var(--blue))}
+.guarantee-icon{width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,var(--indigo),var(--blue));display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem}
+.guarantee-card h3{font-size:clamp(20px,2.5vw,26px);margin-bottom:1rem}
+.guarantee-card p{font-size:16px;color:var(--sub);line-height:1.65;max-width:580px;margin:0 auto}
+
+/* ═══════ FINAL CTA ═══════ */
+.final-cta-band{position:relative;padding:6rem 0 6.5rem;background:linear-gradient(135deg,var(--dark) 0%,var(--dark2) 60%,#0f172a 100%);overflow:hidden;border-top:1px solid var(--border-light)}
+.final-cta-bg{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 70% 60% at 50% 0%,rgba(67,71,243,0.3),transparent 60%),radial-gradient(ellipse 50% 40% at 100% 100%,rgba(13,129,241,0.18),transparent 60%)}
+.final-cta-band::after{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:48px 48px;mask-image:radial-gradient(ellipse at center,#000 30%,transparent 75%);-webkit-mask-image:radial-gradient(ellipse at center,#000 30%,transparent 75%);pointer-events:none}
+.final-cta-inner{position:relative;text-align:center;max-width:760px;margin:0 auto;z-index:1}
+.final-cta-pill{background:rgba(255,255,255,0.08);color:#fff;border:1px solid rgba(255,255,255,0.16);margin-bottom:1.75rem;backdrop-filter:blur(8px)}
+.final-cta-inner h2{color:#fff;font-size:clamp(32px,5vw,52px);font-weight:900;line-height:1.05;letter-spacing:-0.04em;margin-bottom:1.25rem}
+.gradient-text-light{background:linear-gradient(120deg,#a5b4fc,#7dd3fc,#a5b4fc);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer 6s linear infinite}
+.final-cta-sub{color:rgba(203,213,225,0.85);font-size:18px;line-height:1.6;max-width:560px;margin:0 auto 2.25rem}
+.btn-light{background:#fff;color:var(--txt);font-weight:700;box-shadow:0 20px 50px rgba(67,71,243,0.35),0 0 0 0 rgba(255,255,255,0.1);transition:transform .2s,box-shadow .2s,opacity .2s}
+.btn-light:hover{background:#fff;color:var(--indigo);transform:translateY(-2px);box-shadow:0 24px 60px rgba(67,71,243,0.45)}
+.final-cta-micro{display:block;margin-top:1.25rem;color:rgba(203,213,225,0.6);font-size:13px;font-family:var(--inter)}
+
+/* ═══════ FOOTER ═══════ */
+footer{padding:3.5rem 0 2.5rem;background:#060a16;color:#94a3b8;border-top:1px solid rgba(255,255,255,0.06)}
+.footer-inner{display:flex;justify-content:space-between;align-items:flex-start;gap:2rem;flex-wrap:wrap;max-width:var(--max);margin:0 auto;padding:0 24px}
+.footer-brand{display:flex;flex-direction:column;gap:10px}
+.footer-brand .f-logo{display:flex;align-items:center;gap:8px;color:#fff;font-family:var(--inter);font-size:15px;font-weight:700;text-decoration:none}
+.footer-brand .f-logo img{width:22px;height:22px}
+.footer-brand .f-tagline{font-size:13px;color:rgba(203,213,225,0.55);font-family:var(--inter);max-width:280px;line-height:1.5}
+.footer-links{display:flex;gap:3rem}
+.footer-col h4{font-family:var(--inter);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:rgba(203,213,225,0.4);margin-bottom:12px}
+.footer-col a{display:block;font-family:var(--inter);font-size:13px;color:rgba(203,213,225,0.7);text-decoration:none;margin-bottom:8px;transition:color .2s}
+.footer-col a:hover{color:#a5b4fc}
+.footer-social{display:flex;gap:12px;margin-top:6px}
+.footer-social a{display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,0.1);color:rgba(203,213,225,0.6);transition:all .2s;text-decoration:none}
+.footer-social a:hover{border-color:rgba(67,71,243,0.4);color:#a5b4fc;background:rgba(67,71,243,0.08)}
+.footer-bottom{margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,0.06);text-align:center;max-width:var(--max);margin-left:auto;margin-right:auto;padding-left:24px;padding-right:24px}
+.footer-bottom p{font-family:var(--inter);font-size:12px;color:rgba(148,163,184,0.45)}
+.footer-bottom a{color:rgba(148,163,184,0.55);text-decoration:none;transition:color .2s}
+.footer-bottom a:hover{color:#a5b4fc}
+@media(max-width:640px){
+  .footer-inner{flex-direction:column;align-items:center;text-align:center}
+  .footer-links{flex-direction:column;gap:1.5rem;align-items:center}
+  .footer-social{justify-content:center}
+}
+
+/* ═══════ LIGHTBOX ═══════ */
+.lightbox{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,0.85);display:none;align-items:center;justify-content:center;cursor:zoom-out;padding:2rem}
+.lightbox.open{display:flex}
+.lightbox img{max-width:95%;max-height:90vh;border-radius:8px;box-shadow:0 20px 60px rgba(0,0,0,0.5)}
+.lightbox-close{position:absolute;top:1rem;right:1.5rem;color:#fff;font-size:28px;cursor:pointer;font-family:var(--inter);font-weight:300;opacity:.7;transition:opacity .2s}
+.lightbox-close:hover{opacity:1}
+
+/* ═══════ YT MODAL ═══════ */
+.yt-modal{position:fixed;inset:0;z-index:300;background:rgba(0,0,0,0.9);display:none;align-items:center;justify-content:center;cursor:pointer;padding:2rem}
+.yt-modal.open{display:flex}
+.yt-modal-inner{width:min(900px,90vw);aspect-ratio:16/9;border-radius:12px;overflow:hidden;position:relative}
+.yt-modal-inner iframe{width:100%;height:100%;border:0}
+.yt-modal-close{position:absolute;top:1rem;right:1.5rem;color:#fff;font-size:28px;cursor:pointer;font-family:var(--inter);font-weight:300;opacity:.7;transition:opacity .2s;z-index:1}
+.yt-modal-close:hover{opacity:1}
+
+/* ═══════ ABOUT ME ═══════ */
+.about-section{padding:5rem 0;border-top:1px solid var(--border)}
+.about-inner{display:flex;gap:3rem;align-items:flex-start;max-width:var(--max);margin:0 auto}
+.about-photo{width:200px;flex-shrink:0}
+.about-photo img{width:200px;height:200px;border-radius:50%;object-fit:cover;border:3px solid rgba(67,71,243,0.3);box-shadow:0 12px 40px rgba(67,71,243,0.2)}
+.about-text{flex:1}
+.about-text h2{font-size:clamp(24px,3vw,32px);margin-bottom:1.25rem;color:var(--txt)}
+.about-text p{font-size:15px;color:var(--sub);line-height:1.7;margin-bottom:1rem}
+.about-text p:last-of-type{margin-bottom:1.5rem}
+.about-text .signoff{font-family:var(--inter);font-weight:700;color:var(--txt);font-size:16px;margin-bottom:1.5rem}
+@media(max-width:640px){
+  .about-inner{flex-direction:column;align-items:center;text-align:center}
+  .about-photo{width:160px}
+  .about-photo img{width:160px;height:160px}
+}
+
+/* ═══════ SCROLL ANIMATIONS ═══════ */
+.anim{opacity:0;transition:opacity 400ms ease}
+.anim.visible{opacity:1}
+
+/* ═══════ RESPONSIVE ═══════ */
+@media(max-width:960px){
+  .results-grid{grid-template-columns:1fr}
+}
+@media(max-width:640px){
+  .wrap{width:calc(100% - 32px)}
+  .hero{min-height:auto;padding:6rem 0 3rem}
+  .results-grid{grid-template-columns:1fr}
+  .testimonial-wrap{padding:2rem 1.5rem}
+  .vsl-wrap{margin-bottom:2rem}
+  .guarantee-card{padding:2rem 1.5rem}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════ NAV ═══════ -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="https://therevenueprotocol.com" class="logo"><img src="https://framerusercontent.com/images/pbvYwK3r1tg6tglaoLkA8LMaeY.png" alt="TRP logo" style="width:24px;height:24px">TheRevenueProtocol</a>
+    <div class="nav-links">
+      <a href="#how">How It Works</a>
+      <a href="#results">Results</a>
+      <a href="#calculator">ROI Calculator</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <a href="https://calendly.com/tanmay-therevenueprotocol/partnership-strategy-call-1-1" class="btn btn-sm btn-arrow" style="background:linear-gradient(180deg,var(--indigo),var(--blue))">Get Started</a>
+  </div>
+</nav>
+
+<!-- ═══════ HERO ═══════ -->
+<section class="hero" id="hero">
+  <div class="wrap">
+    <h1>10x Your Qualified Lead Flow <span class="gradient-text">In The Next 60 Days</span></h1>
+    <p class="hero-sub">We build and deploy a complete cold email system for your business, sending 2,500+ emails per day to your ideal prospects. You just show up to qualified calls.</p>
+
+    <!-- ═══ VSL PLACEHOLDER ═══ -->
+    <div class="vsl-wrap anim">
+      <div class="vsl-frame" id="vslFrame">
+        <div class="vsl-placeholder">
+          <button class="vsl-play" type="button" aria-label="Play video sales letter">
+            <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          </button>
+          <p class="vsl-label">Video sales letter</p>
+          <p class="vsl-sub">Drop your VSL into <code>.vsl-frame</code></p>
+        </div>
+      </div>
+    </div>
+
+    <a href="https://calendly.com/tanmay-therevenueprotocol/partnership-strategy-call-1-1" class="btn btn-arrow">Get Started</a>
+    <p class="fine-print">You only pay when qualified prospects show up to meetings. Only accepting a small number of new clients each month.</p>
+  </div>
+</section>
+
+<!-- ═══════ LOGO MARQUEE ═══════ -->
+<section class="logo-bar" aria-label="Trusted by">
+  <div class="wrap">
+    <p class="logo-bar-eyebrow">Trusted by teams at</p>
+  </div>
+  <div class="marquee">
+    <div class="marquee-track">
+      <img src="https://chekin.com/wp-content/uploads/2025/10/16634588896821464112.png" alt="Chekin" class="marquee-logo" data-logo="chekin">
+      <img src="https://framerusercontent.com/images/OnkvUfGkLP0iUJuF45OtvwtGtg.svg" alt="Yozo" class="marquee-logo" data-logo="yozo">
+      <img src="https://www.checkpoint.com/wp-content/themes/checkpoint-theme-v2/images/checkpoint-logo.svg" alt="Check Point" class="marquee-logo" data-logo="checkpoint">
+      <img src="https://changecurve.ai/wp-content/uploads/2024/08/Changer-Curve-Logo-1536x211.png" alt="ChangeCurve" class="marquee-logo" data-logo="changecurve">
+      <img src="https://www.eventcombo.com/Images/AMaterial/logo.png" alt="Eventcombo" class="marquee-logo" data-logo="eventcombo">
+      <img src="images/tmobile-logo.svg" alt="T-Mobile" class="marquee-logo" data-logo="tmobile">
+      <img src="https://americanprimeland.com/wp-content/uploads/2024/10/logo-1024x153.webp" alt="American Prime Land" class="marquee-logo" data-logo="apl">
+      <img src="https://riaadvisory.com/wp-content/uploads/ria-advisory-logo.svg" alt="RIA Advisory" class="marquee-logo" data-logo="ria">
+      <img src="https://www.giftsforyounow.com/BVModules/Themes/GiftsFYN5_Yellow/images/gfyn-logo.svg" alt="GiftsForYouNow" class="marquee-logo" data-logo="gfyn">
+      <!-- Duplicate for seamless loop -->
+      <img src="https://chekin.com/wp-content/uploads/2025/10/16634588896821464112.png" alt="" aria-hidden="true" class="marquee-logo">
+      <img src="https://framerusercontent.com/images/OnkvUfGkLP0iUJuF45OtvwtGtg.svg" alt="" aria-hidden="true" class="marquee-logo">
+      <img src="https://www.checkpoint.com/wp-content/themes/checkpoint-theme-v2/images/checkpoint-logo.svg" alt="" aria-hidden="true" class="marquee-logo">
+      <img src="https://changecurve.ai/wp-content/uploads/2024/08/Changer-Curve-Logo-1536x211.png" alt="" aria-hidden="true" class="marquee-logo">
+      <img src="https://www.eventcombo.com/Images/AMaterial/logo.png" alt="" aria-hidden="true" class="marquee-logo">
+      <img src="images/tmobile-logo.svg" alt="" aria-hidden="true" class="marquee-logo">
+      <img src="https://americanprimeland.com/wp-content/uploads/2024/10/logo-1024x153.webp" alt="" aria-hidden="true" class="marquee-logo">
+      <img src="https://riaadvisory.com/wp-content/uploads/ria-advisory-logo.svg" alt="" aria-hidden="true" class="marquee-logo">
+      <img src="https://www.giftsforyounow.com/BVModules/Themes/GiftsFYN5_Yellow/images/gfyn-logo.svg" alt="" aria-hidden="true" class="marquee-logo">
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ RESULTS ═══════ -->
+<section class="section section-border" id="results" style="background:var(--bg-alt)">
+  <div class="wrap">
+    <p class="label">Results</p>
+    <h2 style="margin:8px 0 6px">Real revenue. Real clients.</h2>
+    <p style="color:var(--sub)">Numbers you can verify.</p>
+    <div class="results-grid">
+
+      <!-- B2B2C SaaS Company -->
+      <div class="result-card anim">
+        <div class="client-tag">
+          <span class="client-dot"></span>
+          <span class="client-label">B2B2C SaaS Company</span>
+        </div>
+        <div class="big-num">49 Meetings</div>
+        <div class="desc">49 qualified meetings booked in 30 days. 13,955 leads contacted, 22.79% positive reply rate.</div>
+        <div class="result-stats">
+          <span class="result-stat-chip"><span class="num">13,955</span> Leads</span>
+          <span class="result-stat-chip"><span class="num">49</span> Positive Replies</span>
+          <span class="result-stat-chip"><span class="num">30</span> Days</span>
+        </div>
+        <div class="proof-img pad zoomable">
+          <img src="images/proof-b2b2c-saas.png" alt="SmartLead stats showing 13,955 leads contacted and 49 positive replies" loading="lazy">
+        </div>
+      </div>
+
+      <!-- E-Commerce SaaS -->
+      <div class="result-card anim">
+        <div class="client-tag">
+          <span class="client-dot"></span>
+          <span class="client-label">E-Commerce SaaS</span>
+        </div>
+        <div class="big-num">$350K Revenue</div>
+        <div class="desc">14 meetings in 19 days. $350K in new revenue in under a month. 5,656 leads contacted, 26.60% positive reply rate.</div>
+        <div class="result-stats">
+          <span class="result-stat-chip"><span class="num">14</span> Meetings</span>
+          <span class="result-stat-chip"><span class="num">19</span> Days</span>
+          <span class="result-stat-chip"><span class="num">$350K</span> Revenue</span>
+        </div>
+        <div class="proof-img pad zoomable">
+          <img src="images/proof-ecommerce-saas.png" alt="SmartLead stats showing 5,656 leads contacted and 25 positive replies" loading="lazy">
+        </div>
+      </div>
+
+      <!-- Series-A Hospitality SaaS -->
+      <div class="result-card anim">
+        <div class="client-tag">
+          <span class="client-dot"></span>
+          <span class="client-label">Series-A Hospitality SaaS</span>
+        </div>
+        <div class="big-num">12 Deals Sourced</div>
+        <div class="desc">12 whitelabel deals sourced in week 1 of launch. 398 leads contacted, 33% positive reply rate.</div>
+        <div class="result-stats">
+          <span class="result-stat-chip"><span class="num">398</span> Leads</span>
+          <span class="result-stat-chip"><span class="num">33%</span> Reply Rate</span>
+          <span class="result-stat-chip"><span class="num">12</span> Deals</span>
+        </div>
+        <div class="confidential-proof">
+          <div class="proof-img">
+            <img src="images/account-shortlist.png" alt="398 leads contacted with 33% positive reply rate" loading="lazy">
+          </div>
+        </div>
+      </div>
+
+      <!-- $24B Cybersecurity Company -->
+      <div class="result-card anim">
+        <div class="client-tag">
+          <span class="client-dot"></span>
+          <span class="client-label">$24B Cybersecurity Company</span>
+        </div>
+        <div class="big-num">$1.5M+ closed</div>
+        <div class="desc">$4.1M pipeline built using the same outbound methodology.</div>
+        <div class="confidential-proof">
+          <div class="proof-img">
+            <img src="images/proof-checkpoint.png" alt="Salesforce report showing 1.585M total closed won" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ TESTIMONIAL ═══════ -->
+<section class="section section-border" id="testimonial">
+  <div class="wrap">
+    <p class="label" style="text-align:center">Testimonial</p>
+    <h2 style="margin:8px 0 6px;text-align:center">A happy client</h2>
+    <div class="testimonial-wrap anim">
+      <img class="t-logo" src="https://changecurve.ai/wp-content/uploads/2024/08/Changer-Curve-Logo-1536x211.png" alt="ChangeCurve.ai logo" style="height:22px;width:auto;margin:0 auto 1.5rem">
+      <p class="t-quote">"When we first launched our SaaS partner program, we honestly weren't sure if anyone would sign up or if it would take months to see results. I was skeptical this could even work. Tanmay helped us identify the right partners, reach out to 1,000+ of them, and within 14 days of signing the best-fit partners we had 2 deals closed, completely partner-sourced. It proved the program works and that partners can actually close revenue fast. If you're considering working with him, I'd just say do it -- he makes it simple and gets results quick."</p>
+      <div class="t-name">Yannick Mbandi</div>
+      <div class="t-role">CEO, ChangeCurve.ai</div>
+      <div class="t-stat">2 deals closed in 14 days</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ HOW IT WORKS ═══════ -->
+<section class="section section-border" id="how">
+  <div class="wrap">
+    <p class="label" style="text-align:center">How it works</p>
+    <h2 style="margin:8px 0 6px;text-align:center">From strategy to booked meetings in 6 steps</h2>
+    <p class="how-intro">Here is exactly what happens after you sign up.</p>
+
+    <div class="layers-stack anim">
+      <div class="layer">
+        <div class="layer-num-col"><span class="layer-num">01</span></div>
+        <div class="layer-content">
+          <div class="layer-tag">Learn</div>
+          <h3>We Learn Your Business</h3>
+          <p>We dig into your offer, your best customers, and who you want to reach. We need to know your business well enough to speak for you.</p>
+        </div>
+        <div class="layer-icon-col"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></div>
+      </div>
+
+      <div class="layer">
+        <div class="layer-num-col"><span class="layer-num">02</span></div>
+        <div class="layer-content">
+          <div class="layer-tag">Build</div>
+          <h3>We Build Your Infrastructure</h3>
+          <p>Separate domains, email setup (SPF, DKIM, DMARC), warmup systems, and calendar links. This is the behind-the-scenes work that keeps you out of spam.</p>
+        </div>
+        <div class="layer-icon-col"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 10h.01M10 10h.01"/></svg></div>
+      </div>
+
+      <div class="layer">
+        <div class="layer-num-col"><span class="layer-num">03</span></div>
+        <div class="layer-content">
+          <div class="layer-tag">Target</div>
+          <h3>We Build Your Prospect Lists</h3>
+          <p>We pull lists of real companies and real people from multiple sources. Every contact matches the industry, size, and job titles you told us to go after.</p>
+        </div>
+        <div class="layer-icon-col"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+      </div>
+
+      <div class="layer">
+        <div class="layer-num-col"><span class="layer-num">04</span></div>
+        <div class="layer-content">
+          <div class="layer-tag">Write</div>
+          <h3>We Write Your Campaigns</h3>
+          <p>Short, direct emails made to start conversations. Every message has research about the person reading it. No templates, no spam-sounding pitches.</p>
+        </div>
+        <div class="layer-icon-col"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></div>
+      </div>
+
+      <div class="layer">
+        <div class="layer-num-col"><span class="layer-num">05</span></div>
+        <div class="layer-content">
+          <div class="layer-tag">Launch</div>
+          <h3>We Launch and Manage Everything</h3>
+          <p>We send the campaigns, watch the numbers, answer every reply, sort out who is interested, and put meetings on your calendar. You just show up.</p>
+        </div>
+        <div class="layer-icon-col"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 2 11 13"/><path d="m22 2-7 20-4-9-9-4z"/></svg></div>
+      </div>
+
+      <div class="layer">
+        <div class="layer-num-col"><span class="layer-num">06</span></div>
+        <div class="layer-content">
+          <div class="layer-tag">Optimize</div>
+          <h3>We Optimize Based on Results</h3>
+          <p>As data comes in, we change what is not working and double down on what is. We talk through the results with you on regular check-in calls.</p>
+        </div>
+        <div class="layer-icon-col"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════ COMMON CONCERNS ═══════ -->
+<section class="section section-border" id="concerns" style="background:var(--bg-alt)">
+  <div class="wrap">
+    <p class="label" style="text-align:center">Common concerns</p>
+    <h2 style="margin:8px 0 6px;text-align:center">We hear these a lot. Here is the truth.</h2>
+    <div class="concerns-grid">
+
+      <div class="concern-card anim">
+        <div class="concern-q">I've tried cold email before and it didn't work.</div>
+        <div class="concern-a">That usually means one or two pieces were broken -- the sending setup, the targeting, or the copy. When one part fails, the whole system fails. We handle all of them so nothing gets missed.</div>
+      </div>
+
+      <div class="concern-card anim">
+        <div class="concern-q">I don't have time to manage another vendor.</div>
+        <div class="concern-a">Good. After a one-hour kickoff call, your involvement is close to zero. Most clients spend less than 30 minutes a week. You just take the meetings we book.</div>
+      </div>
+
+      <div class="concern-card anim">
+        <div class="concern-q">How does this compare to hiring an SDR?</div>
+        <div class="concern-a">An SDR costs $60K+ per year, takes months to ramp, and runs one channel. We give you a full team from day one -- strategist, copywriter, list builder, and infrastructure manager. And you only pay when meetings show up.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ ROI CALCULATOR ═══════ -->
+<section class="section section-border" id="calculator">
+  <div class="wrap">
+    <p class="label">Run the math</p>
+    <h2 style="margin:8px 0 6px">What does this look like for you?</h2>
+    <p style="margin-bottom:2rem;color:var(--sub)">Pick your meeting goal. Enter your numbers. See the revenue.</p>
+
+    <div class="calc-card anim">
+      <h3 style="font-size:18px;margin-bottom:1.25rem;font-family:var(--inter)">Select Your Meeting Goal</h3>
+      <div class="tier-grid">
+        <button class="tier-btn" data-tier="0" onclick="selectTier(0)">
+          <div class="tier-calls">10</div>
+          <div class="tier-label">Qualified Meetings</div>
+          <div class="tier-period">per month</div>
+        </button>
+        <button class="tier-btn active" data-tier="1" onclick="selectTier(1)">
+          <div class="tier-calls">25</div>
+          <div class="tier-label">Qualified Meetings</div>
+          <div class="tier-period">per month</div>
+        </button>
+        <button class="tier-btn" data-tier="2" onclick="selectTier(2)">
+          <div class="tier-calls">50</div>
+          <div class="tier-label">Qualified Meetings</div>
+          <div class="tier-period">per month</div>
+        </button>
+      </div>
+
+      <h3 style="font-size:18px;margin-bottom:1rem;font-family:var(--inter)">Your Metrics</h3>
+      <div class="calc-inputs">
+        <div class="calc-input-group">
+          <label for="calcClose">Close Rate (%)</label>
+          <input type="number" id="calcClose" value="20" min="1" max="100" step="1">
+          <span class="calc-hint">% of meetings that become clients</span>
+        </div>
+        <div class="calc-input-group">
+          <label for="calcDeal">Average Deal Size ($)</label>
+          <input type="number" id="calcDeal" value="25000" min="1000" step="1000">
+          <span class="calc-hint">Total revenue you expect from each client</span>
+        </div>
+      </div>
+
+      <div class="calc-results">
+        <div class="calc-result-box">
+          <div class="calc-result-label">New Clients</div>
+          <div class="calc-result-value" id="oClients">5.0</div>
+          <div class="calc-result-note">per month</div>
+        </div>
+        <div class="calc-result-box featured">
+          <div class="calc-result-label">Monthly Revenue</div>
+          <div class="calc-result-value" id="oMonthRev">$125K</div>
+          <div class="calc-result-note">from closed deals</div>
+        </div>
+        <div class="calc-result-box">
+          <div class="calc-result-label">Annual Revenue</div>
+          <div class="calc-result-value" id="oAnnualRev">$1.5M</div>
+          <div class="calc-result-note">projected yearly</div>
+        </div>
+      </div>
+
+      <p class="calc-disclaimer">Based on your close rate and deal size. Actual results vary by industry, offer, and sales cycle.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ GUARANTEE ═══════ -->
+<section class="section section-border" id="guarantee" style="background:var(--bg-alt)">
+  <div class="wrap">
+    <div class="guarantee-card anim">
+      <div class="guarantee-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+      </div>
+      <h3>Our Guarantee</h3>
+      <p>You only pay per qualified meeting that shows up. We define qualified as a conversation with a decision-maker interested in your service, at a company that fits the industry and size you told us, with the job title you told us. If a meeting doesn't show up or isn't qualified, you aren't billed for it.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ FAQ ═══════ -->
+<section class="section section-border" id="faq">
+  <div class="wrap" style="max-width:740px">
+    <p class="label">FAQ</p>
+    <h2 style="margin:8px 0 1.5rem">Common questions</h2>
+
+    <div class="faq-item">
+      <div class="faq-q"><h3>How long until I start seeing meetings?</h3><span class="faq-icon">+</span></div>
+      <div class="faq-a"><div class="faq-body">Everything will be launched in 14 days. Meetings start getting booked on that 14th day. The first deal can realistically close within the week after that.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q"><h3>What is required from me?</h3><span class="faq-icon">+</span></div>
+      <div class="faq-a"><div class="faq-body">Everything is done for you. Just take the calls. We handle the rest. After a one-hour kickoff, most clients spend less than 30 minutes a week on anything campaign-related.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q"><h3>How do you make sure emails do not land in spam?</h3><span class="faq-icon">+</span></div>
+      <div class="faq-a"><div class="faq-body">We send from 15+ dedicated domains, never your main one. Every domain is warmed for 6 weeks before it sends a single message. SPF, DKIM, and DMARC are configured on every domain. Deliverability is monitored daily and we rotate domains automatically if any one starts to flag.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q"><h3>What if I don't get results?</h3><span class="faq-icon">+</span></div>
+      <div class="faq-a"><div class="faq-body">You don't pay. Our model is performance-based -- you only pay when qualified prospects actually book and show up to meetings. If we don't deliver, you don't owe us anything. Our incentives are fully aligned with yours.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q"><h3>What if a meeting isn't qualified or doesn't show up?</h3><span class="faq-icon">+</span></div>
+      <div class="faq-a"><div class="faq-body">If a call doesn't show up or is unqualified, you aren't billed for it. Simple as that.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q"><h3>What do you mean by qualified?</h3><span class="faq-icon">+</span></div>
+      <div class="faq-a"><div class="faq-body">We'll talk to you on the call, and "qualified" will mean a meeting with the job titles you say you want to talk to, at companies you say you want to talk to. You define what qualified looks like -- we deliver it.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q"><h3>How are you different from other agencies?</h3><span class="faq-icon">+</span></div>
+      <div class="faq-a"><div class="faq-body">We use a multi-channel approach -- email, LinkedIn, and calling running at the same time. We send more volume while keeping every message personalized. And you only pay on performance. No retainers, no management fees.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q"><h3>How is this different from hiring an SDR?</h3><span class="faq-icon">+</span></div>
+      <div class="faq-a"><div class="faq-body">An SDR costs $60K to $90K loaded, takes 3 to 6 months to ramp, manages one channel, and produces a fraction of the volume. We give you a full team -- strategist, copywriter, list builder, infrastructure manager -- on day one for less than the cost of one SDR.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q"><h3>Do you offer any guarantees?</h3><span class="faq-icon">+</span></div>
+      <div class="faq-a"><div class="faq-body">Yes. After we go through the strategy call and we know your specific numbers, we have guarantees we can put in place. We'll discuss details on the call.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q"><h3>What CRM do you integrate with?</h3><span class="faq-icon">+</span></div>
+      <div class="faq-a"><div class="faq-body">HubSpot, Salesforce, Pipedrive, Close, and Attio out of the box. Anything else, we can sync via Zapier or webhook.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ ABOUT ME ═══════ -->
+<section class="about-section" id="about">
+  <div class="wrap">
+    <div class="about-inner anim">
+      <div class="about-photo">
+        <img src="https://media.licdn.com/dms/image/v2/D5603AQGzF7dpzFioUQ/profile-displayphoto-scale_200_200/B56Zs9fO61IAAY-/0/1766263156855?e=2147483647&v=beta&t=MaLxrsAbyBzXVVd0jMvTMabDXSO2-mjnTrnAB56McU8" alt="Tanmay, founder of TheRevenueProtocol">
+      </div>
+      <div class="about-text">
+        <h2>Hi, I'm Tanmay.</h2>
+        <p>I'm from Chicago and spent years as a sales rep at major companies like a $24B cybersecurity company and $88B telecom company where I was expected to close deals and build my own pipeline at the same time.</p>
+        <p>No SDR support. No system. Just me sending emails between calls, chasing down leads, and trying to hit quota while doing two jobs.</p>
+        <p>The honest truth is I struggled with it. The GTM motion was broken and I didn't have the structure to fix it on my own. AEs were prospecting instead of selling. Outbound was an afterthought. And the meetings that did get booked were half placeholders from people who were never going to buy.</p>
+        <p>When I left, I built the system I wish I'd had.</p>
+        <p>Since then I've helped a hospitality SaaS source 12 white-label partner opportunities in week one, helped an e-commerce SaaS close $350K in new revenue from 14 meetings booked in 19 days, and booked 49 qualified meetings in 30 days for a B2B MVP SaaS.</p>
+        <p>Qualified means a real decision maker, at a company that fits your ICP, who actually showed up and wants to hear what you do. Not a placeholder or a call where they don't know why they are even there.</p>
+        <p>That's what The Revenue Protocol puts on your calendar.</p>
+        <p>If that's what you're looking for, book a call.</p>
+        <div class="signoff">Talk soon,<br>Tanmay</div>
+        <a href="https://calendly.com/tanmay-therevenueprotocol/partnership-strategy-call-1-1" class="btn btn-arrow">See If You Qualify</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ FINAL CTA ═══════ -->
+<section class="final-cta-band">
+  <div class="final-cta-bg"></div>
+  <div class="wrap">
+    <div class="final-cta-inner anim">
+      <span class="pill final-cta-pill">Limited spots</span>
+      <h2>Get Launched and Close Clients <span class="gradient-text-light">In 3 Weeks</span></h2>
+      <p class="final-cta-sub">We'll come up with a plan for your business. Even if we don't work together, you'll have a clear roadmap of exactly what to do to grow.</p>
+      <a href="https://calendly.com/tanmay-therevenueprotocol/partnership-strategy-call-1-1" class="btn btn-light btn-arrow">Get Started</a>
+      <p class="final-cta-micro">Free 30-minute strategy call. Only accepting a small number of new clients each month.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ YOUTUBE CAROUSEL ═══════ -->
+<section class="yt-section section-border" id="videos">
+  <div class="yt-header">
+    <h2>Watch Our Videos</h2>
+    <p>See how we think about outbound, partnerships, and pipeline.</p>
+  </div>
+  <div class="yt-carousel-wrap">
+    <div class="yt-carousel" id="ytCarousel">
+      <div class="yt-card" data-yt="pvJPU6s_62Y">
+        <div class="yt-thumb">
+          <img src="https://i.ytimg.com/vi/pvJPU6s_62Y/hqdefault.jpg" alt="DO THIS BEFORE YOU START YOUR PARTNER PROGRAM" loading="lazy">
+          <div class="yt-play-btn"><svg viewBox="0 0 24 24" width="24" height="24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></div>
+        </div>
+        <div class="yt-title">Do This Before You Start Your Partner Program</div>
+      </div>
+      <div class="yt-card" data-yt="x-8240pBHGI">
+        <div class="yt-thumb">
+          <img src="https://i.ytimg.com/vi/x-8240pBHGI/hqdefault.jpg" alt="How to know you should scale your software partner program" loading="lazy">
+          <div class="yt-play-btn"><svg viewBox="0 0 24 24" width="24" height="24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></div>
+        </div>
+        <div class="yt-title">How To Know You Should Scale Your Partner Program</div>
+      </div>
+      <div class="yt-card" data-yt="sgCmGmjEybg">
+        <div class="yt-thumb">
+          <img src="https://i.ytimg.com/vi/sgCmGmjEybg/hqdefault.jpg" alt="$0-$100M how to scale your software partner program" loading="lazy">
+          <div class="yt-play-btn"><svg viewBox="0 0 24 24" width="24" height="24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></div>
+        </div>
+        <div class="yt-title">$0-$100M: How To Scale Your Partner Program</div>
+      </div>
+      <div class="yt-card" data-yt="mYVHIszgPOs">
+        <div class="yt-thumb">
+          <img src="https://i.ytimg.com/vi/mYVHIszgPOs/hqdefault.jpg" alt="THE 3 SYSTEMS THAT ACTUALLY MAKE PARTNERSHIPS WORK" loading="lazy">
+          <div class="yt-play-btn"><svg viewBox="0 0 24 24" width="24" height="24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></div>
+        </div>
+        <div class="yt-title">The 3 Systems That Make Partnerships Work</div>
+      </div>
+      <div class="yt-card" data-yt="0r5BkIQrJTM">
+        <div class="yt-thumb">
+          <img src="https://i.ytimg.com/vi/0r5BkIQrJTM/hqdefault.jpg" alt="Why 80% of Companies Are Doubling Down on Partnerships in 2026" loading="lazy">
+          <div class="yt-play-btn"><svg viewBox="0 0 24 24" width="24" height="24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></div>
+        </div>
+        <div class="yt-title">Why 80% of Companies Are Doubling Down on Partnerships</div>
+      </div>
+      <div class="yt-card" data-yt="39Id5lRIGoA">
+        <div class="yt-thumb">
+          <img src="https://i.ytimg.com/vi/39Id5lRIGoA/hqdefault.jpg" alt="$100M Software Partner Strategy Framework" loading="lazy">
+          <div class="yt-play-btn"><svg viewBox="0 0 24 24" width="24" height="24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></div>
+        </div>
+        <div class="yt-title">$100M Software Partner Strategy Framework</div>
+      </div>
+    </div>
+    <div class="yt-nav">
+      <button id="ytPrev" aria-label="Previous videos">&#8592;</button>
+      <button id="ytNext" aria-label="Next videos">&#8594;</button>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ FOOTER ═══════ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="https://therevenueprotocol.com" class="f-logo"><img src="https://framerusercontent.com/images/pbvYwK3r1tg6tglaoLkA8LMaeY.png" alt="TRP">TheRevenueProtocol</a>
+      <div class="footer-social">
+        <a href="https://www.youtube.com/@TheRevenueProtocol" target="_blank" rel="noopener" aria-label="YouTube"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.38.55A3.02 3.02 0 0 0 .5 6.19 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.81 3.02 3.02 0 0 0 2.12 2.14c1.88.55 9.38.55 9.38.55s7.5 0 9.38-.55a3.02 3.02 0 0 0 2.12-2.14A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.81zM9.75 15.02V8.98L15.5 12l-5.75 3.02z"/></svg></a>
+        <a href="https://x.com/RevenueProtocol" target="_blank" rel="noopener" aria-label="X / Twitter"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+        <a href="https://www.linkedin.com/company/the-revenue-protocol/about/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.95v5.66H9.36V9h3.41v1.56h.05a3.74 3.74 0 0 1 3.37-1.85c3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.23 0H1.77A1.75 1.75 0 0 0 0 1.73v20.54A1.75 1.75 0 0 0 1.77 24h20.46A1.75 1.75 0 0 0 24 22.27V1.73A1.75 1.75 0 0 0 22.23 0z"/></svg></a>
+      </div>
+    </div>
+    <div class="footer-links">
+      <div class="footer-col">
+        <h4>Navigate</h4>
+        <a href="#results">Case Studies</a>
+        <a href="#how">How It Works</a>
+        <a href="#calculator">ROI Calculator</a>
+        <a href="#faq">FAQ</a>
+        <a href="#about">About</a>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <a href="https://calendly.com/tanmay-therevenueprotocol/partnership-strategy-call-1-1" target="_blank">Book a Call</a>
+        <a href="https://www.youtube.com/@TheRevenueProtocol" target="_blank">YouTube</a>
+        <a href="https://x.com/RevenueProtocol" target="_blank">Twitter / X</a>
+        <a href="https://www.linkedin.com/company/the-revenue-protocol/about/" target="_blank">LinkedIn</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 The Revenue Protocol Inc. All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- ═══════ LIGHTBOX ═══════ -->
+<div class="lightbox" id="lightbox">
+  <span class="lightbox-close">&times;</span>
+  <img id="lightboxImg" src="" alt="">
+</div>
+
+<!-- ═══════ YOUTUBE MODAL ═══════ -->
+<div class="yt-modal" id="ytModal">
+  <span class="yt-modal-close">&times;</span>
+  <div class="yt-modal-inner" id="ytModalInner"></div>
+</div>
+
+<script>
+/* ═══════ NAV SCROLL ═══════ */
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>{
+  if(window.scrollY>20)nav.classList.add('scrolled');
+  else nav.classList.remove('scrolled');
+},{passive:true});
+
+/* ═══════ SCROLL ANIMATIONS ═══════ */
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}
+  });
+},{threshold:0.1});
+document.querySelectorAll('.anim').forEach(el=>io.observe(el));
+
+/* ═══════ FAQ ═══════ */
+document.querySelectorAll('.faq-q').forEach(q=>{
+  q.addEventListener('click',()=>{
+    const item=q.parentElement;
+    const wasOpen=item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(i=>i.classList.remove('open'));
+    if(!wasOpen)item.classList.add('open');
+  });
+});
+
+/* ═══════ LIGHTBOX ═══════ */
+const lb=document.getElementById('lightbox');
+const lbImg=document.getElementById('lightboxImg');
+document.querySelectorAll('.zoomable').forEach(el=>{
+  el.addEventListener('click',()=>{
+    const img=el.querySelector('img');
+    if(img){lbImg.src=img.src;lbImg.alt=img.alt;lb.classList.add('open')}
+  });
+});
+lb.addEventListener('click',()=>lb.classList.remove('open'));
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){lb.classList.remove('open');closeYtModal()}});
+
+/* ═══════ YOUTUBE CAROUSEL ═══════ */
+const ytCarousel=document.getElementById('ytCarousel');
+document.getElementById('ytPrev').addEventListener('click',()=>{
+  ytCarousel.scrollBy({left:-340,behavior:'smooth'});
+});
+document.getElementById('ytNext').addEventListener('click',()=>{
+  ytCarousel.scrollBy({left:340,behavior:'smooth'});
+});
+
+/* ═══════ YOUTUBE MODAL ═══════ */
+const ytModal=document.getElementById('ytModal');
+const ytModalInner=document.getElementById('ytModalInner');
+document.querySelectorAll('.yt-card').forEach(card=>{
+  card.addEventListener('click',()=>{
+    const vid=card.dataset.yt;
+    if(vid){
+      ytModalInner.innerHTML=`<iframe src="https://www.youtube.com/embed/${vid}?autoplay=1&rel=0" allow="autoplay; fullscreen; encrypted-media" allowfullscreen></iframe>`;
+      ytModal.classList.add('open');
+    }
+  });
+});
+function closeYtModal(){
+  ytModal.classList.remove('open');
+  ytModalInner.innerHTML='';
+}
+ytModal.addEventListener('click',e=>{
+  if(e.target===ytModal||e.target.classList.contains('yt-modal-close'))closeYtModal();
+});
+document.querySelector('.yt-modal-close').addEventListener('click',closeYtModal);
+
+/* ═══════ ROI CALCULATOR (jumpzebra style) ═══════ */
+const TIERS=[10,25,50];
+let activeTier=1;
+
+function selectTier(idx){
+  activeTier=idx;
+  document.querySelectorAll('.tier-btn').forEach((btn,i)=>{
+    btn.classList.toggle('active',i===idx);
+  });
+  calcROI();
+}
+
+const fmtMoney=v=>{
+  if(!isFinite(v)||v===0)return'--';
+  if(v>=1000000)return'$'+(v/1000000).toFixed(v>=10000000?0:1)+'M';
+  if(v>=1000)return'$'+Math.round(v/1000).toLocaleString()+'K';
+  return'$'+Math.round(v).toLocaleString();
+};
+
+function calcROI(){
+  const meetings=TIERS[activeTier];
+  const closeRate=(parseFloat(document.getElementById('calcClose').value)||0)/100;
+  const dealSize=parseFloat(document.getElementById('calcDeal').value)||0;
+
+  const newClients=Math.round(meetings*closeRate*10)/10;
+  const monthlyRev=newClients*dealSize;
+  const annualRev=monthlyRev*12;
+
+  document.getElementById('oClients').textContent=newClients.toFixed(1);
+  document.getElementById('oMonthRev').textContent=fmtMoney(monthlyRev);
+  document.getElementById('oAnnualRev').textContent=fmtMoney(annualRev);
+}
+
+document.getElementById('calcClose').addEventListener('input',calcROI);
+document.getElementById('calcDeal').addEventListener('input',calcROI);
+// Prevent scroll from changing number inputs
+document.querySelectorAll('.calc-input-group input').forEach(el=>{
+  el.addEventListener('wheel',e=>e.target.blur());
+});
+calcROI();
+
+/* ═══════ ACTIVE NAV ON SCROLL ═══════ */
+const sections=['how','results','calculator','faq'].map(id=>document.getElementById(id)).filter(Boolean);
+const navLinks=document.querySelectorAll('nav .nav-links a');
+const navMap={};
+navLinks.forEach(a=>{const h=a.getAttribute('href');if(h&&h.startsWith('#'))navMap[h.slice(1)]=a});
+const navObserver=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      navLinks.forEach(a=>a.classList.remove('active'));
+      const link=navMap[e.target.id];
+      if(link)link.classList.add('active');
+    }
+  });
+},{rootMargin:'-40% 0px -55% 0px',threshold:0});
+sections.forEach(s=>navObserver.observe(s));
+
+/* ═══════ VSL PLAY BUTTON FEEDBACK ═══════ */
+const vslBtn=document.querySelector('.vsl-play');
+if(vslBtn){
+  vslBtn.addEventListener('click',()=>{
+    vslBtn.style.transform='scale(0.92)';
+    setTimeout(()=>vslBtn.style.transform='',400);
+  });
+}
+</script>
+</body>
+</html>
