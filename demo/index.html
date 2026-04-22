@@ -1,0 +1,1361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TheRevenueProtocol -- Qualified Meetings, Done For You</title>
+<meta name="description" content="We build and run a complete cold outbound system for your B2B company. Get qualified meetings on your calendar in 90 days -- done for you, start to finish.">
+<link rel="icon" href="https://framerusercontent.com/images/pbvYwK3r1tg6tglaoLkA8LMaeY.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0A0F1E;--bg-alt:#0E1328;--card:#111832;--deep:#0D1226;
+  --border:#1e2a3a;--border-light:#162035;
+  --txt:#ffffff;--body:#e2e8f0;--sub:#94a3b8;--sub2:#64748b;--vmuted:#475569;
+  --blue:#1A5FBD;--teal:#00C2A8;--purple:#a78bfa;--red:#ef4444;--amber:#f59e0b;
+  --inter:'Inter',system-ui,sans-serif;
+  --max:960px;--r:16px;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--inter);font-size:17px;font-weight:400;color:var(--body);background:var(--bg);line-height:1.65;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:var(--teal);text-decoration:none}
+
+/* ═══════ TYPOGRAPHY ═══════ */
+h1{font-family:var(--inter);font-size:clamp(32px,5.5vw,62px);font-weight:800;color:var(--txt);line-height:1.05;letter-spacing:-0.04em}
+h2{font-family:var(--inter);font-size:clamp(26px,4vw,40px);font-weight:700;color:var(--txt);line-height:1.12;letter-spacing:-0.03em}
+h3{font-family:var(--inter);font-size:clamp(16px,2vw,20px);font-weight:600;color:var(--txt);line-height:1.4;letter-spacing:-0.01em}
+.label{font-family:var(--inter);font-size:13px;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.75rem}
+.gradient-text{background:linear-gradient(120deg,var(--blue),var(--teal),var(--blue));background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer 6s linear infinite}
+@keyframes shimmer{0%{background-position:0% 50%}100%{background-position:200% 50%}}
+.section-sub{color:var(--sub);font-size:17px;line-height:1.65;max-width:600px}
+.center{text-align:center}
+.center .section-sub{margin:0.75rem auto 0}
+
+/* ═══════ LAYOUT ═══════ */
+.wrap{width:min(var(--max),calc(100% - 48px));margin:0 auto}
+.wrap-wide{width:min(1200px,calc(100% - 48px));margin:0 auto}
+.section{padding:5rem 0}
+.section+.section{border-top:1px solid var(--border)}
+
+/* ═══════ BUTTONS ═══════ */
+.btn{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(180deg,#4347f3,#0d81f1);color:#fff;font-family:var(--inter);font-size:17px;font-weight:700;padding:16px 32px;border-radius:200px;border:none;cursor:pointer;transition:opacity .2s,transform .2s;letter-spacing:-0.01em;text-decoration:none}
+.btn:hover{opacity:.9;transform:translateY(-2px)}
+.btn-blue{background:linear-gradient(180deg,#4347f3,#0d81f1)}
+.btn-arrow::after{content:" \2192";font-size:18px}
+
+/* ═══════ NAV ═══════ */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,15,30,0.7);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border);height:60px;display:flex;align-items:center;padding:0 1.5rem;transition:background .3s,box-shadow .3s}
+nav.scrolled{background:rgba(10,15,30,0.95);box-shadow:0 2px 20px rgba(0,0,0,0.4)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;width:100%;max-width:1200px;margin:0 auto}
+.nav-logo{color:var(--txt);font-family:var(--inter);font-size:15px;font-weight:700;letter-spacing:-0.02em;display:flex;align-items:center;gap:8px;text-decoration:none}
+.nav-logo img{width:24px;height:24px}
+.nav-links{display:flex;align-items:center;gap:24px}
+.nav-links a{font-size:14px;font-weight:500;color:var(--sub);text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:var(--teal)}
+.nav-cta{font-size:14px;padding:10px 20px}
+@media(max-width:780px){.nav-links{display:none}}
+
+/* ═══════ HERO ═══════ */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:8rem 0 4rem;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:1400px;height:700px;background:radial-gradient(ellipse at center,rgba(26,95,189,0.18),transparent 55%);pointer-events:none;z-index:0}
+.hero::after{content:"";position:absolute;bottom:-100px;left:50%;transform:translateX(-50%);width:1000px;height:400px;background:radial-gradient(ellipse at center,rgba(0,194,168,0.08),transparent 60%);pointer-events:none;z-index:0}
+.hero .wrap{position:relative;z-index:1}
+.hero .pill{display:inline-block;background:rgba(0,194,168,0.1);color:var(--teal);font-size:13px;font-weight:700;padding:7px 18px;border-radius:200px;margin-bottom:1.75rem;border:1px solid rgba(0,194,168,0.25);text-transform:uppercase;letter-spacing:0.08em}
+.hero h1{max-width:820px;margin:0 auto 1.25rem}
+.hero-sub{max-width:620px;margin:0 auto 2.5rem;color:var(--sub);font-size:18px;line-height:1.65}
+
+/* VSL player */
+.vsl-wrap{max-width:780px;margin:0 auto 2.5rem}
+.vsl-frame{position:relative;width:100%;aspect-ratio:16/9;border-radius:20px;overflow:hidden;background:#0f172a;box-shadow:0 30px 80px rgba(0,0,0,0.5),0 0 0 1px rgba(255,255,255,0.05);transition:transform .3s,box-shadow .3s}
+.vsl-frame:hover{transform:translateY(-4px);box-shadow:0 40px 100px rgba(0,0,0,0.6),0 0 0 1px rgba(255,255,255,0.08)}
+.vsl-placeholder{position:absolute;inset:0;background:linear-gradient(135deg,#1a2340,#0f172a);display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;cursor:pointer}
+.vsl-placeholder::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(26,95,189,0.2),transparent 60%);pointer-events:none}
+.vsl-play{position:relative;width:88px;height:88px;border-radius:50%;background:linear-gradient(180deg,#4347f3,#0d81f1);border:none;color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 0 0 0 rgba(26,95,189,0.4);animation:pulse 2.4s ease-in-out infinite;transition:transform .2s}
+.vsl-play:hover{transform:scale(1.08)}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(26,95,189,0.5)}70%{box-shadow:0 0 0 28px rgba(26,95,189,0)}100%{box-shadow:0 0 0 0 rgba(26,95,189,0)}}
+.vsl-play svg{margin-left:4px}
+.vsl-label{position:relative;font-size:14px;font-weight:600;margin-top:1.25rem;letter-spacing:0.04em;text-transform:uppercase}
+.vsl-sub{position:relative;font-size:12px;color:rgba(255,255,255,0.45);margin-top:4px}
+
+/* ═══════ LOGO MARQUEE ═══════ */
+.logo-bar{padding:3rem 0 2.75rem;background:var(--bg-alt);position:relative;overflow:hidden;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.logo-bar::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 50% 50%,rgba(26,95,189,0.1),transparent 70%);pointer-events:none}
+.logo-bar-eyebrow{position:relative;font-family:var(--inter);font-size:11px;font-weight:700;color:rgba(203,213,225,0.55);text-transform:uppercase;letter-spacing:0.18em;text-align:center;margin-bottom:2rem}
+.marquee{position:relative;overflow:hidden;width:100%;-webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 10%,#000 90%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0%,#000 10%,#000 90%,transparent 100%)}
+.marquee-track{display:flex;align-items:center;gap:5rem;width:max-content;animation:marquee 50s linear infinite;will-change:transform}
+.marquee:hover .marquee-track{animation-play-state:paused}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.marquee-logo{height:36px;width:auto;max-width:170px;object-fit:contain;flex-shrink:0;filter:brightness(0) invert(1);opacity:0.55;transition:opacity .3s,transform .3s}
+.marquee-logo:hover{opacity:1;transform:scale(1.06)}
+@media(max-width:640px){
+  .marquee-track{gap:3.5rem;animation-duration:38s}
+  .marquee-logo{height:28px;max-width:130px}
+  .logo-bar{padding:2.25rem 0 2rem}
+  .logo-bar-eyebrow{margin-bottom:1.5rem}
+}
+@media(prefers-reduced-motion:reduce){.marquee-track{animation:none}}
+
+/* ═══════ FIT CARDS ═══════ */
+.fit-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:2rem}
+.fit-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:2rem;position:relative;overflow:hidden}
+.fit-card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px}
+.fit-yes::before{background:var(--purple)}
+.fit-no::before{background:var(--red)}
+.fit-header{display:flex;align-items:center;gap:10px;font-size:16px;font-weight:700;margin-bottom:1.25rem;color:var(--txt)}
+.fit-icon{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;flex-shrink:0}
+.fit-yes .fit-icon{background:rgba(167,139,250,0.15);color:var(--purple)}
+.fit-no .fit-icon{background:rgba(239,68,68,0.15);color:var(--red)}
+.fit-card ul{list-style:none;display:flex;flex-direction:column;gap:12px}
+.fit-card li{font-size:15px;color:var(--sub);padding-left:1.5rem;position:relative;line-height:1.5}
+.fit-yes li::before{content:"\2713";position:absolute;left:0;color:var(--purple);font-weight:700}
+.fit-no li::before{content:"\2717";position:absolute;left:0;color:var(--red);font-weight:700}
+@media(max-width:640px){.fit-grid{grid-template-columns:1fr}}
+
+/* ═══════ PROOF / RESULTS ═══════ */
+.results-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:2rem}
+.result-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:2rem;display:flex;flex-direction:column;transition:transform .25s,box-shadow .25s}
+.result-card:hover{transform:translateY(-4px);box-shadow:0 20px 50px rgba(0,0,0,0.3)}
+.result-tag{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;background:rgba(167,139,250,0.1);border:1px solid rgba(167,139,250,0.25);border-radius:200px;margin-bottom:1rem;align-self:flex-start;font-size:12px;font-weight:700;color:var(--purple);text-transform:uppercase;letter-spacing:0.04em}
+.result-tag .dot{width:7px;height:7px;border-radius:50%;background:var(--purple);box-shadow:0 0 0 3px rgba(167,139,250,0.18);animation:pulseDot 2.4s ease-in-out infinite}
+@keyframes pulseDot{0%,100%{box-shadow:0 0 0 3px rgba(167,139,250,0.18)}50%{box-shadow:0 0 0 6px rgba(167,139,250,0.06)}}
+.result-card .big-num{font-size:clamp(28px,4vw,38px);font-weight:900;letter-spacing:-0.04em;margin-bottom:8px;line-height:1.05;background:linear-gradient(135deg,#fff,var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.result-card .desc{font-size:15px;color:var(--sub);margin-bottom:1rem;line-height:1.6}
+.result-stats{display:flex;gap:8px;margin-bottom:1rem;flex-wrap:wrap}
+.stat-chip{display:inline-flex;align-items:center;gap:4px;padding:5px 12px;background:var(--deep);border:1px solid var(--border);border-radius:8px;font-size:12px;font-weight:600;color:var(--txt)}
+.stat-chip .num{color:var(--teal);font-weight:800}
+.proof-img-wrap{border-radius:12px;overflow:hidden;border:1px solid var(--border);margin-top:auto;cursor:pointer;background:var(--deep)}
+.proof-img-wrap.pad{padding:12px}
+.proof-img-wrap img{width:100%;height:auto;transition:transform .3s;border-radius:8px}
+.proof-img-wrap:hover img{transform:scale(1.02)}
+.confidential-proof{position:relative;border-radius:14px;overflow:hidden;border:1px solid var(--border);margin-top:auto;background:var(--deep)}
+.confidential-proof .proof-img-inner{position:relative;padding:12px}
+.confidential-proof .proof-img-inner img{width:100%;height:auto;border-radius:8px}
+.confidential-proof .proof-img-inner::before{content:"";position:absolute;top:0;left:0;right:0;height:18%;background:linear-gradient(180deg,var(--card) 0%,var(--card) 70%,rgba(17,24,50,0));pointer-events:none;z-index:2}
+.confidential-proof .proof-img-inner::after{content:"";position:absolute;top:0;left:0;right:0;height:14%;background-image:repeating-linear-gradient(45deg,rgba(167,139,250,0.18) 0,rgba(167,139,250,0.18) 8px,transparent 8px,transparent 16px);pointer-events:none;z-index:3;border-bottom:1px solid rgba(167,139,250,0.3)}
+.more-results{text-align:center;margin-top:1.5rem;font-size:14px;color:var(--vmuted);font-style:italic}
+@media(max-width:640px){.results-grid{grid-template-columns:1fr}}
+
+/* ═══════ SYSTEM OVERVIEW ═══════ */
+.pillars-row{display:flex;align-items:stretch;gap:20px;margin-top:2.5rem}
+.pillar-box{flex:1;background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:2rem 1.5rem;text-align:center;transition:transform .25s,border-color .25s}
+.pillar-box:hover{transform:translateY(-3px);border-color:rgba(26,95,189,0.3)}
+.pillar-icon{width:56px;height:56px;border-radius:14px;background:rgba(26,95,189,0.12);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;color:var(--blue)}
+.pillar-box h3{margin-bottom:6px;font-size:17px}
+.pillar-box p{font-size:14px;color:var(--sub);line-height:1.5}
+.pillar-arrow{display:flex;align-items:center;color:var(--teal);font-size:24px;font-weight:300;flex-shrink:0}
+@media(max-width:640px){.pillars-row{flex-direction:column}.pillar-arrow{justify-content:center;transform:rotate(90deg)}}
+
+/* infrastructure math */
+.infra-section{margin-top:3rem;background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:2rem}
+.infra-title{text-align:center;font-size:18px;font-weight:700;color:var(--txt);margin-bottom:0.5rem}
+.infra-sub{text-align:center;font-size:14px;color:var(--sub);margin-bottom:2rem}
+.infra-cards{display:flex;gap:16px;margin-bottom:2rem;justify-content:center}
+.infra-card{background:var(--deep);border:1px solid var(--border);border-radius:12px;padding:1.25rem 1.5rem;flex:1;max-width:260px}
+.infra-card .ic-domain{font-size:14px;font-weight:700;color:var(--teal);margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.infra-card .ic-domain .ic-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.infra-card ul{list-style:none;margin-top:6px}
+.infra-card li{font-size:12px;color:var(--vmuted);padding:2px 0}
+.infra-card .ic-stat{font-size:12px;color:var(--sub);margin-top:8px;padding-top:8px;border-top:1px solid var(--border)}
+.infra-card .ic-stat strong{color:var(--teal)}
+.infra-more{background:var(--deep);border:1px solid var(--border);border-radius:12px;padding:1.25rem 1.5rem;flex:1;max-width:260px;display:flex;flex-direction:column;justify-content:center}
+.infra-more .ic-plus{font-size:14px;font-weight:700;color:var(--blue);margin-bottom:6px}
+.infra-more li{font-size:12px;color:var(--vmuted);list-style:none;padding:1px 0}
+.math-equation{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;padding:1.25rem;background:linear-gradient(135deg,rgba(26,95,189,0.08),rgba(0,194,168,0.08));border:1px solid rgba(26,95,189,0.2);border-radius:12px}
+.math-item{text-align:center}
+.math-num{display:block;font-size:clamp(22px,3vw,32px);font-weight:900;color:var(--txt);letter-spacing:-0.03em;line-height:1}
+.math-label{font-size:12px;color:var(--sub);margin-top:4px;text-transform:lowercase}
+.math-result .math-num{color:var(--teal)}
+.math-op{font-size:24px;color:var(--vmuted);font-weight:300}
+@media(max-width:640px){.infra-cards{flex-direction:column;align-items:center}.infra-card,.infra-more{max-width:100%}}
+
+/* ═══════ PILLAR DETAIL SECTIONS ═══════ */
+.pillar-layout{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;margin-top:2rem}
+.pillar-layout.reverse{direction:rtl}
+.pillar-layout.reverse>*{direction:ltr}
+.pillar-text p{font-size:16px;color:var(--sub);line-height:1.7;margin-bottom:1rem}
+.pillar-text p strong{color:var(--txt);font-weight:600}
+.pillar-img{border-radius:16px;overflow:hidden;border:1px solid var(--border);box-shadow:0 12px 40px rgba(0,0,0,0.3)}
+.pillar-img img{width:100%;height:auto;display:block}
+.pillar-num{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:10px;background:rgba(26,95,189,0.15);color:var(--blue);font-size:16px;font-weight:800;margin-bottom:1rem}
+@media(max-width:780px){.pillar-layout{grid-template-columns:1fr}.pillar-layout.reverse{direction:ltr}}
+
+/* callout cards */
+.callout{border-left:3px solid var(--teal);background:rgba(0,194,168,0.06);border-radius:0 var(--r) var(--r) 0;padding:1.25rem 1.5rem;margin:1.5rem 0}
+.callout h4{font-size:15px;font-weight:700;color:var(--teal);margin-bottom:6px}
+.callout p{font-size:14px;color:var(--sub);line-height:1.6;margin-bottom:0}
+.callout-warn{border-left-color:var(--amber);background:rgba(245,158,11,0.06)}
+.callout-warn h4{color:var(--amber)}
+.callout-purple{border-left-color:var(--purple);background:rgba(167,139,250,0.06)}
+.callout-purple h4{color:var(--purple)}
+.callout-red{border-left-color:var(--red);background:rgba(239,68,68,0.06)}
+.callout-red h4{color:var(--red)}
+
+/* steps */
+.steps-list{display:flex;flex-direction:column;gap:16px;margin:1.5rem 0}
+.step-item{display:flex;gap:16px;align-items:flex-start;background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:1.25rem 1.5rem}
+.step-num{width:32px;height:32px;border-radius:50%;background:rgba(26,95,189,0.15);color:var(--blue);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;flex-shrink:0}
+.step-item h4{font-size:15px;font-weight:700;color:var(--txt);margin-bottom:3px}
+.step-item p{font-size:14px;color:var(--sub);line-height:1.5;margin:0}
+
+/* tags */
+.tag-row{display:flex;flex-wrap:wrap;gap:8px;margin:1rem 0}
+.tag{padding:5px 14px;border-radius:200px;font-size:12px;font-weight:600;border:1px solid rgba(0,194,168,0.3);color:var(--teal);background:rgba(0,194,168,0.06)}
+
+/* flow row */
+.flow-row{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:2.5rem;flex-wrap:wrap}
+.flow-node{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:1.25rem 2rem;text-align:center;min-width:160px}
+.flow-node.highlight{border-color:var(--purple);background:rgba(167,139,250,0.08)}
+.flow-node .flow-emoji{font-size:28px;margin-bottom:6px}
+.flow-node span{display:block;font-size:14px;font-weight:700;color:var(--txt)}
+.flow-node small{font-size:12px;color:var(--sub)}
+.flow-arrow{color:var(--teal);font-size:24px;font-weight:300}
+@media(max-width:640px){.flow-node{min-width:auto;flex:1}.flow-arrow{font-size:18px}}
+
+/* ═══════ TIMELINE ═══════ */
+.timeline{position:relative;padding-left:60px;max-width:680px;margin:2.5rem auto 0}
+.timeline::before{content:"";position:absolute;left:22px;top:8px;bottom:8px;width:2px;background:var(--border)}
+.tl-step{position:relative;padding-bottom:2.5rem}
+.tl-step:last-child{padding-bottom:0}
+.tl-circle{position:absolute;left:-60px;top:0;width:44px;height:44px;border-radius:50%;background:rgba(26,95,189,0.12);border:2px solid var(--blue);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:var(--blue);z-index:1}
+.tl-step.highlight .tl-circle{background:rgba(167,139,250,0.15);border-color:var(--purple);color:var(--purple)}
+.tl-day{font-size:13px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px}
+.tl-step.highlight .tl-day{color:var(--purple)}
+.tl-step h3{font-size:18px;margin-bottom:6px}
+.tl-step p{font-size:14px;color:var(--sub);line-height:1.6}
+.tl-step ul{list-style:none;margin-top:6px}
+.tl-step li{font-size:14px;color:var(--sub);padding:3px 0;padding-left:1.25rem;position:relative;line-height:1.5}
+.tl-step li::before{content:"\2022";position:absolute;left:0;color:var(--vmuted)}
+.tl-highlight-box{margin-top:8px;padding:10px 14px;background:rgba(167,139,250,0.08);border:1px solid rgba(167,139,250,0.2);border-radius:10px;font-size:14px;color:var(--purple);font-weight:600}
+.duration-card{display:flex;align-items:center;justify-content:center;gap:2.5rem;margin-top:2.5rem;padding:1.25rem 2rem;background:rgba(167,139,250,0.06);border:1px solid rgba(167,139,250,0.2);border-radius:var(--r);max-width:480px;margin-left:auto;margin-right:auto}
+.duration-item{text-align:center}
+.duration-num{font-size:clamp(28px,3vw,36px);font-weight:900;color:var(--purple);letter-spacing:-0.03em;line-height:1}
+.duration-label{font-size:12px;color:var(--sub);margin-top:4px;text-transform:uppercase;letter-spacing:0.04em}
+.duration-divider{width:1px;height:48px;background:var(--border)}
+
+/* ═══════ OWNERSHIP ═══════ */
+.own-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:2rem}
+.own-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:2rem}
+.own-card h3{margin-bottom:1rem;font-size:18px}
+.own-card ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.own-card li{font-size:15px;color:var(--sub);padding-left:1.5rem;position:relative;line-height:1.5}
+.own-card li::before{content:"\2713";position:absolute;left:0;color:var(--teal);font-weight:700}
+.own-card p{font-size:15px;color:var(--sub);line-height:1.65}
+.own-card .own-options{margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border)}
+.own-card .own-options p{font-size:14px;margin-bottom:4px}
+.no-lockin{margin-top:2rem;padding:1.25rem 2rem;text-align:center;border:1px solid rgba(0,194,168,0.25);background:rgba(0,194,168,0.05);border-radius:var(--r);font-size:16px;font-weight:700;color:var(--teal)}
+@media(max-width:640px){.own-grid{grid-template-columns:1fr}}
+
+/* ═══════ GUARANTEE ═══════ */
+.guarantee-card{max-width:740px;margin:2rem auto;background:var(--card);border:1px solid var(--border);border-radius:20px;padding:3rem 2.5rem;text-align:center;position:relative;overflow:hidden}
+.guarantee-card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--blue),var(--teal))}
+.guarantee-icon{width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--teal));display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem}
+.guarantee-card h3{font-size:clamp(20px,2.5vw,26px);margin-bottom:1rem}
+.guarantee-card>p{font-size:16px;color:var(--sub);line-height:1.65;max-width:580px;margin:0 auto}
+
+/* package tiers */
+.packages-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:2.5rem}
+.package-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:2rem;position:relative}
+.package-card.featured{border-color:rgba(167,139,250,0.4)}
+.package-card.featured::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--purple)}
+.package-badge{position:absolute;top:12px;right:12px;background:rgba(167,139,250,0.15);color:var(--purple);font-size:11px;font-weight:700;padding:4px 10px;border-radius:200px;text-transform:uppercase;letter-spacing:0.06em}
+.package-card h3{font-size:20px;font-weight:800;margin-bottom:4px}
+.package-card .pkg-sub{font-size:13px;color:var(--sub);margin-bottom:1.25rem}
+.package-card ul{list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:1.5rem}
+.package-card li{font-size:14px;color:var(--sub);padding-left:1.5rem;position:relative;line-height:1.4}
+.package-card li::before{content:"\2713";position:absolute;left:0;color:var(--teal);font-weight:700;font-size:13px}
+.package-guarantee{padding:1rem;background:rgba(167,139,250,0.06);border:1px solid rgba(167,139,250,0.15);border-radius:10px}
+.package-guarantee h4{font-size:13px;font-weight:700;color:var(--purple);text-decoration:underline;margin-bottom:4px}
+.package-guarantee p{font-size:13px;color:var(--sub);margin:0;line-height:1.4}
+.pricing-note{margin-top:2rem;text-align:center;padding:1rem 1.5rem;background:rgba(26,95,189,0.08);border:1px solid rgba(26,95,189,0.2);border-radius:var(--r);font-size:15px;color:var(--sub)}
+.pricing-note strong{color:var(--txt)}
+@media(max-width:640px){.packages-grid{grid-template-columns:1fr}}
+
+/* ═══════ ROI CALCULATOR ═══════ */
+.calc-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:2.5rem;max-width:900px;margin:2rem auto 0}
+.calc-step-label{font-size:13px;font-weight:700;color:var(--purple);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:1.25rem;display:flex;align-items:center;gap:8px}
+.calc-step-label span{width:24px;height:24px;border-radius:50%;background:rgba(167,139,250,0.15);display:flex;align-items:center;justify-content:center;font-size:12px}
+.calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-bottom:2rem}
+.calc-col h4{font-size:14px;font-weight:700;color:var(--txt);margin-bottom:1rem;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.calc-field{margin-bottom:1rem}
+.calc-field label{display:block;font-size:13px;font-weight:600;color:var(--sub);margin-bottom:6px}
+.calc-field select,.calc-field input[type="number"]{width:100%;padding:10px 14px;border:1px solid var(--border);border-radius:10px;font-family:var(--inter);font-size:15px;font-weight:600;color:var(--txt);background:var(--deep);outline:none;transition:border-color .2s;-webkit-appearance:none;appearance:none}
+.calc-field select{background-image:url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 6L11 1' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px;cursor:pointer}
+.calc-field select option{background:var(--card);color:var(--txt)}
+.calc-field input:focus,.calc-field select:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(26,95,189,0.15)}
+.calc-slider-wrap{margin-bottom:1rem}
+.calc-slider-wrap label{display:flex;justify-content:space-between;font-size:13px;font-weight:600;color:var(--sub);margin-bottom:8px}
+.calc-slider-wrap label strong{color:var(--teal);font-weight:800}
+.calc-slider{width:100%;-webkit-appearance:none;appearance:none;height:6px;border-radius:3px;background:var(--border);outline:none;cursor:pointer}
+.calc-slider::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--teal));cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.3)}
+.calc-slider::-moz-range-thumb{width:20px;height:20px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--teal));cursor:pointer;border:none}
+.calc-output{background:var(--deep);border:1px solid var(--border);border-radius:10px;padding:12px 16px;margin-bottom:10px}
+.calc-output label{font-size:12px;color:var(--vmuted);display:block;margin-bottom:2px}
+.calc-output .val{font-size:20px;font-weight:800;color:var(--txt)}
+.calc-output .val.accent{color:var(--teal)}
+.calc-output .val.purple{color:var(--purple)}
+.calc-output .hint{font-size:11px;color:var(--vmuted);margin-top:2px}
+.calc-divider{border:none;border-top:1px solid var(--border);margin:1.5rem 0}
+.calc-results-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:1.5rem;padding:1.5rem;background:linear-gradient(135deg,rgba(26,95,189,0.08),rgba(167,139,250,0.08));border:1px solid rgba(167,139,250,0.2);border-radius:14px}
+.calc-result-box{text-align:center;padding:1rem;border-radius:10px}
+.calc-result-box.featured{background:rgba(167,139,250,0.1);border:1px solid rgba(167,139,250,0.25)}
+.calc-result-label{font-size:11px;font-weight:700;color:var(--sub);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px}
+.calc-result-value{font-size:clamp(20px,3vw,32px);font-weight:900;color:#fff;letter-spacing:-0.03em;line-height:1}
+.calc-result-value.accent{color:var(--teal)}
+.calc-result-value.purple{color:var(--purple)}
+@media(max-width:640px){.calc-card{padding:1.5rem}.calc-grid{grid-template-columns:1fr}.calc-results-row{grid-template-columns:1fr}}
+
+/* ═══════ FAQ ═══════ */
+.faq-list{max-width:740px;margin:2rem auto 0}
+.faq-item{border-bottom:1px solid var(--border)}
+.faq-q{display:flex;align-items:center;justify-content:space-between;padding:20px 0;cursor:pointer;gap:14px}
+.faq-q h3{font-size:16px;flex:1;font-weight:600}
+.faq-icon{width:24px;height:24px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:22px;color:var(--sub);transition:transform .25s;font-weight:300}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease}
+.faq-a .faq-body{padding:0 0 20px;font-size:15px;color:var(--sub);line-height:1.65}
+.faq-item.open .faq-a{max-height:600px}
+.faq-item.open .faq-icon{transform:rotate(45deg)}
+
+/* ═══════ YOUTUBE CAROUSEL ═══════ */
+.yt-section{padding:4rem 0;overflow:hidden}
+.yt-header{text-align:center;margin-bottom:2rem}
+.yt-header h2{font-size:clamp(22px,3vw,32px);margin-bottom:6px}
+.yt-header p{color:var(--sub);font-size:15px}
+.yt-carousel-wrap{position:relative;max-width:1200px;margin:0 auto;padding:0 1.5rem}
+.yt-carousel{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding:8px 0}
+.yt-carousel::-webkit-scrollbar{display:none}
+.yt-card{flex:0 0 320px;scroll-snap-align:start;position:relative;border-radius:16px;overflow:hidden;background:var(--card);cursor:pointer;transition:transform .25s,box-shadow .25s;box-shadow:0 8px 24px rgba(0,0,0,0.2)}
+.yt-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,0.35)}
+.yt-thumb{position:relative;width:100%;aspect-ratio:16/9;overflow:hidden}
+.yt-thumb img{width:100%;height:100%;object-fit:cover;transition:transform .3s}
+.yt-card:hover .yt-thumb img{transform:scale(1.05)}
+.yt-play-btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:56px;height:56px;border-radius:50%;background:linear-gradient(180deg,#4347f3,#0d81f1);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(26,95,189,0.4);transition:transform .2s}
+.yt-card:hover .yt-play-btn{transform:translate(-50%,-50%) scale(1.1)}
+.yt-play-btn svg{margin-left:3px}
+.yt-title{padding:14px 16px;font-size:13px;font-weight:600;color:var(--txt);line-height:1.35;border-top:1px solid var(--border)}
+.yt-nav{display:flex;justify-content:center;gap:10px;margin-top:1.5rem}
+.yt-nav button{width:40px;height:40px;border-radius:50%;border:1px solid var(--border);background:var(--card);cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--sub);font-size:18px;transition:all .2s}
+.yt-nav button:hover{border-color:var(--teal);color:var(--teal)}
+@media(max-width:640px){.yt-card{flex:0 0 280px}}
+
+/* yt modal */
+.yt-modal{position:fixed;inset:0;z-index:300;background:rgba(0,0,0,0.92);display:none;align-items:center;justify-content:center;cursor:pointer;padding:2rem}
+.yt-modal.open{display:flex}
+.yt-modal-inner{width:min(900px,90vw);aspect-ratio:16/9;border-radius:12px;overflow:hidden;position:relative}
+.yt-modal-inner iframe{width:100%;height:100%;border:0}
+.yt-modal-close{position:absolute;top:1rem;right:1.5rem;color:#fff;font-size:28px;cursor:pointer;font-weight:300;opacity:.7;transition:opacity .2s;z-index:1}
+.yt-modal-close:hover{opacity:1}
+
+/* ═══════ FINAL CTA ═══════ */
+.final-cta{position:relative;padding:6rem 0 6.5rem;overflow:hidden}
+.final-cta::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 0%,rgba(26,95,189,0.25),transparent 60%);pointer-events:none}
+.final-cta::after{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px);background-size:48px 48px;mask-image:radial-gradient(ellipse at center,#000 30%,transparent 75%);-webkit-mask-image:radial-gradient(ellipse at center,#000 30%,transparent 75%);pointer-events:none}
+.final-cta-inner{position:relative;text-align:center;max-width:700px;margin:0 auto;z-index:1}
+.final-cta-inner h2{font-size:clamp(30px,5vw,48px);margin-bottom:1.25rem}
+.final-cta-sub{color:var(--sub);font-size:18px;line-height:1.6;max-width:560px;margin:0 auto 2.25rem}
+.final-cta-micro{display:block;margin-top:1.25rem;color:var(--vmuted);font-size:13px}
+
+/* ═══════ FOOTER ═══════ */
+footer{padding:2.5rem 0;text-align:center;border-top:1px solid var(--border)}
+footer .f-logo{display:flex;align-items:center;justify-content:center;gap:8px;color:#fff;font-size:14px;font-weight:700;margin-bottom:8px}
+footer .f-logo img{width:20px;height:20px}
+footer p{color:var(--vmuted);font-size:12px}
+
+/* ═══════ LIGHTBOX ═══════ */
+.lightbox{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,0.9);display:none;align-items:center;justify-content:center;cursor:zoom-out;padding:2rem}
+.lightbox.open{display:flex}
+.lightbox img{max-width:95%;max-height:90vh;border-radius:8px;box-shadow:0 20px 60px rgba(0,0,0,0.6)}
+.lightbox-close{position:absolute;top:1rem;right:1.5rem;color:#fff;font-size:28px;cursor:pointer;font-weight:300;opacity:.7;transition:opacity .2s}
+.lightbox-close:hover{opacity:1}
+
+/* ═══════ SCROLL ANIMATIONS ═══════ */
+.anim{opacity:0;transform:translateY(20px);transition:opacity 500ms ease,transform 500ms ease}
+.anim.visible{opacity:1;transform:translateY(0)}
+
+/* ═══════ RESPONSIVE ═══════ */
+@media(max-width:640px){
+  .wrap{width:calc(100% - 32px)}
+  .hero{min-height:auto;padding:6rem 0 3rem}
+  .section{padding:3.5rem 0}
+  .guarantee-card{padding:2rem 1.5rem}
+  .duration-card{flex-direction:column;gap:1rem}
+  .duration-divider{width:48px;height:1px}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════ NAV ═══════ -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo"><img src="https://framerusercontent.com/images/pbvYwK3r1tg6tglaoLkA8LMaeY.png" alt="TRP" width="24" height="24">TheRevenueProtocol</a>
+    <div class="nav-links">
+      <a href="#proof">Proof</a>
+      <a href="#system">The System</a>
+      <a href="#timeline">How It Works</a>
+      <a href="#calculator">ROI Calculator</a>
+      <a href="#cta" class="btn nav-cta btn-arrow">Book a Call</a>
+    </div>
+  </div>
+</nav>
+
+
+<!-- ═══════ 1. HERO ═══════ -->
+<section class="hero" id="hero">
+  <div class="wrap">
+    <div class="pill">Done-For-You Cold Outbound</div>
+    <h1>10x Your Qualified Lead Flow <span class="gradient-text">In The Next 60 Days</span></h1>
+    <p class="hero-sub">We build and deploy a complete cold email system for your business, sending 2,500+ emails per day to your ideal prospects. You just show up to qualified calls.</p>
+
+    <a href="#cta" class="btn btn-arrow" style="margin-top:1rem">Book Your Strategy Call</a>
+
+  </div>
+</section>
+
+<!-- ═══════ LOGO MARQUEE ═══════ -->
+<section class="logo-bar" aria-label="Trusted by">
+  <div class="wrap">
+    <p class="logo-bar-eyebrow">Trusted by teams at</p>
+  </div>
+  <div class="marquee">
+    <div class="marquee-track">
+      <img src="https://chekin.com/wp-content/uploads/2025/10/16634588896821464112.png" alt="Chekin" class="marquee-logo">
+      <img src="https://framerusercontent.com/images/OnkvUfGkLP0iUJuF45OtvwtGtg.svg" alt="Yozo" class="marquee-logo">
+      <img src="https://www.checkpoint.com/wp-content/themes/checkpoint-theme-v2/images/checkpoint-logo.svg" alt="Check Point" class="marquee-logo">
+      <img src="https://changecurve.ai/wp-content/uploads/2024/08/Changer-Curve-Logo-1536x211.png" alt="ChangeCurve" class="marquee-logo">
+      <img src="https://www.eventcombo.com/Images/AMaterial/logo.png" alt="Eventcombo" class="marquee-logo">
+      <img src="https://americanprimeland.com/wp-content/uploads/2024/10/logo-1024x153.webp" alt="American Prime Land" class="marquee-logo">
+      <img src="https://riaadvisory.com/wp-content/uploads/ria-advisory-logo.svg" alt="RIA Advisory" class="marquee-logo">
+      <img src="https://www.giftsforyounow.com/BVModules/Themes/GiftsFYN5_Yellow/images/gfyn-logo.svg" alt="GiftsForYouNow" class="marquee-logo">
+      <!-- Duplicate for seamless loop -->
+      <img src="https://chekin.com/wp-content/uploads/2025/10/16634588896821464112.png" alt="" aria-hidden="true" class="marquee-logo">
+      <img src="https://framerusercontent.com/images/OnkvUfGkLP0iUJuF45OtvwtGtg.svg" alt="" aria-hidden="true" class="marquee-logo">
+      <img src="https://www.checkpoint.com/wp-content/themes/checkpoint-theme-v2/images/checkpoint-logo.svg" alt="" aria-hidden="true" class="marquee-logo">
+      <img src="https://changecurve.ai/wp-content/uploads/2024/08/Changer-Curve-Logo-1536x211.png" alt="" aria-hidden="true" class="marquee-logo">
+      <img src="https://www.eventcombo.com/Images/AMaterial/logo.png" alt="" aria-hidden="true" class="marquee-logo">
+      <img src="https://americanprimeland.com/wp-content/uploads/2024/10/logo-1024x153.webp" alt="" aria-hidden="true" class="marquee-logo">
+      <img src="https://riaadvisory.com/wp-content/uploads/ria-advisory-logo.svg" alt="" aria-hidden="true" class="marquee-logo">
+      <img src="https://www.giftsforyounow.com/BVModules/Themes/GiftsFYN5_Yellow/images/gfyn-logo.svg" alt="" aria-hidden="true" class="marquee-logo">
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════ 2. IS THIS RIGHT FOR YOU ═══════ -->
+<section class="section" id="fit">
+  <div class="wrap">
+    <div class="center">
+      <h2>Is This Right For You?</h2>
+      <p class="section-sub">Our system works best for specific types of businesses. Here's how to know if we're a fit.</p>
+    </div>
+
+    <div class="fit-grid">
+      <div class="fit-card fit-yes anim">
+        <div class="fit-header"><span class="fit-icon">&#10003;</span> We'll Be a Good Fit If...</div>
+        <ul>
+          <li>Your average deal size is above $10K</li>
+          <li>You have a sales team that needs more qualified calls booked</li>
+          <li>Your total addressable market has at least 5,000 companies</li>
+          <li>You're ready to launch within 30 days</li>
+        </ul>
+      </div>
+      <div class="fit-card fit-no anim">
+        <div class="fit-header"><span class="fit-icon">&#10007;</span> We Won't Be a Good Fit If...</div>
+        <ul>
+          <li>Your business is doing less than $30K/month</li>
+          <li>You're not ready to launch within 30 days</li>
+          <li>You sell lower-ticket products under $10K deal size</li>
+          <li>You only sell to consumers (B2C)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════ 3. PROOF ═══════ -->
+<section class="section" id="proof">
+  <div class="wrap">
+    <p class="label center">Real Results</p>
+    <div class="center">
+      <h2>Real Results From Real Programs</h2>
+      <p class="section-sub">Numbers you can verify.</p>
+    </div>
+
+    <div class="results-grid">
+      <!-- Card 1: Series-A Hospitality SaaS (Chekin) -->
+      <div class="result-card anim">
+        <div class="result-tag"><span class="dot"></span> Series-A Hospitality SaaS</div>
+        <div class="big-num">12 Deals Sourced</div>
+        <p class="desc">12 whitelabel deals sourced in week 1 of launch. 398 leads contacted, 33% positive reply rate.</p>
+        <div class="result-stats">
+          <span class="stat-chip"><span class="num">398</span> Leads</span>
+          <span class="stat-chip"><span class="num">33%</span> Reply Rate</span>
+          <span class="stat-chip"><span class="num">12</span> Deals</span>
+        </div>
+        <div class="confidential-proof">
+          <div class="proof-img-inner">
+            <img src="images/account-shortlist.png" alt="398 leads contacted with 33% positive reply rate" loading="lazy">
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2: B2B2C SaaS Company -->
+      <div class="result-card anim">
+        <div class="result-tag"><span class="dot"></span> B2B2C SaaS Company</div>
+        <div class="big-num">49 Meetings</div>
+        <p class="desc">49 qualified meetings booked in 30 days. 13,955 leads contacted, 22.79% positive reply rate.</p>
+        <div class="result-stats">
+          <span class="stat-chip"><span class="num">13,955</span> Leads</span>
+          <span class="stat-chip"><span class="num">49</span> Positive Replies</span>
+          <span class="stat-chip"><span class="num">30</span> Days</span>
+        </div>
+        <div class="proof-img-wrap pad" data-zoom>
+          <img src="images/proof-b2b2c-saas.png" alt="SmartLead stats showing 13,955 leads contacted and 49 positive replies" loading="lazy">
+        </div>
+      </div>
+
+      <!-- Card 3: E-Commerce SaaS -->
+      <div class="result-card anim">
+        <div class="result-tag"><span class="dot"></span> E-Commerce SaaS</div>
+        <div class="big-num">$350K Revenue</div>
+        <p class="desc">14 meetings in 19 days. $350K in new revenue in under a month. 5,656 leads contacted, 26.60% positive reply rate.</p>
+        <div class="result-stats">
+          <span class="stat-chip"><span class="num">14</span> Meetings</span>
+          <span class="stat-chip"><span class="num">19</span> Days</span>
+          <span class="stat-chip"><span class="num">$350K</span> Revenue</span>
+        </div>
+        <div class="proof-img-wrap pad" data-zoom>
+          <img src="images/proof-ecommerce-saas.png" alt="SmartLead stats showing 5,656 leads contacted and 25 positive replies" loading="lazy">
+        </div>
+      </div>
+
+      <!-- Card 4: $24B Cybersecurity Company -->
+      <div class="result-card anim">
+        <div class="result-tag"><span class="dot"></span> $24B Cybersecurity Company</div>
+        <div class="big-num">$1.5M+ Closed</div>
+        <p class="desc">$4.1M pipeline built using the same outbound methodology.</p>
+        <div class="confidential-proof">
+          <div class="proof-img-inner">
+            <img src="images/proof-checkpoint.png" alt="Salesforce report showing 1.585M total closed won" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="more-results">[More results available on your strategy call]</p>
+  </div>
+</section>
+
+
+<!-- ═══════ 4. SYSTEM OVERVIEW ═══════ -->
+<section class="section" id="system">
+  <div class="wrap">
+    <p class="label center">The System</p>
+    <div class="center">
+      <h2>The 3-Pillar Cold Outbound Engine</h2>
+      <p class="section-sub">Most agencies build one piece. We build all three -- and run them for you.</p>
+    </div>
+
+    <div class="pillars-row anim">
+      <div class="pillar-box">
+        <div class="pillar-icon">
+          <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="18" rx="2"/><path d="M6 7h.01M10 7h.01M6 12h12M6 16h8"/></svg>
+        </div>
+        <h3>Precision Infrastructure</h3>
+        <p>The foundation that makes everything else work</p>
+      </div>
+      <div class="pillar-arrow">&rarr;</div>
+      <div class="pillar-box">
+        <div class="pillar-icon">
+          <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+        </div>
+        <h3>Signal-Based Targeting</h3>
+        <p>Finding the right companies at the right time</p>
+      </div>
+      <div class="pillar-arrow">&rarr;</div>
+      <div class="pillar-box">
+        <div class="pillar-icon">
+          <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <h3>Message-to-Meeting System</h3>
+        <p>Copy, testing, nurture, and booking</p>
+      </div>
+    </div>
+
+    <!-- Infrastructure visual -->
+    <div class="infra-section anim">
+      <p class="infra-title">Horizontally Scaled Sending Infrastructure</p>
+      <p class="infra-sub">Multiple branded domains, each with dedicated warmed inboxes</p>
+      <div class="infra-cards">
+        <div class="infra-card">
+          <div class="ic-domain"><span class="ic-dot" style="background:var(--teal)"></span> tanmayareach.com</div>
+          <ul>
+            <li>tanmay.a@...</li>
+            <li>tanmay.u@...</li>
+            <li>aul.t@...</li>
+            <li style="color:var(--vmuted)">+46 more inboxes</li>
+          </ul>
+          <div class="ic-stat">49 inboxes &times; 5 emails = <strong>245/day</strong></div>
+        </div>
+        <div class="infra-card">
+          <div class="ic-domain"><span class="ic-dot" style="background:var(--purple)"></span> tanmayagrow.com</div>
+          <ul>
+            <li>tanmay.a@...</li>
+            <li>tanmay.u@...</li>
+            <li>aul.t@...</li>
+            <li style="color:var(--vmuted)">+46 more inboxes</li>
+          </ul>
+          <div class="ic-stat">49 inboxes &times; 5 emails = <strong>245/day</strong></div>
+        </div>
+        <div class="infra-more">
+          <div class="ic-plus">+ 8-18 more domains</div>
+          <ul>
+            <li>tanmayademand.com</li>
+            <li>tanmayaleads.com</li>
+            <li>aultanmay.com</li>
+            <li>tanmayapipeline.com</li>
+            <li style="color:var(--vmuted)">...and more</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="math-equation">
+        <div class="math-item"><span class="math-num">10-20</span><span class="math-label">domains</span></div>
+        <span class="math-op">&times;</span>
+        <div class="math-item"><span class="math-num">49</span><span class="math-label">inboxes each</span></div>
+        <span class="math-op">&times;</span>
+        <div class="math-item"><span class="math-num">5</span><span class="math-label">emails/inbox/day</span></div>
+        <span class="math-op">=</span>
+        <div class="math-item math-result"><span class="math-num">2,500-5,000</span><span class="math-label">emails/day</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════ 5. PILLAR 1 ═══════ -->
+<section class="section" id="pillar1">
+  <div class="wrap">
+    <div class="pillar-num">1</div>
+    <h2>Precision Infrastructure</h2>
+    <p class="section-sub">The foundation that makes everything else work.</p>
+
+    <div class="pillar-layout anim">
+      <div class="pillar-text">
+        <p>Before a single email sends, we build secondary branded domains -- completely separate from your main domain -- spread across multiple warmed inboxes. SPF, DKIM, DMARC configured correctly. Sending limits respected per inbox.</p>
+        <p>Without this, <strong>60-70% of your emails land in spam</strong>. You think the copy isn't working. The copy never arrived.</p>
+
+        <div class="callout callout-red">
+          <h4>Why This Matters</h4>
+          <p>If you don't set this up correctly, you're wasting your entire investment. Everything else -- the list, the copy, the angles -- means nothing if your emails aren't hitting the inbox.</p>
+        </div>
+
+        <p>To effectively send 2,500+ per day, we need:</p>
+        <div style="display:flex;gap:12px;margin-top:8px">
+          <div style="background:var(--deep);border:1px solid var(--border);border-radius:10px;padding:12px 16px;flex:1;text-align:center">
+            <div style="font-size:24px;font-weight:900;color:var(--txt)">10-20</div>
+            <div style="font-size:12px;color:var(--sub)">Branded Domains</div>
+          </div>
+          <div style="background:var(--deep);border:1px solid var(--border);border-radius:10px;padding:12px 16px;flex:1;text-align:center">
+            <div style="font-size:24px;font-weight:900;color:var(--txt)">490-980</div>
+            <div style="font-size:12px;color:var(--sub)">Email Clients</div>
+          </div>
+        </div>
+      </div>
+      <div class="pillar-img" data-zoom>
+        <img src="images/infra-dashboard.png" alt="Infrastructure dashboard showing active sending domains" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════ 6. PILLAR 2 ═══════ -->
+<section class="section" id="pillar2">
+  <div class="wrap">
+    <div class="pillar-num">2</div>
+    <h2>Signal-Based Targeting</h2>
+    <p class="section-sub">Finding your entire market and making every email feel hand-written.</p>
+
+    <div class="pillar-layout anim">
+      <div class="pillar-text">
+        <div class="steps-list">
+          <div class="step-item">
+            <span class="step-num">1</span>
+            <div><h4>Source Leads</h4><p>We use your existing customer list to find lookalike companies, or build a sample list for you to approve.</p></div>
+          </div>
+          <div class="step-item">
+            <span class="step-num">2</span>
+            <div><h4>Scrape Your Market</h4><p>We find every company in your target market -- every single one.</p></div>
+          </div>
+          <div class="step-item">
+            <span class="step-num">3</span>
+            <div><h4>AI ICP Ranking</h4><p>AI scores each company against your existing customers. We only include 70%+ matches.</p></div>
+          </div>
+          <div class="step-item">
+            <span class="step-num">4</span>
+            <div><h4>Find Contacts</h4><p>We pull every relevant contact at qualifying companies.</p></div>
+          </div>
+          <div class="step-item">
+            <span class="step-num">5</span>
+            <div><h4>Triple Verification</h4><p>Email waterfall enrichment + verification to keep bounce rates low and protect deliverability.</p></div>
+          </div>
+        </div>
+      </div>
+      <div class="pillar-img" data-zoom>
+        <img src="images/clay-table.png" alt="Clay enrichment table showing lead data and ICP scoring" loading="lazy">
+      </div>
+    </div>
+
+    <!-- AI Personalization sub-section -->
+    <div style="margin-top:3rem" class="anim">
+      <h3 style="font-size:22px;font-weight:800;margin-bottom:0.5rem">Deep AI Personalization -- <span style="color:var(--teal)">THE DIFFERENTIATOR</span></h3>
+      <p style="color:var(--sub);margin-bottom:1rem">Every email is personalized to feel like 10 minutes of research was done on the prospect. We pull competitor names, recent news, employee names, customer ICP signals -- so it never feels like a blast.</p>
+
+      <div class="tag-row">
+        <span class="tag">Competitor Names</span>
+        <span class="tag">Recent News</span>
+        <span class="tag">Employee Names</span>
+        <span class="tag">Their Customers</span>
+        <span class="tag">Tech Stack</span>
+        <span class="tag">Team Members</span>
+      </div>
+
+      <div class="callout callout-warn">
+        <h4>Why Most Agencies Fail</h4>
+        <p>Most agencies send mass volume with zero personalization. It gets 2-5x worse performance because it feels like spam. We personalize at scale -- every single email.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════ 7. PILLAR 3 ═══════ -->
+<section class="section" id="pillar3">
+  <div class="wrap">
+    <div class="pillar-num">3</div>
+    <h2>Message-to-Meeting System</h2>
+    <p class="section-sub">Testing multiple angles from day 1 and booking calls into your calendar.</p>
+
+    <div class="pillar-layout anim">
+      <div class="pillar-text">
+        <h3 style="margin-bottom:1rem">Our Approach</h3>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:1.5rem">
+          <li style="font-size:15px;color:var(--sub);padding-left:1.5rem;position:relative;line-height:1.5"><span style="position:absolute;left:0;color:var(--teal)">&#10003;</span> 10-20 messaging angles tested from day 1</li>
+          <li style="font-size:15px;color:var(--sub);padding-left:1.5rem;position:relative;line-height:1.5"><span style="position:absolute;left:0;color:var(--teal)">&#10003;</span> 4-6 copy variants per campaign + follow-up sequences</li>
+          <li style="font-size:15px;color:var(--sub);padding-left:1.5rem;position:relative;line-height:1.5"><span style="position:absolute;left:0;color:var(--teal)">&#10003;</span> Optimized for email-to-meeting-booked rate, not just reply rate</li>
+          <li style="font-size:15px;color:var(--sub);padding-left:1.5rem;position:relative;line-height:1.5"><span style="position:absolute;left:0;color:var(--teal)">&#10003;</span> Test which ones work best to optimize for results</li>
+        </ul>
+
+        <div class="callout callout-purple">
+          <h4>Why We're Different</h4>
+          <p>Most agencies test 1-2 angles per week. It takes them 5-10 weeks to test what we test on day 1. This is why we find what works fast.</p>
+        </div>
+
+        <div style="margin-top:1.5rem">
+          <h4 style="font-size:15px;font-weight:700;color:var(--txt);margin-bottom:6px">Pre-Call Nurture</h4>
+          <p style="font-size:14px;color:var(--sub);line-height:1.6">Before a prospect ever gets on a call with you, they've seen a relevant case study and had their main objection addressed. By the time they show up, it feels like a referral -- not a cold appointment.</p>
+        </div>
+      </div>
+      <div class="pillar-img" data-zoom>
+        <img src="images/sequence-builder.png" alt="Sequence builder showing multi-step email campaign" loading="lazy">
+      </div>
+    </div>
+
+    <!-- Flow: SDR -> Calls -> Close -->
+    <div class="flow-row anim">
+      <div class="flow-node">
+        <div class="flow-emoji">&#128231;</div>
+        <span>SDR Monitors Responses</span>
+        <small>Every reply handled</small>
+      </div>
+      <div class="flow-arrow">&rarr;</div>
+      <div class="flow-node highlight">
+        <div class="flow-emoji">&#128197;</div>
+        <span>Calls Booked</span>
+        <small>Directly into your calendar</small>
+      </div>
+      <div class="flow-arrow">&rarr;</div>
+      <div class="flow-node">
+        <div class="flow-emoji">&#129309;</div>
+        <span>You Close Deals</span>
+        <small>Show up and sell</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════ 8. SETUP & TIMELINE ═══════ -->
+<section class="section" id="timeline">
+  <div class="wrap">
+    <p class="label center">Setup</p>
+    <div class="center">
+      <h2>Here's Exactly What Happens After You Sign</h2>
+    </div>
+
+    <div class="timeline anim">
+      <div class="tl-step">
+        <div class="tl-circle">1</div>
+        <div class="tl-day">Day 1</div>
+        <h3>Rapid Onboarding &amp; Setup</h3>
+        <ul>
+          <li>Kickoff call + ICP confirmation</li>
+          <li>Domains and inboxes set up immediately</li>
+          <li>Lead lists scraped and verified</li>
+          <li>Copy written from proven frameworks</li>
+        </ul>
+      </div>
+
+      <div class="tl-step">
+        <div class="tl-circle" style="font-size:11px">1-14</div>
+        <div class="tl-day">Days 1-14</div>
+        <h3>Development &amp; Warmup</h3>
+        <ul>
+          <li>Infrastructure placed into warmup pool</li>
+          <li>Calendar and CRM connected</li>
+          <li>Final review of copy, lists, and campaign setup</li>
+          <li>Everything tested and ready to launch</li>
+        </ul>
+      </div>
+
+      <div class="tl-step highlight">
+        <div class="tl-circle">14</div>
+        <div class="tl-day">Day 14</div>
+        <h3>Campaign Launch</h3>
+        <p>Campaigns go live.</p>
+        <div class="tl-highlight-box">Most clients see their first qualified call booked within 24-72 hours of launch.</div>
+      </div>
+
+      <div class="tl-step">
+        <div class="tl-circle" style="font-size:10px">90d</div>
+        <div class="tl-day">90 Days Post-Launch</div>
+        <h3>Full Management</h3>
+        <ul>
+          <li>Deliverability and reply rates monitored daily</li>
+          <li>Subject lines and angles swapped based on performance</li>
+          <li>SDR handles all responses and books calls</li>
+          <li>Continuous optimization based on data</li>
+          <li>Everything tracked in your CRM</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="duration-card anim">
+      <div class="duration-item"><span class="duration-num">14</span><span class="duration-label">Days to launch</span></div>
+      <div class="duration-divider"></div>
+      <div class="duration-item"><span class="duration-num">90</span><span class="duration-label">Day pilot program</span></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════ 9. YOU OWN EVERYTHING ═══════ -->
+<section class="section" id="ownership">
+  <div class="wrap">
+    <div class="center">
+      <h2>You Own Everything</h2>
+      <p class="section-sub">This isn't a rental -- everything we build is yours to keep forever.</p>
+    </div>
+
+    <div class="own-grid anim">
+      <div class="own-card">
+        <h3>What You Keep</h3>
+        <ul>
+          <li>All branded domains -- registered in your name</li>
+          <li>All email inboxes -- fully configured and warmed</li>
+          <li>All lead lists -- verified and personalized</li>
+          <li>All email copy -- winning angles and variants</li>
+          <li>Complete SOPs -- so your team can run it independently</li>
+        </ul>
+      </div>
+      <div class="own-card">
+        <h3>Why We Do It This Way</h3>
+        <p>We know it's easier to commit to a fixed engagement than an open-ended retainer. Our goal is to deliver results during the program so you want to keep working with us.</p>
+        <div class="own-options">
+          <p>After the program, you have two options:</p>
+          <p><strong style="color:var(--txt)">1.</strong> Take everything in-house with the SOPs we provide</p>
+          <p><strong style="color:var(--txt)">2.</strong> Continue with us on a monthly retainer for hands-off management</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="no-lockin anim">No lock-in. No tricks. Just results.</div>
+  </div>
+</section>
+
+
+<!-- ═══════ 10. GUARANTEE + PACKAGES ═══════ -->
+<section class="section" id="guarantee">
+  <div class="wrap">
+    <p class="label center">Our Guarantee</p>
+    <div class="center">
+      <h2>The Guarantee</h2>
+    </div>
+
+    <div class="guarantee-card anim">
+      <div class="guarantee-icon">
+        <svg width="28" height="28" fill="none" stroke="#fff" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+      </div>
+      <h3>We guarantee qualified meetings booked -- or we keep working until we hit it and give a proportional refund back.</h3>
+      <p>Zero meetings? Full refund. We can back this because we own every input: the list, the copy, the infrastructure, the campaign management. There's no handoff where it breaks.</p>
+    </div>
+
+    <div class="packages-grid anim">
+      <div class="package-card featured">
+        <span class="package-badge">Most Popular</span>
+        <h3>90-Day Pilot (Ultimate)</h3>
+        <p class="pkg-sub">Full-scale outbound engine</p>
+        <ul>
+          <li>5,000+ Emails Sent Per Day</li>
+          <li>100,000 Leads Scraped &amp; Triple-Verified</li>
+          <li>20 Messaging Angles Tested</li>
+          <li>20 Custom Branded Domains (980 Inboxes)</li>
+          <li>Deep AI Personalization on All Leads</li>
+          <li>14-Day Warmup + 90 Days Full Management</li>
+          <li>SDR for Response Handling &amp; Call Booking</li>
+          <li>You Own The Infrastructure</li>
+        </ul>
+        <div class="package-guarantee">
+          <h4>Performance Guarantee</h4>
+          <p>20 qualified calls booked or proportional refund</p>
+        </div>
+      </div>
+
+      <div class="package-card">
+        <h3>90-Day Pilot (Standard)</h3>
+        <p class="pkg-sub">Efficient outbound system</p>
+        <ul>
+          <li>2,500+ Emails Sent Per Day</li>
+          <li>50,000 Leads Scraped &amp; Triple-Verified</li>
+          <li>10 Messaging Angles Tested</li>
+          <li>10 Custom Branded Domains (490 Inboxes)</li>
+          <li>Deep AI Personalization on All Leads</li>
+          <li>14-Day Warmup + 90 Days Full Management</li>
+          <li>SDR for Response Handling &amp; Call Booking</li>
+          <li>You Own The Infrastructure</li>
+        </ul>
+        <div class="package-guarantee">
+          <h4>Performance Guarantee</h4>
+          <p>10 qualified calls booked or proportional refund</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="pricing-note anim">Pricing will be discussed on our call. Packages typically range from <strong>$5,000 - $20,000</strong> depending on your goals, market size, and volume requirements.</div>
+  </div>
+</section>
+
+
+<!-- ═══════ 11. ROI CALCULATOR ═══════ -->
+<section class="section" id="calculator">
+  <div class="wrap">
+    <p class="label center">ROI Calculator</p>
+    <div class="center">
+      <h2>See What This Could Mean For You</h2>
+      <p class="section-sub">Plug in your numbers and see exactly what 2,500+ emails/day could mean for your business.</p>
+    </div>
+
+    <div class="calc-card anim">
+      <!-- STEP 1 -->
+      <div class="calc-step-label"><span>1</span> Configure Your Campaign</div>
+      <div class="calc-grid">
+        <div class="calc-col">
+          <h4>Input The Following</h4>
+
+          <div class="calc-field">
+            <label>Select Tech Fee Package</label>
+            <select id="calcPackage">
+              <option value="1500">50,000 emails/mo -- $1,500/mo</option>
+              <option value="3000" selected>100,000 emails/mo -- $3,000/mo</option>
+              <option value="6000">200,000 emails/mo -- $6,000/mo</option>
+            </select>
+          </div>
+
+          <div class="calc-field">
+            <label># Emails Sent Per Contact</label>
+            <input type="number" id="calcEmailsPerContact" value="2" min="1" max="10" step="1">
+          </div>
+
+          <div class="calc-field">
+            <label>Cost Per Call</label>
+            <input type="number" id="calcCostPerCall" value="300" min="0" step="50">
+          </div>
+
+          <div class="calc-slider-wrap">
+            <label>Reply Rate <strong id="replyRateDisplay">2.0%</strong></label>
+            <input type="range" class="calc-slider" id="calcReplyRate" min="0.5" max="5" step="0.1" value="2">
+          </div>
+
+          <div class="calc-slider-wrap">
+            <label>Positive Reply Rate <strong id="posReplyRateDisplay">12.5%</strong></label>
+            <input type="range" class="calc-slider" id="calcPosReplyRate" min="5" max="25" step="0.5" value="12.5">
+          </div>
+        </div>
+
+        <div class="calc-col">
+          <h4>We Calculate</h4>
+
+          <div class="calc-output">
+            <label>Total People Contacted / Month</label>
+            <div class="val accent" id="oPeopleContacted">50,000</div>
+            <div class="hint">Total emails/mo &divide; emails sent per contact</div>
+          </div>
+
+          <div class="calc-output">
+            <label>Total People Replied</label>
+            <div class="val" id="oPeopleReplied">1,000</div>
+            <div class="hint">People contacted &times; reply rate</div>
+          </div>
+
+          <div class="calc-output">
+            <label>Total Positive Replies</label>
+            <div class="val accent" id="oPosReplies">125</div>
+            <div class="hint">Total replies &times; positive reply rate</div>
+          </div>
+        </div>
+      </div>
+
+      <hr class="calc-divider">
+
+      <!-- STEP 2 -->
+      <div class="calc-step-label"><span>2</span> Calculate Your Revenue</div>
+      <div class="calc-grid">
+        <div class="calc-col">
+          <h4>Input The Following</h4>
+
+          <div class="calc-field">
+            <label>Call Booking Rate (%)</label>
+            <input type="number" id="calcBookingRate" value="25" min="0" max="100" step="1">
+          </div>
+
+          <div class="calc-field">
+            <label>Close Rate (%)</label>
+            <input type="number" id="calcCloseRate" value="25" min="0" max="100" step="1">
+          </div>
+
+          <div class="calc-field">
+            <label>Average Sale Price ($)</label>
+            <input type="number" id="calcDealSize" value="10000" min="0" step="500">
+          </div>
+        </div>
+
+        <div class="calc-col">
+          <h4>We Calculate</h4>
+
+          <div class="calc-output">
+            <label>Total Calls Booked</label>
+            <div class="val accent" id="oCallsBooked">31</div>
+          </div>
+
+          <div class="calc-output">
+            <label>Total Clients Closed</label>
+            <div class="val" id="oClientsClosed">7</div>
+          </div>
+
+          <div class="calc-output">
+            <label>Net New Monthly Revenue</label>
+            <div class="val accent" id="oMonthlyRevenue">$70,000</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RESULTS ROW -->
+      <div class="calc-results-row">
+        <div class="calc-result-box">
+          <div class="calc-result-label">You Pay The Agency</div>
+          <div class="calc-result-value" id="oAgencyCost">$10,300</div>
+        </div>
+        <div class="calc-result-box">
+          <div class="calc-result-label">Customer Acquisition Cost</div>
+          <div class="calc-result-value purple" id="oCAC">$1,471</div>
+        </div>
+        <div class="calc-result-box featured">
+          <div class="calc-result-label">Return on Investment</div>
+          <div class="calc-result-value accent" id="oROI">679%</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════ 12. FAQ ═══════ -->
+<section class="section" id="faq">
+  <div class="wrap">
+    <p class="label center">FAQ</p>
+    <div class="center">
+      <h2>Common Questions</h2>
+    </div>
+
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q">
+          <h3>How much time and money before we know if it works?</h3>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a"><div class="faq-body">You'll know by day 14 -- that's when campaigns go live and most clients see their first call booked within 24-72 hours. The full program is a fixed 90-day engagement. No open-ended experiments.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">
+          <h3>How is this different from other agencies?</h3>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a"><div class="faq-body">Most agencies focus on volume. We build all three pillars -- infrastructure, targeting, and the full message-to-meeting system including pre-call nurture. Prospects show up warm, not cold. And we guarantee results -- you only pay for qualified meetings that actually show up.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">
+          <h3>How do I know the leads will actually be qualified?</h3>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a"><div class="faq-body">We build your list using intent signals and AI scoring against your existing customers. We only target 70%+ ICP matches. The pre-call nurture filters out time-wasters before they ever hit your calendar.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════ YOUTUBE CAROUSEL ═══════ -->
+<section class="yt-section section" id="videos">
+  <div class="yt-header">
+    <h2>Watch Our Videos</h2>
+    <p>See how we think about outbound, partnerships, and pipeline.</p>
+  </div>
+  <div class="yt-carousel-wrap">
+    <div class="yt-carousel" id="ytCarousel">
+      <div class="yt-card" data-yt="pvJPU6s_62Y">
+        <div class="yt-thumb">
+          <img src="https://i.ytimg.com/vi/pvJPU6s_62Y/hqdefault.jpg" alt="Do This Before You Start Your Partner Program" loading="lazy">
+          <div class="yt-play-btn"><svg viewBox="0 0 24 24" width="24" height="24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></div>
+        </div>
+        <div class="yt-title">Do This Before You Start Your Partner Program</div>
+      </div>
+      <div class="yt-card" data-yt="x-8240pBHGI">
+        <div class="yt-thumb">
+          <img src="https://i.ytimg.com/vi/x-8240pBHGI/hqdefault.jpg" alt="How To Know You Should Scale Your Partner Program" loading="lazy">
+          <div class="yt-play-btn"><svg viewBox="0 0 24 24" width="24" height="24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></div>
+        </div>
+        <div class="yt-title">How To Know You Should Scale Your Partner Program</div>
+      </div>
+      <div class="yt-card" data-yt="sgCmGmjEybg">
+        <div class="yt-thumb">
+          <img src="https://i.ytimg.com/vi/sgCmGmjEybg/hqdefault.jpg" alt="$0-$100M: How To Scale Your Partner Program" loading="lazy">
+          <div class="yt-play-btn"><svg viewBox="0 0 24 24" width="24" height="24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></div>
+        </div>
+        <div class="yt-title">$0-$100M: How To Scale Your Partner Program</div>
+      </div>
+      <div class="yt-card" data-yt="mYVHIszgPOs">
+        <div class="yt-thumb">
+          <img src="https://i.ytimg.com/vi/mYVHIszgPOs/hqdefault.jpg" alt="The 3 Systems That Make Partnerships Work" loading="lazy">
+          <div class="yt-play-btn"><svg viewBox="0 0 24 24" width="24" height="24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></div>
+        </div>
+        <div class="yt-title">The 3 Systems That Make Partnerships Work</div>
+      </div>
+      <div class="yt-card" data-yt="0r5BkIQrJTM">
+        <div class="yt-thumb">
+          <img src="https://i.ytimg.com/vi/0r5BkIQrJTM/hqdefault.jpg" alt="Why 80% of Companies Are Doubling Down on Partnerships" loading="lazy">
+          <div class="yt-play-btn"><svg viewBox="0 0 24 24" width="24" height="24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></div>
+        </div>
+        <div class="yt-title">Why 80% of Companies Are Doubling Down on Partnerships</div>
+      </div>
+      <div class="yt-card" data-yt="39Id5lRIGoA">
+        <div class="yt-thumb">
+          <img src="https://i.ytimg.com/vi/39Id5lRIGoA/hqdefault.jpg" alt="$100M Software Partner Strategy Framework" loading="lazy">
+          <div class="yt-play-btn"><svg viewBox="0 0 24 24" width="24" height="24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></div>
+        </div>
+        <div class="yt-title">$100M Software Partner Strategy Framework</div>
+      </div>
+    </div>
+    <div class="yt-nav">
+      <button id="ytPrev" aria-label="Previous videos">&#8592;</button>
+      <button id="ytNext" aria-label="Next videos">&#8594;</button>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════ 13. CTA / CLOSE ═══════ -->
+<section class="final-cta section" id="cta">
+  <div class="wrap">
+    <div class="final-cta-inner anim">
+      <h2>Ready to Build Your <span class="gradient-text">Outbound Engine?</span></h2>
+      <p class="final-cta-sub">Book a 20-minute strategy call. We'll map out your ICP, show you which angles we'd test first, and tell you honestly whether this program makes sense for your business.</p>
+      <a href="#" class="btn btn-arrow" style="font-size:20px;padding:18px 36px">Book Your Strategy Call</a>
+      <span class="final-cta-micro">No pitch. No pressure. Real information.</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════ FOOTER ═══════ -->
+<footer>
+  <div class="wrap">
+    <div class="f-logo"><img src="https://framerusercontent.com/images/pbvYwK3r1tg6tglaoLkA8LMaeY.png" alt="TRP" width="20" height="20">TheRevenueProtocol</div>
+    <p>&copy; 2026 TheRevenueProtocol. All rights reserved.</p>
+  </div>
+</footer>
+
+
+<!-- ═══════ LIGHTBOX ═══════ -->
+<div class="lightbox" id="lightbox">
+  <span class="lightbox-close">&times;</span>
+  <img src="" alt="">
+</div>
+
+<!-- ═══════ YOUTUBE MODAL ═══════ -->
+<div class="yt-modal" id="ytModal">
+  <span class="yt-modal-close">&times;</span>
+  <div class="yt-modal-inner" id="ytModalInner"></div>
+</div>
+
+
+<script>
+/* ─── Nav scroll ─── */
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 20);
+}, { passive: true });
+
+/* ─── Scroll reveal ─── */
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.anim').forEach(el => io.observe(el));
+
+/* ─── FAQ accordion ─── */
+document.querySelectorAll('.faq-q').forEach(q => {
+  q.addEventListener('click', () => {
+    const item = q.parentElement;
+    const wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+    if (!wasOpen) item.classList.add('open');
+  });
+});
+
+/* ─── Lightbox ─── */
+const lb = document.getElementById('lightbox');
+const lbImg = lb.querySelector('img');
+document.querySelectorAll('[data-zoom]').forEach(el => {
+  el.addEventListener('click', () => {
+    const img = el.querySelector('img') || el;
+    lbImg.src = img.src;
+    lbImg.alt = img.alt;
+    lb.classList.add('open');
+  });
+});
+lb.addEventListener('click', e => {
+  if (e.target !== lbImg) lb.classList.remove('open');
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') { lb.classList.remove('open'); closeYtModal(); }
+});
+
+/* ─── Smooth scroll ─── */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+  });
+});
+
+/* ─── YouTube Carousel ─── */
+const ytCarousel = document.getElementById('ytCarousel');
+document.getElementById('ytPrev').addEventListener('click', () => {
+  ytCarousel.scrollBy({ left: -340, behavior: 'smooth' });
+});
+document.getElementById('ytNext').addEventListener('click', () => {
+  ytCarousel.scrollBy({ left: 340, behavior: 'smooth' });
+});
+
+/* ─── YouTube Modal ─── */
+const ytModal = document.getElementById('ytModal');
+const ytModalInner = document.getElementById('ytModalInner');
+document.querySelectorAll('.yt-card').forEach(card => {
+  card.addEventListener('click', () => {
+    const vid = card.dataset.yt;
+    if (vid) {
+      ytModalInner.innerHTML = '<iframe src="https://www.youtube.com/embed/' + vid + '?autoplay=1&rel=0" allow="autoplay; fullscreen; encrypted-media" allowfullscreen></iframe>';
+      ytModal.classList.add('open');
+    }
+  });
+});
+function closeYtModal() {
+  ytModal.classList.remove('open');
+  ytModalInner.innerHTML = '';
+}
+ytModal.addEventListener('click', e => {
+  if (e.target === ytModal || e.target.classList.contains('yt-modal-close')) closeYtModal();
+});
+document.querySelector('.yt-modal-close').addEventListener('click', closeYtModal);
+
+/* ═══════ ROI CALCULATOR ═══════ */
+const PACKAGES = { '1500': { emails: 50000, cost: 1500 }, '3000': { emails: 100000, cost: 3000 }, '6000': { emails: 200000, cost: 6000 } };
+
+const $ = id => document.getElementById(id);
+const fmtNum = n => Math.floor(n).toLocaleString();
+const fmtMoney = n => {
+  if (!isFinite(n) || n === 0) return '--';
+  if (n >= 1000000) return '$' + (n / 1000000).toFixed(1) + 'M';
+  return '$' + fmtNum(n);
+};
+
+function calcROI() {
+  const pkg = PACKAGES[$('calcPackage').value];
+  const emailsPerContact = parseFloat($('calcEmailsPerContact').value) || 2;
+  const costPerCall = parseFloat($('calcCostPerCall').value) || 0;
+  const replyRate = parseFloat($('calcReplyRate').value) / 100;
+  const posReplyRate = parseFloat($('calcPosReplyRate').value) / 100;
+  const bookingRate = parseFloat($('calcBookingRate').value) / 100;
+  const closeRate = parseFloat($('calcCloseRate').value) / 100;
+  const dealSize = parseFloat($('calcDealSize').value) || 0;
+
+  // Step 1 outputs
+  const peopleContacted = Math.floor(pkg.emails / emailsPerContact);
+  const peopleReplied = Math.floor(peopleContacted * replyRate);
+  const posReplies = Math.floor(peopleReplied * posReplyRate);
+
+  // Step 2 outputs
+  const callsBooked = Math.floor(posReplies * bookingRate);
+  const clientsClosed = Math.floor(callsBooked * closeRate);
+  const monthlyRevenue = clientsClosed * dealSize;
+
+  // Bottom row
+  const agencyCost = pkg.cost + (callsBooked * costPerCall);
+  const cac = clientsClosed > 0 ? agencyCost / clientsClosed : 0;
+  const roi = agencyCost > 0 ? (monthlyRevenue / agencyCost) * 100 : 0;
+
+  // Update displays
+  $('replyRateDisplay').textContent = parseFloat($('calcReplyRate').value).toFixed(1) + '%';
+  $('posReplyRateDisplay').textContent = parseFloat($('calcPosReplyRate').value).toFixed(1) + '%';
+
+  $('oPeopleContacted').textContent = fmtNum(peopleContacted);
+  $('oPeopleReplied').textContent = fmtNum(peopleReplied);
+  $('oPosReplies').textContent = fmtNum(posReplies);
+  $('oCallsBooked').textContent = fmtNum(callsBooked);
+  $('oClientsClosed').textContent = fmtNum(clientsClosed);
+  $('oMonthlyRevenue').textContent = fmtMoney(monthlyRevenue);
+  $('oAgencyCost').textContent = fmtMoney(agencyCost);
+  $('oCAC').textContent = clientsClosed > 0 ? fmtMoney(cac) : '--';
+  $('oROI').textContent = agencyCost > 0 ? Math.round(roi) + '%' : '--';
+}
+
+// Bind all inputs
+['calcPackage', 'calcEmailsPerContact', 'calcCostPerCall', 'calcReplyRate', 'calcPosReplyRate', 'calcBookingRate', 'calcCloseRate', 'calcDealSize'].forEach(id => {
+  $(id).addEventListener('input', calcROI);
+});
+
+// Prevent scroll on number inputs
+document.querySelectorAll('.calc-field input[type="number"]').forEach(el => {
+  el.addEventListener('wheel', e => e.target.blur());
+});
+
+calcROI();
+</script>
+</body>
+</html>
