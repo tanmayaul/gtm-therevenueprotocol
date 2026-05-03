@@ -83,28 +83,25 @@ header{
 .brand img{width:32px;height:32px;display:block;border-radius:8px}
 .brand-text{font-size:17px;letter-spacing:-.01em}
 
-/* Two-column grid: description on the left, calendar on the right.
-   Description has its own room; Cal.com widget gets the full right-column width. */
+/* Stacked top-to-bottom: compact description block, then full-width calendar. */
 .layout{
-  display:grid;
-  grid-template-columns:minmax(0, 5fr) minmax(0, 7fr);
-  gap:32px;
+  display:flex;
+  flex-direction:column;
+  gap:20px;
   flex:1;
   min-height:0;
 }
 
 .copy{
-  padding:24px 8px 0 0;
-  display:flex;
-  flex-direction:column;
+  max-width:880px;
 }
 .copy h1{
   font-family:'Inter',sans-serif;
-  font-size:38px;
+  font-size:24px;
   font-weight:700;
   letter-spacing:-.02em;
-  line-height:1.12;
-  margin-bottom:18px;
+  line-height:1.2;
+  margin-bottom:8px;
   color:var(--txt);
 }
 .copy h1 span{
@@ -114,39 +111,30 @@ header{
   -webkit-text-fill-color:transparent;
 }
 .copy .lede{
-  font-size:17px;
+  font-size:14px;
   color:var(--body);
-  line-height:1.6;
-  margin-bottom:24px;
+  line-height:1.55;
+  margin-bottom:14px;
 }
 
-.what{
-  background:var(--card);
-  border:1px solid var(--border-strong);
-  border-radius:var(--radius-lg);
-  padding:24px;
-  margin-bottom:18px;
-}
+.what{margin-bottom:10px}
 .what h2{
   font-family:'Inter',sans-serif;
-  font-size:13px;
+  font-size:11px;
   font-weight:700;
   letter-spacing:0.08em;
   text-transform:uppercase;
   color:var(--indigo-soft);
-  margin-bottom:14px;
+  margin-bottom:8px;
 }
-.what ul{list-style:none;padding:0;margin:0}
+.what ul{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(2, 1fr);gap:6px 18px}
 .what li{
   display:flex;
-  gap:12px;
-  font-size:15px;
-  line-height:1.55;
+  gap:8px;
+  font-size:13.5px;
+  line-height:1.45;
   color:var(--body);
-  padding:9px 0;
-  border-bottom:1px solid var(--border);
 }
-.what li:last-child{border-bottom:none}
 .what li::before{
   content:"→";
   color:var(--indigo-soft);
@@ -156,12 +144,16 @@ header{
 .what li b{color:var(--txt);font-weight:600}
 
 .bring{
-  font-size:14px;
+  font-size:13px;
   color:var(--sub);
-  line-height:1.55;
-  padding-top:6px;
+  line-height:1.5;
+  margin-top:4px;
 }
 .bring b{color:var(--body);font-weight:600}
+
+@media(max-width:720px){
+  .what ul{grid-template-columns:1fr}
+}
 
 .embed-shell{
   background:var(--card);
@@ -169,13 +161,14 @@ header{
   border-radius:var(--radius-lg);
   padding:6px;
   position:relative;
-  min-height:740px;
+  min-height:780px;
   box-shadow:0 24px 60px -24px rgba(0,0,0,0.5);
+  flex:1;
 }
 #cal-iframe{
   width:100%;
   height:100%;
-  min-height:728px;
+  min-height:768px;
   border:0;
   border-radius:calc(var(--radius-lg) - 4px);
   display:block;
@@ -215,15 +208,12 @@ footer{
 }
 
 @media(max-width:980px){
-  .layout{grid-template-columns:1fr;gap:24px}
-  .copy{padding:0}
-  .copy h1{font-size:30px}
   .embed-shell{min-height:1100px}
   #cal-iframe{min-height:1090px}
 }
 @media(max-width:640px){
   .wrap{padding:20px 16px}
-  .copy h1{font-size:26px}
+  .copy h1{font-size:22px}
   .embed-shell{min-height:1180px}
   #cal-iframe{min-height:1170px}
 }
