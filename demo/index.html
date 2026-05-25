@@ -1046,6 +1046,21 @@ footer p{color:var(--vmuted);font-size:12px}
             <label>Average Sale Price ($)</label>
             <input type="number" id="calcDealSize" value="10000" min="0" step="500">
           </div>
+
+          <div class="calc-field">
+            <label>Average Customer Lifetime (months)</label>
+            <input type="number" id="calcLifetimeMonths" value="24" min="1" max="120" step="1">
+          </div>
+
+          <div class="calc-field">
+            <label>Expansion / Upsell Rate (%)</label>
+            <input type="number" id="calcUpsellRate" value="30" min="0" max="100" step="5">
+          </div>
+
+          <div class="calc-field">
+            <label>Avg Expansion (% of ACV)</label>
+            <input type="number" id="calcExpansionPct" value="50" min="0" max="200" step="5">
+          </div>
         </div>
 
         <div class="calc-col">
@@ -1064,6 +1079,13 @@ footer p{color:var(--vmuted);font-size:12px}
           <div class="calc-output">
             <label>Net New Monthly Revenue</label>
             <div class="val accent" id="oMonthlyRevenue">$70,000</div>
+            <div class="hint">Clients closed &times; deal size</div>
+          </div>
+
+          <div class="calc-output">
+            <label>LTV per Customer</label>
+            <div class="val accent" id="oLtvPerCustomer">$24,300</div>
+            <div class="hint">Deal size &times; lifetime &times; (1 + expansion lift)</div>
           </div>
         </div>
       </div>
@@ -1077,11 +1099,16 @@ footer p{color:var(--vmuted);font-size:12px}
         <div class="calc-result-box">
           <div class="calc-result-label">Customer Acquisition Cost</div>
           <div class="calc-result-value purple" id="oCAC">$1,471</div>
+          <div style="margin-top:8px;font-size:13px;color:#94a3b8;line-height:1.4">LTV : CAC = <strong id="oLtvCacRatio" style="color:#fff">16 : 1</strong></div>
         </div>
         <div class="calc-result-box featured">
           <div class="calc-result-label">Return on Investment</div>
           <div class="calc-result-value accent" id="oROI">679%</div>
         </div>
+      </div>
+
+      <div style="margin-top:24px;padding:18px 22px;border:1px solid rgba(148,163,184,0.18);border-radius:12px;background:rgba(15,23,42,0.4);text-align:center;font-size:15px;line-height:1.5;color:#cbd5e1">
+        Equivalent to hiring <strong id="oSdrCount" style="color:#fff">3.2</strong> SDRs at $80K/year each &mdash; without ramp time, hiring overhead, or onboarding risk.
       </div>
     </div>
   </div>
@@ -1326,6 +1353,9 @@ function calcROI() {
   const bookingRate = parseFloat($('calcBookingRate').value) / 100;
   const closeRate = parseFloat($('calcCloseRate').value) / 100;
   const dealSize = parseFloat($('calcDealSize').value) || 0;
+  const lifetimeMonths = parseFloat($('calcLifetimeMonths').value) || 24;
+  const upsellRate = parseFloat($('calcUpsellRate').value) / 100;
+  const expansionMultiplier = parseFloat($('calcExpansionPct').value) / 100;
 
   // Step 1 outputs
   const peopleContacted = Math.floor(pkg.emails / emailsPerContact);
@@ -1337,10 +1367,19 @@ function calcROI() {
   const clientsClosed = Math.floor(callsBooked * closeRate);
   const monthlyRevenue = clientsClosed * dealSize;
 
+  // LTV math: deal size carried over customer lifetime, plus expansion lift
+  const lifetimeYears = lifetimeMonths / 12;
+  const ltvPerCustomer = dealSize * lifetimeYears * (1 + upsellRate * expansionMultiplier);
+
   // Bottom row
   const agencyCost = pkg.cost + (callsBooked * costPerCall);
   const cac = clientsClosed > 0 ? agencyCost / clientsClosed : 0;
   const roi = agencyCost > 0 ? (monthlyRevenue / agencyCost) * 100 : 0;
+  const ltvCacRatio = cac > 0 ? ltvPerCustomer / cac : 0;
+
+  // SDR equivalent: industry baseline ~5 qualified meetings per SDR per month
+  const meetingsPerSdrPerMonth = 5;
+  const sdrCount = callsBooked / meetingsPerSdrPerMonth;
 
   // Update displays
   $('replyRateDisplay').textContent = parseFloat($('calcReplyRate').value).toFixed(1) + '%';
@@ -1352,13 +1391,16 @@ function calcROI() {
   $('oCallsBooked').textContent = fmtNum(callsBooked);
   $('oClientsClosed').textContent = fmtNum(clientsClosed);
   $('oMonthlyRevenue').textContent = fmtMoney(monthlyRevenue);
+  $('oLtvPerCustomer').textContent = clientsClosed > 0 ? fmtMoney(ltvPerCustomer) : '--';
   $('oAgencyCost').textContent = fmtMoney(agencyCost);
   $('oCAC').textContent = clientsClosed > 0 ? fmtMoney(cac) : '--';
+  $('oLtvCacRatio').textContent = ltvCacRatio > 0 ? Math.round(ltvCacRatio) + ' : 1' : '--';
   $('oROI').textContent = agencyCost > 0 ? Math.round(roi) + '%' : '--';
+  $('oSdrCount').textContent = sdrCount > 0 ? sdrCount.toFixed(1) : '--';
 }
 
 // Bind all inputs
-['calcPackage', 'calcEmailsPerContact', 'calcCostPerCall', 'calcReplyRate', 'calcPosReplyRate', 'calcBookingRate', 'calcCloseRate', 'calcDealSize'].forEach(id => {
+['calcPackage', 'calcEmailsPerContact', 'calcCostPerCall', 'calcReplyRate', 'calcPosReplyRate', 'calcBookingRate', 'calcCloseRate', 'calcDealSize', 'calcLifetimeMonths', 'calcUpsellRate', 'calcExpansionPct'].forEach(id => {
   $(id).addEventListener('input', calcROI);
 });
 
