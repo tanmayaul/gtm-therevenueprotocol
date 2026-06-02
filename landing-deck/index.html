@@ -970,8 +970,9 @@ footer p{color:var(--vmuted);font-size:12px}
           <div class="calc-field">
             <label>Select Tech Fee Package</label>
             <select id="calcPackage">
+              <option value="" selected disabled>Select your email volume...</option>
               <option value="3000">50,000 emails/mo -- $3,000/mo</option>
-              <option value="6000" selected>100,000 emails/mo -- $6,000/mo</option>
+              <option value="6000">100,000 emails/mo -- $6,000/mo</option>
               <option value="12000">200,000 emails/mo -- $12,000/mo</option>
               <option value="24000">400,000 emails/mo -- $24,000/mo</option>
               <option value="48000">800,000 emails/mo -- $48,000/mo</option>
@@ -982,23 +983,22 @@ footer p{color:var(--vmuted);font-size:12px}
 
           <div class="calc-field">
             <label># Emails Sent Per Contact</label>
-            <input type="number" id="calcEmailsPerContact" value="2" min="1" max="10" step="1">
+            <input type="number" id="calcEmailsPerContact" min="1" max="10" step="1" placeholder="e.g. 2">
           </div>
 
           <div class="calc-field">
             <label>Cost Per Call</label>
-            <!-- self-serve default: no SDR booking calls -->
-            <input type="number" id="calcCostPerCall" value="0" min="0" step="50">
+            <input type="number" id="calcCostPerCall" min="0" step="50" placeholder="e.g. 0 (self-serve)">
           </div>
 
-          <div class="calc-slider-wrap">
-            <label>Reply Rate <strong id="replyRateDisplay">2.0%</strong></label>
-            <input type="range" class="calc-slider" id="calcReplyRate" min="0.5" max="5" step="0.1" value="2">
+          <div class="calc-field">
+            <label>Reply Rate (%)</label>
+            <input type="number" id="calcReplyRate" min="0" max="100" step="0.1" placeholder="e.g. 2">
           </div>
 
-          <div class="calc-slider-wrap">
-            <label>Positive Reply Rate <strong id="posReplyRateDisplay">12.5%</strong></label>
-            <input type="range" class="calc-slider" id="calcPosReplyRate" min="5" max="25" step="0.5" value="12.5">
+          <div class="calc-field">
+            <label>Positive Reply Rate (%)</label>
+            <input type="number" id="calcPosReplyRate" min="0" max="100" step="0.5" placeholder="e.g. 12.5">
           </div>
         </div>
 
@@ -1007,19 +1007,19 @@ footer p{color:var(--vmuted);font-size:12px}
 
           <div class="calc-output">
             <label>Total People Contacted / Month</label>
-            <div class="val accent" id="oPeopleContacted">50,000</div>
+            <div class="val accent" id="oPeopleContacted">--</div>
             <div class="hint">Total emails/mo &divide; emails sent per contact</div>
           </div>
 
           <div class="calc-output">
             <label>Total People Replied</label>
-            <div class="val" id="oPeopleReplied">1,000</div>
+            <div class="val" id="oPeopleReplied">--</div>
             <div class="hint">People contacted &times; reply rate</div>
           </div>
 
           <div class="calc-output">
             <label>Total Positive Replies</label>
-            <div class="val accent" id="oPosReplies">125</div>
+            <div class="val accent" id="oPosReplies">--</div>
             <div class="hint">Total replies &times; positive reply rate</div>
           </div>
         </div>
@@ -1035,32 +1035,32 @@ footer p{color:var(--vmuted);font-size:12px}
 
           <div class="calc-field">
             <label>Call Booking Rate (%)</label>
-            <input type="number" id="calcBookingRate" value="40" min="0" max="100" step="1">
+            <input type="number" id="calcBookingRate" min="0" max="100" step="1" placeholder="e.g. 40">
           </div>
 
           <div class="calc-field">
             <label>Close Rate (%)</label>
-            <input type="number" id="calcCloseRate" value="30" min="0" max="100" step="1">
+            <input type="number" id="calcCloseRate" min="0" max="100" step="1" placeholder="e.g. 30">
           </div>
 
           <div class="calc-field">
             <label>Avg Monthly Price ($/mo)</label>
-            <input type="number" id="calcDealSize" value="100" min="0" step="10">
+            <input type="number" id="calcDealSize" min="0" step="10" placeholder="e.g. 100">
           </div>
 
           <div class="calc-field">
             <label>Average Customer Lifetime (months)</label>
-            <input type="number" id="calcLifetimeMonths" value="24" min="1" max="120" step="1">
+            <input type="number" id="calcLifetimeMonths" min="1" max="120" step="1" placeholder="e.g. 24">
           </div>
 
           <div class="calc-field">
             <label>Expansion / Upsell Rate (%)</label>
-            <input type="number" id="calcUpsellRate" value="30" min="0" max="100" step="5">
+            <input type="number" id="calcUpsellRate" min="0" max="100" step="5" placeholder="e.g. 30">
           </div>
 
           <div class="calc-field">
             <label>Avg Expansion (% of ACV)</label>
-            <input type="number" id="calcExpansionPct" value="50" min="0" max="200" step="5">
+            <input type="number" id="calcExpansionPct" min="0" max="200" step="5" placeholder="e.g. 50">
           </div>
         </div>
 
@@ -1069,23 +1069,23 @@ footer p{color:var(--vmuted);font-size:12px}
 
           <div class="calc-output">
             <label>Total Calls Booked</label>
-            <div class="val accent" id="oCallsBooked">31</div>
+            <div class="val accent" id="oCallsBooked">--</div>
           </div>
 
           <div class="calc-output">
             <label>Total Clients Closed</label>
-            <div class="val" id="oClientsClosed">7</div>
+            <div class="val" id="oClientsClosed">--</div>
           </div>
 
           <div class="calc-output">
             <label>Net New Monthly Recurring Revenue</label>
-            <div class="val accent" id="oMonthlyRevenue">$70,000</div>
+            <div class="val accent" id="oMonthlyRevenue">--</div>
             <div class="hint">Clients closed &times; monthly price</div>
           </div>
 
           <div class="calc-output">
             <label>LTV per Customer</label>
-            <div class="val accent" id="oLtvPerCustomer">$24,300</div>
+            <div class="val accent" id="oLtvPerCustomer">--</div>
             <div class="hint">Monthly price &times; lifetime (months) &times; (1 + expansion)</div>
           </div>
         </div>
@@ -1095,22 +1095,22 @@ footer p{color:var(--vmuted);font-size:12px}
       <div class="calc-results-row">
         <div class="calc-result-box">
           <div class="calc-result-label">You Pay The Agency</div>
-          <div class="calc-result-value" id="oAgencyCost">$10,300</div>
+          <div class="calc-result-value" id="oAgencyCost">--</div>
         </div>
         <div class="calc-result-box">
           <div class="calc-result-label">Customer Acquisition Cost</div>
-          <div class="calc-result-value purple" id="oCAC">$1,471</div>
-          <div style="margin-top:8px;font-size:13px;color:#94a3b8;line-height:1.4">LTV : CAC = <strong id="oLtvCacRatio" style="color:#fff">16 : 1</strong></div>
+          <div class="calc-result-value purple" id="oCAC">--</div>
+          <div style="margin-top:8px;font-size:13px;color:#94a3b8;line-height:1.4">LTV : CAC = <strong id="oLtvCacRatio" style="color:#fff">--</strong></div>
         </div>
         <div class="calc-result-box featured">
           <div class="calc-result-label">Return on Investment</div>
-          <div class="calc-result-value accent" id="oROI">679%</div>
+          <div class="calc-result-value accent" id="oROI">--</div>
           <div style="margin-top:8px;font-size:13px;color:#94a3b8;line-height:1.4">Lifetime value created vs spend</div>
         </div>
       </div>
 
       <div style="margin-top:24px;padding:18px 22px;border:1px solid rgba(148,163,184,0.18);border-radius:12px;background:rgba(15,23,42,0.4);text-align:center;font-size:15px;line-height:1.5;color:#cbd5e1">
-        Pays for itself in <strong id="oPayback" style="color:#fff">4</strong> months &mdash; every recurring month after that is profit.
+        Pays for itself in <strong id="oPayback" style="color:#fff">--</strong> months &mdash; every recurring month after that is profit.
       </div>
     </div>
   </div>
@@ -1346,21 +1346,29 @@ const fmtMoney = n => {
   return '$' + fmtNum(n);
 };
 
+// Nothing is pre-filled: blank fields read as NaN (required) so results stay "--"
+// until the visitor enters their own numbers. Optional cost/expansion fields
+// default to 0 when left blank.
 function calcROI() {
-  const pkg = PACKAGES[$('calcPackage').value];
-  const emailsPerContact = parseFloat($('calcEmailsPerContact').value) || 2;
-  const costPerCall = parseFloat($('calcCostPerCall').value) || 0;
-  const replyRate = parseFloat($('calcReplyRate').value) / 100;
-  const posReplyRate = parseFloat($('calcPosReplyRate').value) / 100;
-  const bookingRate = parseFloat($('calcBookingRate').value) / 100;
-  const closeRate = parseFloat($('calcCloseRate').value) / 100;
-  const dealSize = parseFloat($('calcDealSize').value) || 0;
-  const lifetimeMonths = parseFloat($('calcLifetimeMonths').value) || 24;
-  const upsellRate = parseFloat($('calcUpsellRate').value) / 100;
-  const expansionMultiplier = parseFloat($('calcExpansionPct').value) / 100;
+  const req = id => { const v = $(id).value.trim(); return v === '' ? NaN : parseFloat(v); };
+  const opt = id => { const v = $(id).value.trim(); return v === '' ? 0 : (parseFloat(v) || 0); };
 
-  // Step 1 outputs
-  const peopleContacted = Math.floor(pkg.emails / emailsPerContact);
+  const pkg = PACKAGES[$('calcPackage').value];
+  const pkgEmails = pkg ? pkg.emails : NaN;
+  const pkgCost = pkg ? pkg.cost : NaN;
+  const emailsPerContact = req('calcEmailsPerContact');
+  const costPerCall = opt('calcCostPerCall');
+  const replyRate = req('calcReplyRate') / 100;
+  const posReplyRate = req('calcPosReplyRate') / 100;
+  const bookingRate = req('calcBookingRate') / 100;
+  const closeRate = req('calcCloseRate') / 100;
+  const dealSize = req('calcDealSize');
+  const lifetimeMonths = req('calcLifetimeMonths');
+  const upsellRate = opt('calcUpsellRate') / 100;
+  const expansionMultiplier = opt('calcExpansionPct') / 100;
+
+  // Step 1 outputs (NaN propagates wherever an input is still blank)
+  const peopleContacted = Math.floor(pkgEmails / emailsPerContact);
   const peopleReplied = Math.floor(peopleContacted * replyRate);
   const posReplies = Math.floor(peopleReplied * posReplyRate);
 
@@ -1373,29 +1381,27 @@ function calcROI() {
   const ltvPerCustomer = dealSize * lifetimeMonths * (1 + upsellRate * expansionMultiplier);
 
   // Bottom row
-  const agencyCost = pkg.cost + (callsBooked * costPerCall);
-  const cac = clientsClosed > 0 ? agencyCost / clientsClosed : 0;
+  const agencyCost = pkgCost + (callsBooked * costPerCall);
+  const cac = clientsClosed > 0 ? agencyCost / clientsClosed : NaN;
   const totalLtvAdded = clientsClosed * ltvPerCustomer;
-  const roi = agencyCost > 0 ? (totalLtvAdded / agencyCost) * 100 : 0;   // lifetime ROI: cohort LTV vs acquisition cost
-  const paybackMonths = dealSize > 0 ? cac / dealSize : 0;               // CAC ÷ MRR per customer
-  const ltvCacRatio = cac > 0 ? ltvPerCustomer / cac : 0;
+  const roi = (isFinite(totalLtvAdded) && agencyCost > 0) ? (totalLtvAdded / agencyCost) * 100 : NaN;  // lifetime ROI: cohort LTV vs acquisition cost
+  const paybackMonths = (dealSize > 0 && isFinite(cac)) ? cac / dealSize : NaN;                         // CAC ÷ MRR per customer
+  const ltvCacRatio = (isFinite(cac) && cac > 0) ? ltvPerCustomer / cac : NaN;
 
-  // Update displays
-  $('replyRateDisplay').textContent = parseFloat($('calcReplyRate').value).toFixed(1) + '%';
-  $('posReplyRateDisplay').textContent = parseFloat($('calcPosReplyRate').value).toFixed(1) + '%';
-
-  $('oPeopleContacted').textContent = fmtNum(peopleContacted);
-  $('oPeopleReplied').textContent = fmtNum(peopleReplied);
-  $('oPosReplies').textContent = fmtNum(posReplies);
-  $('oCallsBooked').textContent = fmtNum(callsBooked);
-  $('oClientsClosed').textContent = fmtNum(clientsClosed);
+  // Render — blanks/incomplete inputs show "--"
+  const showNum = (id, v) => $(id).textContent = isFinite(v) ? fmtNum(v) : '--';
+  showNum('oPeopleContacted', peopleContacted);
+  showNum('oPeopleReplied', peopleReplied);
+  showNum('oPosReplies', posReplies);
+  showNum('oCallsBooked', callsBooked);
+  showNum('oClientsClosed', clientsClosed);
   $('oMonthlyRevenue').textContent = fmtMoney(monthlyRevenue);
-  $('oLtvPerCustomer').textContent = clientsClosed > 0 ? fmtMoney(ltvPerCustomer) : '--';
+  $('oLtvPerCustomer').textContent = fmtMoney(ltvPerCustomer);
   $('oAgencyCost').textContent = fmtMoney(agencyCost);
-  $('oCAC').textContent = clientsClosed > 0 ? fmtMoney(cac) : '--';
-  $('oLtvCacRatio').textContent = ltvCacRatio > 0 ? Math.round(ltvCacRatio) + ' : 1' : '--';
-  $('oROI').textContent = agencyCost > 0 ? Math.round(roi) + '%' : '--';
-  $('oPayback').textContent = paybackMonths > 0 ? paybackMonths.toFixed(1) : '--';
+  $('oCAC').textContent = fmtMoney(cac);
+  $('oLtvCacRatio').textContent = (isFinite(ltvCacRatio) && ltvCacRatio > 0) ? Math.round(ltvCacRatio) + ' : 1' : '--';
+  $('oROI').textContent = (isFinite(roi) && roi > 0) ? Math.round(roi) + '%' : '--';
+  $('oPayback').textContent = (isFinite(paybackMonths) && paybackMonths > 0) ? paybackMonths.toFixed(1) : '--';
 }
 
 // Bind all inputs
