@@ -1,0 +1,38 @@
+name: Refresh YouTube list
+
+# Keeps the "latest uploads" grid on /roi-calc/ current. The page is static and
+# YouTube's RSS feed sends no CORS headers, so the list cannot be fetched in the
+# browser — it gets rewritten here instead.
+
+on:
+  schedule:
+    - cron: "0 6 * * 1"   # Mondays, 06:00 UTC
+  workflow_dispatch:       # and on demand
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Rewrite the video list
+        run: python3 scripts/refresh_youtube.py --limit 9
+
+      - name: Commit if changed
+        run: |
+          if git diff --quiet -- roi-calc/index.html; then
+            echo "No change — nothing to commit."
+            exit 0
+          fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add roi-calc/index.html
+          git commit -m "Refresh /roi-calc latest YouTube uploads"
+          git push
