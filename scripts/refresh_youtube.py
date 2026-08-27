@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Rewrite the YT array in roi-calc/index.html from the channel's RSS feed.
+"""Rewrite the YT array in every roi-calc page from the channel's RSS feed.
 
 The page is static on GitHub Pages and YouTube's feed sends no CORS headers,
 so the browser cannot fetch it at runtime. This regenerates the list at build
@@ -19,7 +19,10 @@ import urllib.request
 
 CHANNEL_ID = "UCWplFQQikp_dX-t4PWS6c5A"  # @Tanmay-Aul / "TheRevenueProtocol"
 FEED = f"https://www.youtube.com/feeds/videos.xml?channel_id={CHANNEL_ID}"
-PAGE = pathlib.Path(__file__).resolve().parent.parent / "roi-calc" / "index.html"
+# Every calculator page, not just the top-level one — the per-prospect copies
+# under roi-calc/<name>/ carry the same grid and would otherwise go stale.
+ROI_DIR = pathlib.Path(__file__).resolve().parent.parent / "roi-calc"
+PAGES = sorted(ROI_DIR.glob("**/index.html"))
 
 MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
           "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
@@ -81,34 +84,43 @@ def main():
     ap.add_argument("--check", action="store_true", help="exit 2 if the page is stale")
     args = ap.parse_args()
 
-    page = PAGE.read_text()
-    block = re.search(r"/\* YT_START.*?/\* YT_END \*/", page, re.S)
-    if not block:
-        print("YT_START/YT_END markers not found in roi-calc/index.html", file=sys.stderr)
+    if not PAGES:
+        print(f"no index.html found under {ROI_DIR}", file=sys.stderr)
         return 1
 
-    try:
-        videos = fetch(args.limit, exclude=already_on_page(page))
-    except Exception as exc:  # noqa: BLE001 — any failure means don't touch the page
-        print(f"feed fetch failed: {exc}", file=sys.stderr)
-        return 1
+    stale = False
+    for path in PAGES:
+        rel = path.relative_to(ROI_DIR.parent)
+        page = path.read_text()
+        block = re.search(r"/\* YT_START.*?/\* YT_END \*/", page, re.S)
+        if not block:
+            print(f"YT_START/YT_END markers not found in {rel}", file=sys.stderr)
+            return 1
 
-    if not videos:
-        print("feed returned no usable entries; leaving page untouched", file=sys.stderr)
-        return 1
+        try:
+            videos = fetch(args.limit, exclude=already_on_page(page))
+        except Exception as exc:  # noqa: BLE001 — any failure means don't touch the page
+            print(f"feed fetch failed: {exc}", file=sys.stderr)
+            return 1
 
-    new = render(videos)
-    if block.group(0) == new:
-        print(f"up to date ({len(videos)} videos)")
-        return 0
+        if not videos:
+            print("feed returned no usable entries; leaving pages untouched", file=sys.stderr)
+            return 1
 
-    if args.check:
-        print("stale — run without --check to update", file=sys.stderr)
-        return 2
+        new = render(videos)
+        if block.group(0) == new:
+            print(f"{rel}: up to date ({len(videos)} videos)")
+            continue
 
-    PAGE.write_text(page[:block.start()] + new + page[block.end():])
-    print(f"updated with {len(videos)} videos; newest: {videos[0][1]}")
-    return 0
+        if args.check:
+            print(f"{rel}: stale — run without --check to update", file=sys.stderr)
+            stale = True
+            continue
+
+        path.write_text(page[:block.start()] + new + page[block.end():])
+        print(f"{rel}: updated with {len(videos)} videos; newest: {videos[0][1]}")
+
+    return 2 if stale else 0
 
 
 if __name__ == "__main__":
