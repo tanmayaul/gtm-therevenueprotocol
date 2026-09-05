@@ -70,8 +70,15 @@ nav .logo{color:var(--txt);font-family:var(--inter);font-size:15px;font-weight:7
 .cal-btn:hover{background:var(--indigo);transform:translateY(-1px)}
 .cal-btn .chip{width:28px;height:28px;border-radius:8px;background:#fff;display:inline-flex;align-items:center;justify-content:center;flex:none}
 .cal-btn .chip svg{width:16px;height:16px;display:block}
-.calendar-shot{margin:0 auto;width:100%;max-width:760px;border-radius:14px;overflow:hidden;box-shadow:0 18px 44px rgba(15,23,42,0.16),0 0 0 1px rgba(15,23,42,0.06);background:#fff}
-.calendar-shot img{width:100%;height:auto;display:block}
+.cal-btn.pending{opacity:.62}
+.cal-pick{max-width:560px;margin:0 auto 1.35rem;text-align:left}
+.cal-pick label{display:block;font-family:var(--inter);font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--sub);margin-bottom:8px}
+.cal-pick-row{display:flex;gap:10px}
+.cal-pick input,.cal-pick select{font-family:var(--inter);font-size:15px;font-weight:600;color:var(--txt);background:#fff;border:1px solid var(--border);border-radius:12px;padding:11px 14px;outline:none;min-width:0;-webkit-appearance:none;appearance:none}
+.cal-pick input{flex:1 1 auto}
+.cal-pick select{flex:0 0 auto;padding-right:32px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;background-size:14px}
+.cal-pick input:focus,.cal-pick select:focus{border-color:var(--indigo);box-shadow:0 0 0 3px rgba(67,71,243,.15)}
+.cal-pick small{display:block;font-size:13px;color:var(--sub);margin-top:8px;line-height:1.5}
 [hidden]{display:none!important}
 
 /* ─── Before we talk ─── */
@@ -195,6 +202,7 @@ footer p{font-family:var(--inter);font-size:12px;color:rgba(148,163,184,0.55)}
   .hero{padding:2rem 0 0.5rem}
   .cal-card{padding:1.5rem 1.1rem 1.35rem;border-radius:18px}
   .cal-buttons{flex-direction:column;align-items:stretch}
+  .cal-pick-row{flex-direction:column}
   .cal-btn{min-width:0;justify-content:flex-start}
   .stat-grid{grid-template-columns:1fr}
   .flow{padding:1.25rem}
@@ -238,9 +246,24 @@ footer p{font-family:var(--inter);font-size:12px;color:rgba(148,163,184,0.55)}
       <p class="step-eyebrow">Step 1 · Confirm the call</p>
       <h3 class="step-title">Put it on your calendar</h3>
 
-      <!-- Shown when the booking page passed the time through (start= in the URL) -->
-      <div class="cal-card" id="calWithDate" hidden>
-        <p class="cal-when" id="calWhen"></p>
+      <div class="cal-card" id="calCard">
+        <p class="cal-when" id="calWhen" hidden></p>
+
+        <!-- Only shown when no booking time reached the page (a direct visit) -->
+        <div class="cal-pick" id="calPick" hidden>
+          <label for="calTime">Your call time</label>
+          <div class="cal-pick-row">
+            <input type="datetime-local" id="calTime" step="300" aria-describedby="calPickHelp">
+            <select id="calDur" aria-label="Call length">
+              <option value="15">15 min</option>
+              <option value="30" selected>30 min</option>
+              <option value="45">45 min</option>
+              <option value="60">60 min</option>
+            </select>
+          </div>
+          <small id="calPickHelp">It is in the confirmation email from Cal.com. Enter it and the three buttons fill in.</small>
+        </div>
+
         <div class="cal-buttons">
           <a class="cal-btn" id="calGoogle" href="#" target="_blank" rel="noopener">
             <span class="chip"><svg viewBox="0 0 24 24" aria-hidden="true"><title>Google Calendar</title><path fill="#4285F4" d="M18.316 5.684H24v12.632h-5.684V5.684zM5.684 24h12.632v-5.684H5.684V24zM18.316 5.684V0H1.895A1.894 1.894 0 0 0 0 1.895v16.421h5.684V5.684h12.632zm-7.207 6.25v-.065c.272-.144.5-.349.687-.617s.279-.595.279-.982c0-.379-.099-.72-.3-1.025a2.05 2.05 0 0 0-.832-.714 2.703 2.703 0 0 0-1.197-.257c-.6 0-1.094.156-1.481.467-.386.311-.65.671-.793 1.078l1.085.452c.086-.249.224-.461.413-.633.189-.172.445-.257.767-.257.33 0 .602.088.816.264a.86.86 0 0 1 .322.703c0 .33-.12.589-.36.778-.24.19-.535.284-.886.284h-.567v1.085h.633c.407 0 .748.109 1.02.327.272.218.407.499.407.843 0 .336-.129.614-.387.832s-.565.327-.924.327c-.351 0-.651-.103-.897-.311-.248-.208-.422-.502-.521-.881l-1.096.452c.178.616.505 1.082.977 1.401.472.319.984.478 1.538.477a2.84 2.84 0 0 0 1.293-.291c.382-.193.684-.458.902-.794.218-.336.327-.72.327-1.149 0-.429-.115-.797-.344-1.105a2.067 2.067 0 0 0-.881-.689zm2.093-1.931l.602.913L15 10.045v5.744h1.187V8.446h-.827l-2.158 1.557zM22.105 0h-3.289v5.184H24V1.895A1.894 1.894 0 0 0 22.105 0zm-3.289 23.5l4.684-4.684h-4.684V23.5zM0 22.105C0 23.152.848 24 1.895 24h3.289v-5.184H0v3.289z"/></svg></span>
@@ -256,14 +279,6 @@ footer p{font-family:var(--inter);font-size:12px;color:rgba(148,163,184,0.55)}
           </a>
         </div>
         <p class="step-helper">Google and Outlook open in a new tab. Apple downloads a small file; open it and the call adds itself. That file also works with Outlook on the desktop.</p>
-      </div>
-
-      <!-- Fallback when the URL carries no booking time -->
-      <div id="calNoDate">
-        <div class="calendar-shot">
-          <img src="calendar-invite.png" alt="Calendar invite: press Add to Calendar, then click Yes to accept" loading="lazy">
-        </div>
-        <p class="step-helper">Open the invite from Cal.com in your inbox and press Yes. Reminders come before the call.</p>
       </div>
 
       <!-- Before we talk -->
@@ -502,80 +517,90 @@ const observer = new IntersectionObserver((entries) => {
 document.querySelectorAll('.anim').forEach(el => observer.observe(el));
 
 // ─── Step 1: add-to-calendar links ───
-// /book-a-time/ redirects here with ?bid=<uid>&start=<ISO>&end=<ISO>[&dur=<min>][&loc=<join url>]
-// read off Cal.com's bookingSuccessful postMessage. With a start time we build
-// Google / Outlook / Apple links; without one we fall back to "accept the invite".
+// The booking page redirects here with ?bid=<uid>&start=<ISO>&end=<ISO>[&dur=<min>][&loc=<join url>]
+// read off Cal.com's bookingSuccessful event. A real booking is also remembered in
+// localStorage so a return visit still shows it. With no time at all (a direct visit)
+// the card asks for the time from the Cal.com email and the buttons fill in from that.
 (function calendarLinks() {
   const EVENT_URL = 'https://cal.com/trpgtm/therevenueprotocol-outbound-gtm-strategy-call-1-1';
+  const STORE = 'trp_booking';
   const qs = new URLSearchParams(location.search);
-  const uid = (qs.get('bid') || '').trim();
-  const loc = (qs.get('loc') || '').trim();
-  const reschedule = uid ? 'https://cal.com/reschedule/' + encodeURIComponent(uid) : EVENT_URL;
-  document.querySelectorAll('a[data-reschedule]').forEach(a => { a.href = reschedule; });
-
   const parse = (v) => { if (!v) return null; const d = new Date(v); return isNaN(d) ? null : d; };
-  const start = parse(qs.get('start'));
+  let uid = (qs.get('bid') || '').trim();
+  let loc = (qs.get('loc') || '').trim();
+  let start = parse(qs.get('start'));
   let end = parse(qs.get('end'));
-  const dur = parseInt(qs.get('dur') || '', 10);
-  if (start && !end) end = new Date(start.getTime() + ((dur > 0 ? dur : 30) * 60000));
+  let dur = parseInt(qs.get('dur') || '', 10); if (!(dur > 0)) dur = 30;
+  if (start && !end) end = new Date(start.getTime() + dur * 60000);
 
-  const withDate = document.getElementById('calWithDate');
-  const noDate = document.getElementById('calNoDate');
-  if (!start || !end || end <= start) { withDate.hidden = true; noDate.hidden = false; return; }
-  withDate.hidden = false; noDate.hidden = true;
+  const load = () => { try { const j = JSON.parse(localStorage.getItem(STORE) || 'null'); if (j && j.start) { const e = parse(j.end || j.start); if (e && e.getTime() > Date.now() - 3 * 3600e3) return j; } } catch (e) {} return null; };
+  const save = (o) => { try { localStorage.setItem(STORE, JSON.stringify(o)); } catch (e) {} };
+  if (start && end) { save({ bid: uid, start: start.toISOString(), end: end.toISOString(), loc: loc }); }
+  else { const j = load(); if (j) { start = parse(j.start); end = parse(j.end); uid = uid || j.bid || ''; loc = loc || j.loc || ''; } }
 
-  const title = 'The Revenue Protocol · Strategy call';
-  const description = 'Pay per show retirement appointments. The call covers your profile: the states you are licensed in, the asset floor you want, and how many appointments a week your calendar can hold.'
-    + (loc ? '\n\nJoin: ' + loc : '\n\nThe join link is in the confirmation email from Cal.com.')
-    + '\nReschedule: ' + reschedule;
+  const rescheduleUrl = () => uid ? 'https://cal.com/reschedule/' + encodeURIComponent(uid) : EVENT_URL;
+  document.querySelectorAll('a[data-reschedule]').forEach(a => { a.href = rescheduleUrl(); });
 
-  // Human line, in the visitor's own time zone.
-  const tz = (Intl.DateTimeFormat().resolvedOptions().timeZone) || '';
-  const dayFmt = new Intl.DateTimeFormat(undefined, { weekday: 'long', month: 'long', day: 'numeric' });
-  const timeFmt = new Intl.DateTimeFormat(undefined, { hour: 'numeric', minute: '2-digit' });
-  const tzName = (new Intl.DateTimeFormat(undefined, { timeZoneName: 'short' }).formatToParts(start).find(p => p.type === 'timeZoneName') || {}).value || '';
   const when = document.getElementById('calWhen');
-  when.textContent = dayFmt.format(start) + ' · ' + timeFmt.format(start) + ' to ' + timeFmt.format(end) + (tzName ? ' ' + tzName : '');
-  if (tz) { const s = document.createElement('small'); s.textContent = 'Shown in your time zone (' + tz + ').'; when.appendChild(s); }
-
-  // Google
+  const pick = document.getElementById('calPick');
+  const timeIn = document.getElementById('calTime');
+  const durSel = document.getElementById('calDur');
+  const btnG = document.getElementById('calGoogle');
+  const btnO = document.getElementById('calOutlook');
+  const btnA = document.getElementById('calApple');
+  const btns = [btnG, btnO, btnA];
+  const title = 'The Revenue Protocol · Strategy call';
+  const description = () => 'Pay per show retirement appointments. The call covers your profile: the states you are licensed in, the asset floor you want, and how many appointments a week your calendar can hold.'
+    + (loc ? '\n\nJoin: ' + loc : '\n\nThe join link is in the confirmation email from Cal.com.')
+    + '\nReschedule: ' + rescheduleUrl();
   const gDate = (d) => d.toISOString().replace(/[-:]|\.\d{3}/g, '');
-  const g = new URL('https://calendar.google.com/calendar/render');
-  g.searchParams.set('action', 'TEMPLATE');
-  g.searchParams.set('text', title);
-  g.searchParams.set('dates', gDate(start) + '/' + gDate(end));
-  g.searchParams.set('details', description);
-  if (loc) g.searchParams.set('location', loc);
-  document.getElementById('calGoogle').href = g.toString();
-
-  // Outlook (Microsoft 365 web)
-  const o = new URL('https://outlook.office.com/calendar/0/action/compose');
-  o.searchParams.set('path', '/calendar/action/compose');
-  o.searchParams.set('rru', 'addevent');
-  o.searchParams.set('subject', title);
-  o.searchParams.set('startdt', start.toISOString());
-  o.searchParams.set('enddt', end.toISOString());
-  o.searchParams.set('body', description);
-  if (loc) o.searchParams.set('location', loc);
-  document.getElementById('calOutlook').href = o.toString();
-
-  // Apple (and any .ics client): a downloaded file, so the page stays put.
-  const esc = (s) => String(s).replace(/\\/g, '\\\\').replace(/;/g, '\\;').replace(/,/g, '\\,').replace(/\n/g, '\\n');
+  const esc = (t) => String(t).replace(/\\/g, '\\\\').replace(/;/g, '\;').replace(/,/g, '\\,').replace(/\n/g, '\\n');
   const fold = (line) => { let out = ''; while (line.length > 73) { out += line.slice(0, 73) + '\r\n '; line = line.slice(73); } return out + line; };
-  const lines = [
-    'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//The Revenue Protocol//Confirmed Booking//EN', 'CALSCALE:GREGORIAN', 'METHOD:PUBLISH',
-    'BEGIN:VEVENT',
-    'UID:' + (uid || gDate(start)) + '@therevenueprotocol.com',
-    'DTSTAMP:' + gDate(new Date()),
-    'DTSTART:' + gDate(start),
-    'DTEND:' + gDate(end),
-    'SUMMARY:' + esc(title),
-    'DESCRIPTION:' + esc(description),
-  ];
-  if (loc) lines.push('LOCATION:' + esc(loc), 'URL:' + loc);
-  lines.push('BEGIN:VALARM', 'TRIGGER:-PT30M', 'ACTION:DISPLAY', 'DESCRIPTION:The Revenue Protocol call in 30 minutes', 'END:VALARM', 'END:VEVENT', 'END:VCALENDAR');
-  const ics = lines.map(fold).join('\r\n');
-  document.getElementById('calApple').href = 'data:text/calendar;charset=utf-8,' + encodeURIComponent(ics);
+
+  function apply(s, e) {
+    const tz = (Intl.DateTimeFormat().resolvedOptions().timeZone) || '';
+    const dayFmt = new Intl.DateTimeFormat(undefined, { weekday: 'long', month: 'long', day: 'numeric' });
+    const timeFmt = new Intl.DateTimeFormat(undefined, { hour: 'numeric', minute: '2-digit' });
+    const tzName = (new Intl.DateTimeFormat(undefined, { timeZoneName: 'short' }).formatToParts(s).find(p => p.type === 'timeZoneName') || {}).value || '';
+    when.textContent = dayFmt.format(s) + ' · ' + timeFmt.format(s) + ' to ' + timeFmt.format(e) + (tzName ? ' ' + tzName : '');
+    if (tz) { const sm = document.createElement('small'); sm.textContent = 'Shown in your time zone (' + tz + ').'; when.appendChild(sm); }
+    when.hidden = false;
+
+    const g = new URL('https://calendar.google.com/calendar/render');
+    g.searchParams.set('action', 'TEMPLATE'); g.searchParams.set('text', title);
+    g.searchParams.set('dates', gDate(s) + '/' + gDate(e)); g.searchParams.set('details', description());
+    if (loc) g.searchParams.set('location', loc);
+    btnG.href = g.toString();
+
+    const o = new URL('https://outlook.office.com/calendar/0/action/compose');
+    o.searchParams.set('path', '/calendar/action/compose'); o.searchParams.set('rru', 'addevent');
+    o.searchParams.set('subject', title); o.searchParams.set('startdt', s.toISOString()); o.searchParams.set('enddt', e.toISOString());
+    o.searchParams.set('body', description()); if (loc) o.searchParams.set('location', loc);
+    btnO.href = o.toString();
+
+    const lines = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//The Revenue Protocol//Confirmed Booking//EN', 'CALSCALE:GREGORIAN', 'METHOD:PUBLISH',
+      'BEGIN:VEVENT', 'UID:' + (uid || gDate(s)) + '@therevenueprotocol.com', 'DTSTAMP:' + gDate(new Date()),
+      'DTSTART:' + gDate(s), 'DTEND:' + gDate(e), 'SUMMARY:' + esc(title), 'DESCRIPTION:' + esc(description())];
+    if (loc) lines.push('LOCATION:' + esc(loc), 'URL:' + loc);
+    lines.push('BEGIN:VALARM', 'TRIGGER:-PT30M', 'ACTION:DISPLAY', 'DESCRIPTION:The Revenue Protocol call in 30 minutes', 'END:VALARM', 'END:VEVENT', 'END:VCALENDAR');
+    btnA.href = 'data:text/calendar;charset=utf-8,' + encodeURIComponent(lines.map(fold).join('\r\n'));
+    btns.forEach(b => b.classList.remove('pending'));
+  }
+  function setPending() { btns.forEach(b => { b.classList.add('pending'); b.href = '#'; }); when.hidden = true; }
+
+  btns.forEach(b => b.addEventListener('click', (ev) => {
+    if (!b.classList.contains('pending')) return;
+    ev.preventDefault();
+    pick.hidden = false; timeIn.focus();
+    try { if (timeIn.showPicker) timeIn.showPicker(); } catch (err) {}
+  }));
+
+  if (start && end && end > start) { pick.hidden = true; apply(start, end); }
+  else {
+    pick.hidden = false; setPending();
+    const fromInput = () => { const s = parse(timeIn.value); if (!s) { setPending(); return; } const d = parseInt(durSel.value, 10) || 30; apply(s, new Date(s.getTime() + d * 60000)); };
+    timeIn.addEventListener('change', fromInput); timeIn.addEventListener('input', fromInput); durSel.addEventListener('change', fromInput);
+  }
 })();
 
 // ─── The deck: arrow / dot / swipe / keyboard carousel over the slide images ───

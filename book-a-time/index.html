@@ -362,6 +362,7 @@ footer{
         if (end) params.push("end=" + encodeURIComponent(end));
         if (!end && dur > 0) params.push("dur=" + dur);
         if (loc) params.push("loc=" + encodeURIComponent(loc));
+        if (start) { try { localStorage.setItem("trp_booking", JSON.stringify({ bid: uid, start: start, end: end, loc: loc })); } catch (e2) {} }
       } catch (err) {}
       // Same-domain redirect: relative path is fine on the apex.
       var url = "/confirmed-booking/" + (params.length ? "?" + params.join("&") : "");
