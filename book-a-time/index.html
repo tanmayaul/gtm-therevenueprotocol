@@ -342,17 +342,29 @@ footer{
     }
     var d = e.data || {};
     var action = d.type || d.action || (d.payload && d.payload.action) || "";
-    if (action === "bookingSuccessful" || action === "booking_successful") {
-      var bookingId = "";
+    if (action === "bookingSuccessful" || action === "booking_successful" || action === "bookingSuccessfulV2") {
+      // Pass the booking's uid, start, end and join link to /confirmed-booking/
+      // so it can build Google / Outlook / Apple add-to-calendar links.
+      // Cal.com has shipped several payload shapes; read them all. Never names or emails.
+      var params = [];
       try {
-        var bk = (d.detail && d.detail.data && d.detail.data.booking) ||
-                 (d.payload && d.payload.booking) ||
-                 (d.data && d.data.booking) || {};
-        bookingId = bk.uid || bk.id || "";
+        var data = d.data || d.payload || (d.detail && d.detail.data) || {};
+        var bk = data.booking || {};
+        var toIso = function (v) { var t = v ? new Date(v) : null; return (t && !isNaN(t)) ? t.toISOString() : ""; };
+        var uid = bk.uid || data.uid || bk.id || "";
+        var start = toIso(bk.startTime || data.startTime || data.date);
+        var end = toIso(bk.endTime || data.endTime);
+        var dur = parseInt(data.duration || (data.eventType && data.eventType.length) || "", 10);
+        var loc = data.videoCallUrl || bk.videoCallUrl || (bk.metadata && bk.metadata.videoCallUrl) || "";
+        if (!loc && typeof bk.location === "string" && /^https?:/i.test(bk.location)) loc = bk.location;
+        if (uid) params.push("bid=" + encodeURIComponent(uid));
+        if (start) params.push("start=" + encodeURIComponent(start));
+        if (end) params.push("end=" + encodeURIComponent(end));
+        if (!end && dur > 0) params.push("dur=" + dur);
+        if (loc) params.push("loc=" + encodeURIComponent(loc));
       } catch (err) {}
-      // Same-domain redirect — relative path is fine on the apex.
-      var url = "/confirmed-booking/";
-      if (bookingId) url += "?bid=" + encodeURIComponent(bookingId);
+      // Same-domain redirect: relative path is fine on the apex.
+      var url = "/confirmed-booking/" + (params.length ? "?" + params.join("&") : "");
       window.location.href = url;
     }
   });
