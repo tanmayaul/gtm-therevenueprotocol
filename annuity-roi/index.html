@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Annuity Appointment ROI | TheRevenueProtocol</title>
+<meta name="description" content="Plug in your own commission numbers and see what shown annuity appointments are worth. Shows what the appointments cost, so the number at the bottom is what you keep.">
+<meta property="og:title" content="Annuity Appointment ROI | TheRevenueProtocol">
+<meta property="og:description" content="What shown annuity appointments are worth, on your numbers, with the cost line included.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0A0F1E;--bg-alt:#0E1328;--card:#111832;--deep:#0D1226;
+  --border:#1e2a3a;--border-light:#162035;
+  --txt:#ffffff;--body:#e2e8f0;--sub:#94a3b8;--sub2:#64748b;
+  --blue:#1A5FBD;--teal:#00C2A8;--purple:#a78bfa;--amber:#f59e0b;--red:#f87171;
+  --inter:'Inter',system-ui,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --max:960px;--r:16px;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--inter);font-size:17px;font-weight:400;color:var(--body);background:var(--bg);line-height:1.65;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:var(--teal);text-decoration:none}
+
+h1{font-size:clamp(30px,5vw,54px);font-weight:800;color:var(--txt);line-height:1.05;letter-spacing:-0.04em}
+h2{font-size:clamp(26px,4vw,40px);font-weight:700;color:var(--txt);line-height:1.12;letter-spacing:-0.03em}
+h3{font-size:clamp(16px,2vw,20px);font-weight:600;color:var(--txt);line-height:1.4;letter-spacing:-0.01em}
+.label{font-size:13px;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.75rem}
+.section-sub{color:var(--sub);font-size:17px;line-height:1.65;max-width:620px}
+.center{text-align:center}
+.center .section-sub{margin:0.75rem auto 0}
+
+.wrap{width:min(var(--max),calc(100% - 48px));margin:0 auto}
+.wrap-wide{width:min(1200px,calc(100% - 48px));margin:0 auto}
+.section{padding:5rem 0}
+.section+.section{border-top:1px solid var(--border)}
+
+.btn{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(180deg,#4347f3,#0d81f1);color:#fff;font-family:var(--inter);font-size:17px;font-weight:700;padding:16px 32px;border-radius:200px;border:none;cursor:pointer;transition:opacity .2s,transform .2s;letter-spacing:-0.01em;text-decoration:none}
+.btn:hover{opacity:.9;transform:translateY(-2px)}
+.btn-arrow::after{content:" \2192";font-size:18px}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,15,30,0.7);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border);height:60px;display:flex;align-items:center;padding:0 1.5rem;transition:background .3s,box-shadow .3s}
+nav.scrolled{background:rgba(10,15,30,0.95);box-shadow:0 2px 20px rgba(0,0,0,0.4)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;width:100%;max-width:1200px;margin:0 auto}
+.nav-logo{color:var(--txt);font-size:15px;font-weight:700;letter-spacing:-0.02em;display:flex;align-items:center;gap:8px;text-decoration:none}
+.nav-logo img{width:24px;height:24px}
+.nav-links{display:flex;align-items:center;gap:22px}
+.nav-links a{font-size:14px;font-weight:500;color:var(--sub);text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:var(--teal)}
+.nav-cta{font-size:14px;padding:10px 20px;color:#fff}
+@media(max-width:1040px){.nav-links a:not(.nav-cta){display:none}}
+
+.calc-hero{padding:7.5rem 0 0;position:relative;overflow:hidden}
+.calc-hero::before{content:"";position:absolute;top:-220px;left:50%;transform:translateX(-50%);width:1400px;height:700px;background:radial-gradient(ellipse at center,rgba(26,95,189,0.20),transparent 55%);pointer-events:none;z-index:0}
+.calc-hero .wrap-wide{position:relative;z-index:1}
+.pill{display:inline-block;background:rgba(0,194,168,0.1);color:var(--teal);font-size:13px;font-weight:700;padding:7px 18px;border-radius:200px;margin-bottom:1.5rem;border:1px solid rgba(0,194,168,0.25);text-transform:uppercase;letter-spacing:0.08em}
+.calc-hero h1{max-width:760px;margin:0 auto 1rem}
+.calc-hero .hero-sub{max-width:620px;margin:0 auto 3rem;color:var(--sub);font-size:18px}
+
+/* Calculator */
+.calc{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,0.86fr);gap:20px;align-items:start;padding-bottom:5rem}
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:28px}
+.card-h{font-size:13px;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:0.1em}
+.card-note{font-size:14px;color:var(--sub2);margin-top:6px}
+
+.ctrls{display:flex;flex-direction:column;gap:24px;margin-top:24px}
+.ctrl{display:flex;flex-direction:column;gap:9px}
+.ctrl .top{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+.ctrl .nm{font-size:14px;font-weight:600;color:var(--body)}
+.ctrl .vl{font-size:22px;font-weight:800;color:var(--txt);letter-spacing:-0.02em;font-variant-numeric:tabular-nums}
+.ctrl .mk{font-size:13px;color:var(--sub2);line-height:1.5}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:20px;background:transparent}
+input[type=range]::-webkit-slider-runnable-track{height:4px;border-radius:2px;background:var(--border)}
+input[type=range]::-moz-range-track{height:4px;border-radius:2px;background:var(--border)}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:18px;height:18px;border-radius:50%;background:var(--teal);border:3px solid var(--card);box-shadow:0 0 0 1px var(--teal);margin-top:-7px;cursor:pointer}
+input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--teal);border:3px solid var(--card);box-shadow:0 0 0 1px var(--teal);cursor:pointer}
+input[type=range]:focus-visible{outline:2px solid var(--teal);outline-offset:4px;border-radius:4px}
+
+.picks{display:flex;flex-direction:column;gap:16px;margin-top:24px;padding-top:24px;border-top:1px solid var(--border)}
+.pills{display:grid;grid-template-columns:repeat(4,1fr);gap:7px}
+.pills button{font-family:var(--inter);font-size:13px;font-weight:600;cursor:pointer;background:var(--deep);color:var(--sub);border:1px solid var(--border);border-radius:10px;padding:10px 4px;display:flex;flex-direction:column;align-items:center;gap:3px;line-height:1.2;transition:background .2s,border-color .2s,color .2s}
+.pills button small{font-size:10.5px;font-weight:500;color:var(--sub2);letter-spacing:0.02em}
+.pills button[aria-pressed=true]{background:rgba(0,194,168,0.12);border-color:var(--teal);color:var(--txt)}
+.pills button[aria-pressed=true] small{color:var(--teal)}
+.pills button:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
+
+.steps{margin-top:22px}
+.stp{display:grid;grid-template-columns:1fr max-content;gap:4px 16px;align-items:baseline;padding:13px 0;border-bottom:1px solid var(--border-light)}
+.stp .lb{font-size:15px;color:var(--body)}
+.stp .sm{grid-column:1;font-family:var(--mono);font-size:11.5px;color:var(--sub2)}
+.stp .am{grid-row:1/span 2;align-self:center;text-align:right;font-size:18px;font-weight:700;color:var(--txt);font-variant-numeric:tabular-nums}
+.stp.cost .am{color:var(--amber)}
+
+.keep{padding:24px 0 6px}
+.keep .nm{font-size:13px;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:0.1em}
+.keep .big{font-size:clamp(40px,6vw,54px);font-weight:800;color:var(--txt);line-height:1.05;letter-spacing:-0.04em;font-variant-numeric:tabular-nums;margin-top:6px}
+.keep .sb{font-size:14px;color:var(--sub);margin-top:8px}
+.keep.neg .big{color:var(--red)}
+.alert{font-size:14px;color:var(--red);font-weight:600;margin-top:10px}
+
+.be{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;background:var(--deep);border:1px solid var(--border);border-radius:12px;padding:16px 18px;margin-top:18px}
+.be .k{font-size:14px;color:var(--sub);max-width:32ch}
+.be .v{font-size:30px;font-weight:800;color:var(--txt);letter-spacing:-0.03em;font-variant-numeric:tabular-nums}
+.be.tight{background:rgba(248,113,113,0.08);border-color:rgba(248,113,113,0.35)}
+.be.tight .v{color:var(--red)}
+.paycheck{font-size:14px;color:var(--sub);margin-top:14px}
+.paycheck b{color:var(--txt);font-weight:700}
+
+/* Ladder */
+.tablewrap{overflow-x:auto;background:var(--card);border:1px solid var(--border);border-radius:var(--r);margin-top:2rem}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}
+th,td{padding:14px 18px;text-align:right;white-space:nowrap;border-bottom:1px solid var(--border-light)}
+th:first-child,td:first-child{text-align:left}
+th{font-size:11px;font-weight:700;color:var(--sub2);text-transform:uppercase;letter-spacing:0.08em;background:var(--deep);border-bottom:1px solid var(--border)}
+tbody tr:last-child td{border-bottom:0}
+td{font-size:15px;color:var(--body)}
+td .n{font-weight:700;color:var(--txt)}
+td small{display:block;font-size:12px;color:var(--sub2);font-weight:400}
+tr.here td{background:rgba(0,194,168,0.07)}
+tr.here td .n{color:var(--teal)}
+tr.under td,tr.under td .n{color:var(--red)}
+tr.under td small{color:var(--red);opacity:.75}
+.flag{display:inline-block;font-size:10px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;padding:2px 7px;border-radius:200px;background:var(--teal);color:#04241f;margin-left:9px;vertical-align:middle}
+.ladder-note{font-size:14px;color:var(--sub2);margin-top:1rem}
+.ladder-note b{color:var(--body);font-weight:600}
+
+/* Trust */
+.threes{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:2.5rem}
+.three{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:26px}
+.three h3{margin-bottom:8px}
+.three p{font-size:15px;color:var(--sub);line-height:1.6}
+
+.cta{text-align:center}
+.cta h2{max-width:640px;margin:0 auto 1rem}
+.cta .section-sub{margin:0 auto 2rem}
+
+footer{border-top:1px solid var(--border);padding:2.5rem 0;font-size:14px;color:var(--sub2)}
+footer .fine{display:flex;flex-direction:column;gap:12px;margin-bottom:1.75rem}
+footer .fine p{max-width:76ch}
+footer b{color:var(--body);font-weight:600}
+
+@media(max-width:860px){.calc{grid-template-columns:minmax(0,1fr)}.section{padding:3.5rem 0}.calc-hero{padding:6rem 0 0}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo"><img src="https://framerusercontent.com/images/pbvYwK3r1tg6tglaoLkA8LMaeY.png" alt="TRP" width="24" height="24">TheRevenueProtocol</a>
+    <div class="nav-links">
+      <a href="#calculator">Calculator</a>
+      <a href="#ladder">Close rates</a>
+      <a href="#what">What you get</a>
+      <a href="/book-a-time/" class="btn nav-cta btn-arrow">Book a Call</a>
+    </div>
+  </div>
+</nav>
+
+<section class="calc-hero" id="calculator">
+  <div class="wrap-wide">
+    <div class="center">
+      <span class="pill">Pay per show</span>
+      <h1>What shown annuity appointments are worth to you</h1>
+      <p class="hero-sub">Move the sliders to your own numbers. This one shows what the appointments cost, so the figure at the bottom is what you keep, not what you write.</p>
+    </div>
+
+    <div class="calc">
+      <div class="card">
+        <span class="card-h">Your numbers</span>
+        <p class="card-note">Nobody's commission is the same. Every number here is yours to set.</p>
+
+        <div class="ctrls">
+          <div class="ctrl">
+            <div class="top"><span class="nm">Average annuity you write</span><span class="vl" id="v-prem">$500,000</span></div>
+            <input type="range" id="prem" min="100000" max="2000000" step="25000" value="500000" aria-label="Average annuity you write">
+            <p class="mk">Our reference: a $500K average annuity on $1.04M of average assets per appointment.</p>
+          </div>
+          <div class="ctrl">
+            <div class="top"><span class="nm">Your commission rate</span><span class="vl" id="v-rate">6.51%</span></div>
+            <input type="range" id="rate" min="1" max="10" step="0.01" value="6.51" aria-label="Your commission rate">
+            <p class="mk">6.51% is Wink's measured Q4 2025 average across 141 carriers for indexed annuities. Fixed is 5.46%, MYGA is 2.43%. Set yours.</p>
+          </div>
+          <div class="ctrl">
+            <div class="top"><span class="nm">Appointments per month</span><span class="vl" id="v-appts">12</span></div>
+            <input type="range" id="appts" min="1" max="30" step="1" value="12" aria-label="Appointments per month">
+            <p class="mk">Only count meetings you can personally take.</p>
+          </div>
+          <div class="ctrl">
+            <div class="top"><span class="nm">Your close rate</span><span class="vl" id="v-close">25%</span></div>
+            <input type="range" id="close" min="3" max="50" step="1" value="25" aria-label="Your close rate">
+            <p class="mk">Out of ten shown appointments, how many become a case.</p>
+          </div>
+        </div>
+
+        <div class="picks">
+          <div class="ctrl">
+            <div class="top"><span class="nm">Asset tier you accept</span><span class="vl" id="v-price">$1,800</span></div>
+            <div class="pills" id="tiers" role="group" aria-label="Asset tier">
+              <button type="button" data-tier="0" aria-pressed="true">Gold<small>$250K to $1M</small></button>
+              <button type="button" data-tier="1" aria-pressed="false">Platinum<small>$1M to $2M</small></button>
+              <button type="button" data-tier="2" aria-pressed="false">Diamond<small>$2M to $5M</small></button>
+              <button type="button" data-tier="3" aria-pressed="false">Black<small>$5M to $10M</small></button>
+            </div>
+          </div>
+          <div class="ctrl">
+            <span class="nm">How many you buy</span>
+            <div class="pills" id="packs" role="group" aria-label="Package size">
+              <button type="button" data-pack="0" aria-pressed="false">One<small>list</small></button>
+              <button type="button" data-pack="1" aria-pressed="true">10<small>10% off</small></button>
+              <button type="button" data-pack="2" aria-pressed="false">25<small>20% off</small></button>
+              <button type="button" data-pack="3" aria-pressed="false">50<small>30% off</small></button>
+            </div>
+            <p class="mk" id="packnote">10 meetings prepaid is $18,000. About 1 month at this pace.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="card-h">What it comes to</span>
+        <div class="steps">
+          <div class="stp">
+            <span class="lb">Commission on one case</span>
+            <span class="sm" id="s-case">$500,000 &times; 6.51%</span>
+            <span class="am" id="a-case">$32,550</span>
+          </div>
+          <div class="stp">
+            <span class="lb">Cases a month</span>
+            <span class="sm" id="s-deals">12 appointments &times; 25%</span>
+            <span class="am" id="a-deals">3</span>
+          </div>
+          <div class="stp">
+            <span class="lb">Commission a month</span>
+            <span class="sm" id="s-comm">$32,550 &times; 3 cases</span>
+            <span class="am" id="a-comm">$97,650</span>
+          </div>
+          <div class="stp cost">
+            <span class="lb">What the appointments cost</span>
+            <span class="sm" id="s-cost">12 &times; $1,800</span>
+            <span class="am" id="a-cost">&minus;$21,600</span>
+          </div>
+        </div>
+
+        <div class="keep" id="keep">
+          <span class="nm">What you keep, a month</span>
+          <div class="big" id="a-keep">$76,050</div>
+          <p class="sb" id="a-year">$912,600 a year, on $259,200 of appointments. You get $4.52 back for every $1.</p>
+        </div>
+        <p class="alert" id="alert" hidden>At these numbers the appointments do not pay for themselves. Raise the asset floor, or this is not the right tier for you.</p>
+
+        <div class="be" id="be">
+          <span class="k">You stop making money below a close rate of</span>
+          <span class="v" id="a-be">5.5%</span>
+        </div>
+        <p class="paycheck" id="paycheck"><b>One closed case pays for the whole 10 pack.</b> $32,550 against $18,000.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="ladder">
+  <div class="wrap-wide">
+    <p class="label">The math, at every close rate</p>
+    <h2>If you close 1 in 4, or 1 in 20</h2>
+    <p class="section-sub">Same numbers you just set, run down every close rate.</p>
+    <div class="tablewrap">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">If you close</th>
+            <th scope="col">Cases a month</th>
+            <th scope="col">Commission a month</th>
+            <th scope="col">You keep, a month</th>
+            <th scope="col">You keep, a year</th>
+            <th scope="col">Back per $1</th>
+          </tr>
+        </thead>
+        <tbody id="ladder-body"></tbody>
+      </table>
+    </div>
+    <p class="ladder-note" id="ladder-note"></p>
+  </div>
+</section>
+
+<section class="section" id="what">
+  <div class="wrap-wide">
+    <p class="label">What you are buying</p>
+    <h2>A shown appointment, or you do not pay</h2>
+    <div class="threes">
+      <div class="three">
+        <h3>Shown means shown</h3>
+        <p>The prospect attends the booked Zoom or phone appointment at the booked time, you are on it, and they meet the tier gate you picked.</p>
+      </div>
+      <div class="three">
+        <h3>No shows are replaced</h3>
+        <p>They do not show, you are not billed, and the meeting is rebooked once. Cancel by email, not by a phone call you have to chase.</p>
+      </div>
+      <div class="three">
+        <h3>Wrong tier gets fixed</h3>
+        <p>Verified investable assets inside the band you are billed for, age 55 to 80, licensed in their state, deciding inside 90 days. Wrong tier rebills at the right one.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section cta">
+  <div class="wrap">
+    <p class="label">Next step</p>
+    <h2>Run your real numbers with us</h2>
+    <p class="section-sub">Bring your contract level and your last twenty appointments. Twenty minutes, and you will know whether this pays for you before you spend anything.</p>
+    <a href="/book-a-time/" class="btn btn-arrow">Book a Call</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="fine">
+      <p><b>Where the numbers come from.</b> Commission rates are Wink's measured Q4 2025 averages across 141 carriers, not a published maximum. Appointment prices are our rate card: Gold $2,000, Platinum $2,500, Diamond $3,500, Black $5,000 per shown meeting, less 10% at 10, 20% at 25 and 30% at 50.</p>
+      <p><b>What this does not include.</b> Your contract level with your IMO, state and issue age commission reductions, and chargebacks all move the real figure, and they move it down. Ask us for the full model if you want them in. What comes after the annuity, managed money, a second product, referrals, moves it up and is not counted here either.</p>
+      <p>For illustration only. This is not an income claim, an earnings projection or a guarantee of results. Outcomes vary.</p>
+    </div>
+    &copy; 2026 TheRevenueProtocol &middot; <a href="/">Home</a> &middot; <a href="/book-a-time/">Book a call</a>
+  </div>
+</footer>
+
+<script>
+var PRICES=[[2000,1800,1600,1400],[2500,2250,2000,1750],[3500,3150,2800,2450],[5000,4500,4000,3500]];
+var PACKS=[1,10,25,50];
+var PACK_LABEL=["a single meeting","10 meetings","25 meetings","50 meetings"];
+var LADDER=[3,4,5,6,8,10,15,20];
+var tier=0,pack=1;
+
+function $(id){return document.getElementById(id);}
+function usd(n){return "$"+Math.round(n).toLocaleString("en-US");}
+function pct(n){return (Math.round(n*10)/10)+"%";}
+
+function pressGroup(el,attr,active){
+  Array.prototype.forEach.call(el.querySelectorAll("button"),function(b){
+    b.setAttribute("aria-pressed",String(Number(b.dataset[attr])===active));
+  });
+}
+
+function render(){
+  var prem=Number($("prem").value);
+  var rate=Number($("rate").value)/100;
+  var appts=Number($("appts").value);
+  var close=Number($("close").value)/100;
+  var price=PRICES[tier][pack];
+
+  $("v-prem").textContent=usd(prem);
+  $("v-rate").textContent=Number($("rate").value).toFixed(2)+"%";
+  $("v-appts").textContent=appts;
+  $("v-close").textContent=Math.round(close*100)+"%";
+  $("v-price").textContent=usd(price);
+  pressGroup($("tiers"),"tier",tier);
+  pressGroup($("packs"),"pack",pack);
+
+  var count=PACKS[pack];
+  var months=Math.max(1,Math.round(count/appts));
+  $("packnote").textContent=pack===0
+    ? "No package. "+usd(price)+" a meeting, billed as they show."
+    : count+" meetings prepaid is "+usd(price*count)+". About "+months+(months===1?" month":" months")+" at this pace.";
+
+  var perCase=prem*rate;
+  var deals=appts*close;
+  var commMonth=perCase*deals;
+  var costMonth=appts*price;
+  var keep=commMonth-costMonth;
+  var dealsTxt=Math.abs(deals-Math.round(deals))<0.05?String(Math.round(deals)):deals.toFixed(1);
+
+  $("s-case").innerHTML=usd(prem)+" &times; "+(rate*100).toFixed(2)+"%";
+  $("a-case").textContent=usd(perCase);
+  $("s-deals").innerHTML=appts+" appointments &times; "+Math.round(close*100)+"%";
+  $("a-deals").textContent=dealsTxt;
+  $("s-comm").innerHTML=usd(perCase)+" &times; "+dealsTxt+" cases";
+  $("a-comm").textContent=usd(commMonth);
+  $("s-cost").innerHTML=appts+" &times; "+usd(price);
+  $("a-cost").textContent="−"+usd(costMonth);
+
+  $("a-keep").textContent=(keep<0?"−":"")+usd(Math.abs(keep));
+  $("keep").classList.toggle("neg",keep<0);
+  $("alert").hidden=keep>=0;
+  $("a-year").textContent=usd(keep*12)+" a year, on "+usd(costMonth*12)+" of appointments. You get "+(commMonth/costMonth).toFixed(2)+" back for every $1.";
+
+  var be=price/perCase*100;
+  var beN=perCase/price;
+  $("a-be").textContent=pct(be);
+  $("be").classList.toggle("tight",be>=close*100);
+
+  var rows="",hereN=Math.round(1/close),best=null;
+  LADDER.forEach(function(n){if(best===null||Math.abs(n-hereN)<Math.abs(best-hereN))best=n;});
+  LADDER.forEach(function(n){
+    var r=1/n,d=appts*r,cm=perCase*d,k=cm-costMonth,cls=[];
+    if(n===best)cls.push("here");
+    if(k<0)cls.push("under");
+    rows+="<tr class=\""+cls.join(" ")+"\">"
+      +"<td><span class=\"n\">1 in "+n+"</span>"+(n===best?"<span class=\"flag\">you</span>":"")+"<small>"+pct(r*100)+"</small></td>"
+      +"<td>"+(d<1?d.toFixed(2):d.toFixed(1))+"</td>"
+      +"<td>"+usd(cm)+"</td>"
+      +"<td><span class=\"n\">"+(k<0?"−":"")+usd(Math.abs(k))+"</span></td>"
+      +"<td>"+(k<0?"−":"")+usd(Math.abs(k*12))+"</td>"
+      +"<td>"+(cm/costMonth).toFixed(2)+"</td>"
+      +"</tr>";
+  });
+  $("ladder-body").innerHTML=rows;
+  $("ladder-note").innerHTML="The appointments cost <b>"+usd(costMonth)+"</b> a month at every row, and that is already taken out of both keep columns. "
+    +(beN>=1.5
+      ? "Break even is <b>"+pct(be)+"</b>, about 1 in "+Math.floor(beN)+". Every row above it pays."
+      : "No row here pays at these numbers. Raise the asset floor, or this is not the right tier.");
+}
+
+["prem","rate","appts","close"].forEach(function(id){$(id).addEventListener("input",render);});
+$("tiers").addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;tier=Number(b.dataset.tier);render();});
+$("packs").addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;pack=Number(b.dataset.pack);render();});
+render();
+
+var nv=$("nav");
+window.addEventListener("scroll",function(){nv.classList.toggle("scrolled",window.scrollY>10);},{passive:true});
+</script>
+</body>
+</html>
