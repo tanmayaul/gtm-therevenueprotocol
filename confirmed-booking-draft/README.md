@@ -1,16 +1,17 @@
 # Confirmation page design preview
 
-Separate static draft at `/confirmed-booking-draft/`. The existing `/confirmed-booking/` page and its assets are unchanged.
+Separate static draft at `/confirmed-booking-draft/`. The existing `/confirmed-booking/` page is unchanged.
 
-- `index.html`: page structure, sample booking card, deck and payment section.
-- `styles.css`: responsive TRP design with reduced-motion support.
-- `page.js`: script dialogs, sample calendar dialogs, topic expansion, FAQs, and deck navigation.
-- `videos.json`: fifteen full scripts from the revised working-day nurture playbook, including upfront payment.
+This revision reuses the current confirmation page's actual CSS, header, calendar card, preparation card, corporate-deck markup, and footer. Corsa's video presentation is adapted as a large framed welcome video and a two-column video FAQ grid (one column on mobile).
 
-This is a visual review page. The booking is explicitly a sample. Calendar, join, and reschedule controls preview their purpose and do not create or modify appointments. Video covers open the real recording scripts; recordings are pending. There is no analytics, form submission, or workflow enrollment. The page is marked `noindex,nofollow` but its URL is publicly accessible.
+- `live-base.css`: CSS copied from the current confirmation page.
+- `styles.css`: additions for video frames, draft labeling, and script dialogs.
+- `index.html`: existing TRP components plus the video sections and upfront-payment explanation.
+- `page.js`: script dialogs, calendar previews, FAQs, and the existing deck carousel.
+- `videos.json`: fifteen recording scripts, including upfront-payment wording.
 
-The corporate deck and host image reuse existing public files under `../confirmed-booking/`. The payment note clarifies upfront collection because the existing deck's pay-per-show headline describes the billable unit.
+The booking is explicitly a sample. Calendar and reschedule controls preview their purpose without creating or modifying appointments. Video covers open recording scripts because recordings are pending. There is no workflow enrollment or analytics. The public preview is marked noindex.
 
-Run `python3 -m http.server 8765 --bind 127.0.0.1` from the repository root, then open `/confirmed-booking-draft/`.
+Assets reuse existing public files under `../confirmed-booking/`. The deck note explains upfront collection separately from which appointments count for billing.
 
-Verified locally: 375px and 1440px layouts, no mobile horizontal overflow, all 15 scripts, all 14 FAQ answers, script dialogs and Escape/focus return, calendar preview behavior, deck navigation, local asset references, and no browser console errors. Only this draft directory is changed.
+Verified: desktop and 375px mobile rendering; all fourteen video FAQ cards and text answers; welcome script and upfront wording; dialog Escape and focus return; calendar previews; deck navigation; no horizontal overflow; no browser console errors.

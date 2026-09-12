@@ -1,59 +1,107 @@
 <!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="robots" content="noindex,nofollow"><meta name="referrer" content="no-referrer">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
-<title>Your call, confirmed | TRP design preview</title>
-<meta name="description" content="A design preview of The Revenue Protocol's advisor call preparation page.">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css"><script src="page.js" defer></script>
-</head>
-<body>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Your call is booked | TRP confirmation preview</title><meta name="robots" content="noindex,nofollow"><meta name="referrer" content="no-referrer">
+<link rel="icon" href="favicon.svg"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="live-base.css"><link rel="stylesheet" href="styles.css"><script src="page.js" defer></script></head><body>
 <a class="skip-link" href="#main">Skip to content</a>
-<div class="preview-strip"><span class="preview-dot"></span> DESIGN PREVIEW <span class="preview-description">Sample booking · Video scripts ready for recording</span></div>
-<header class="site-header wrap"><a class="wordmark" href="https://therevenueprotocol.com" aria-label="The Revenue Protocol home"><span class="brand-mark" aria-hidden="true">↗</span><span>The Revenue<br>Protocol<span class="brand-period">.</span></span></a><a class="header-link" href="#faq">Have a question? <span aria-hidden="true">↗</span></a></header>
+<div class="draft-label">Design preview · Sample booking · Videos awaiting recording</div>
+<nav>
+  <div class="nav-inner">
+    <a href="https://therevenueprotocol.com" class="logo">
+      <img src="https://framerusercontent.com/images/pbvYwK3r1tg6tglaoLkA8LMaeY.png" alt="TRP" style="width:24px;height:24px">
+      The Revenue Protocol
+    </a>
+  </div>
+</nav>
 <main id="main">
-<section class="hero wrap">
-<div class="eyebrow"><span class="check-small" aria-hidden="true">✓</span> YOUR CALL IS CONFIRMED</div>
-<h1>You're booked.<br>Let's make it <em>count.</em></h1>
-<p class="hero-copy">A few minutes here. A more useful conversation about<br class="desktop-break"> your clients, your calendar, and what comes next.</p>
-<div class="booking-card" id="booking">
-<div class="booking-summary"><div class="calendar-icon" aria-hidden="true"><span>SEP</span><b>22</b></div><div><span class="tiny-label">YOUR STRATEGY CALL <span class="sample-label">SAMPLE</span></span><h2>Tuesday, September 22</h2><p>10:00–10:30 a.m. <span class="dot-separator">·</span> America/Chicago</p></div></div>
-<div class="calendar-actions"><span class="tiny-label">ADD TO YOUR CALENDAR</span><div><button class="calendar-button" data-calendar="Google"><span class="google-g" aria-hidden="true">G</span> Google</button><button class="calendar-button" data-calendar="Outlook"><span class="outlook-icon" aria-hidden="true">O</span> Outlook</button><button class="calendar-button" data-calendar="Apple"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 20 20" fill="none"><rect x="3" y="4" width="14" height="13" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M3 8h14M7 2v4m6-4v4" stroke="currentColor" stroke-width="1.7"/></svg> Apple</button></div></div>
-</div>
-<div class="booking-foot"><span>With Tanmay Aul <span class="dot-separator">·</span> 30-minute video call</span><button class="text-button" data-action="reschedule">Need another time? <span aria-hidden="true">↗</span></button></div>
+<section class="hero"><div class="wrap"><div class="hero-banner"><span aria-hidden="true">✓</span> Booking confirmed</div><h1>Your call is booked.</h1><p class="hero-sub">Add the meeting to your calendar, then watch the short video below so we can make the most of our conversation.</p></div></section>
+<section class="steps-section">
+  <div class="wrap-wide">
+    <div class="step">
+      <p class="step-eyebrow">Step 1 · Confirm the call</p>
+      <h3 class="step-title">Put it on your calendar</h3>
+
+      <div class="cal-card" id="calCard">
+        <p class="cal-when" id="calWhen">Tuesday, September 22 · 10:00 a.m.<small>America/Chicago · 30-minute video call · Sample booking</small></p>
+
+        <div class="cal-buttons">
+          <a class="cal-btn" id="calGoogle" data-calendar="Google" href="#">
+            <span class="chip"><svg viewBox="0 0 24 24" aria-hidden="true"><title>Google Calendar</title><path fill="#4285F4" d="M18.316 5.684H24v12.632h-5.684V5.684zM5.684 24h12.632v-5.684H5.684V24zM18.316 5.684V0H1.895A1.894 1.894 0 0 0 0 1.895v16.421h5.684V5.684h12.632zm-7.207 6.25v-.065c.272-.144.5-.349.687-.617s.279-.595.279-.982c0-.379-.099-.72-.3-1.025a2.05 2.05 0 0 0-.832-.714 2.703 2.703 0 0 0-1.197-.257c-.6 0-1.094.156-1.481.467-.386.311-.65.671-.793 1.078l1.085.452c.086-.249.224-.461.413-.633.189-.172.445-.257.767-.257.33 0 .602.088.816.264a.86.86 0 0 1 .322.703c0 .33-.12.589-.36.778-.24.19-.535.284-.886.284h-.567v1.085h.633c.407 0 .748.109 1.02.327.272.218.407.499.407.843 0 .336-.129.614-.387.832s-.565.327-.924.327c-.351 0-.651-.103-.897-.311-.248-.208-.422-.502-.521-.881l-1.096.452c.178.616.505 1.082.977 1.401.472.319.984.478 1.538.477a2.84 2.84 0 0 0 1.293-.291c.382-.193.684-.458.902-.794.218-.336.327-.72.327-1.149 0-.429-.115-.797-.344-1.105a2.067 2.067 0 0 0-.881-.689zm2.093-1.931l.602.913L15 10.045v5.744h1.187V8.446h-.827l-2.158 1.557zM22.105 0h-3.289v5.184H24V1.895A1.894 1.894 0 0 0 22.105 0zm-3.289 23.5l4.684-4.684h-4.684V23.5zM0 22.105C0 23.152.848 24 1.895 24h3.289v-5.184H0v3.289z"/></svg></span>
+            Google Calendar
+          </a>
+          <a class="cal-btn" id="calOutlook" data-calendar="Outlook" href="#">
+            <span class="chip"><svg viewBox="0 0 24 24" aria-hidden="true"><title>Microsoft Outlook</title><path fill="#0078D4" d="M7.88 12.04q0 .45-.11.87-.1.41-.33.74-.22.33-.58.52-.37.2-.87.2t-.85-.2q-.35-.21-.57-.55-.22-.33-.33-.75-.1-.42-.1-.86t.1-.87q.1-.43.34-.76.22-.34.59-.54.36-.2.87-.2t.86.2q.35.21.57.55.22.34.31.77.1.43.1.88zM24 12v9.38q0 .46-.33.8-.33.32-.8.32H7.13q-.46 0-.8-.33-.32-.33-.32-.8V18H1q-.41 0-.7-.3-.3-.29-.3-.7V7q0-.41.3-.7Q.58 6 1 6h6.5V2.55q0-.44.3-.75.3-.3.75-.3h12.9q.44 0 .75.3.3.3.3.75V10.85l1.24.72h.01q.1.07.18.18.07.12.07.25zm-6-8.25v3h3v-3zm0 4.5v3h3v-3zm0 4.5v1.83l3.05-1.83zm-5.25-9v3h3.75v-3zm0 4.5v3h3.75v-3zm0 4.5v2.03l2.41 1.5 1.34-.8v-2.73zM9 3.75V6h2l.13.01.12.04v-2.3zM5.98 15.98q.9 0 1.6-.3.7-.32 1.19-.86.48-.55.73-1.28.25-.74.25-1.61 0-.83-.25-1.55-.24-.71-.71-1.24t-1.15-.83q-.68-.3-1.55-.3-.92 0-1.64.3-.71.3-1.2.85-.5.54-.75 1.3-.25.74-.25 1.63 0 .85.26 1.56.26.72.74 1.23.48.52 1.17.81.69.3 1.56.3zM7.5 21h12.39L12 16.08V17q0 .41-.3.7-.29.3-.7.3H7.5zm15-.13v-7.24l-5.9 3.54Z"/></svg></span>
+            Outlook
+          </a>
+          <a class="cal-btn" id="calApple" data-calendar="Apple" href="#">
+            <span class="chip"><svg viewBox="0 0 24 24" aria-hidden="true"><title>Apple</title><path fill="#000000" d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg></span>
+            Apple Calendar
+          </a>
+        </div>
+        <p class="step-helper" id="calHelp">Preview the calendar buttons. This design uses a sample booking.</p>
+      </div>
+
+      <!-- Before we talk -->
+
+    </div>
+  </div>
 </section>
-<section class="welcome-section wrap" id="before-your-call" aria-labelledby="welcome-title">
-<div class="section-line"><span class="eyebrow">01 / START HERE</span><span class="small-muted">One short introduction before we meet</span></div>
-<button class="welcome-player" data-video="0">
-<div class="welcome-art"><span class="video-kicker">A NOTE FROM TANMAY</span><h2 id="welcome-title">Your next<br>appointments.<br><em>Let's talk.</em></h2><div class="video-open"><span class="play-circle" aria-hidden="true">▶</span><span>Preview the welcome script<small>Recording pending · About 2 minutes</small></span></div></div>
-<div class="host-image"><img src="../confirmed-booking/team/tanmay.jpg" alt="Tanmay Aul, co-founder of The Revenue Protocol" width="400" height="480"><div class="host-caption"><strong>Tanmay Aul</strong><span>Co-Founder, The Revenue Protocol</span></div></div>
-<div class="player-bottom" aria-hidden="true"><span>01: Welcome to your call</span><span>TRP / BEFORE WE MEET</span></div>
-</button>
-<div class="welcome-caption"><span>We'll cover your target clients, our qualification process, and the terms for getting started.</span><button class="text-button" data-video="0">Read transcript <span aria-hidden="true">↗</span></button></div>
-</section>
-<section class="prep-section wrap" id="getting-started">
-<div class="prep-intro"><span class="eyebrow">A LITTLE PREPARATION</span><h2>Bring these<br><em>three things.</em></h2><p>Estimates are fine. We'll work through the details together.</p></div>
-<ol class="prep-list"><li><span class="list-number">01</span><div><h3>Your licensed states</h3><p>The places where you can work with new clients.</p></div></li><li><span class="list-number">02</span><div><h3>Your ideal client profile</h3><p>The minimum movable assets you want a prospect to have.</p></div></li><li><span class="list-number">03</span><div><h3>Your weekly capacity</h3><p>How many additional appointments you can take and follow up with.</p></div></li></ol>
-<div class="partner-note"><span aria-hidden="true">↗</span><p><strong>Making the decision together?</strong> Invite anyone who helps approve your marketing spend so we can answer their questions on the same call.</p></div>
-</section>
-<section class="library-section" id="qualification"><div class="wrap">
-<div class="section-heading"><div><span class="eyebrow">02 / GET FAMILIAR</span><h2>Your questions.<br><em>A little context.</em></h2></div><p>Start with what matters to you.<br>Each topic has its own short video script.</p></div>
-<div class="video-grid" id="video-grid" aria-live="polite"></div>
-<button class="button button-outline library-toggle" id="library-toggle" aria-expanded="false">Explore all 14 topics <span aria-hidden="true">↓</span></button>
-<noscript><p>The video script library requires JavaScript. You can still review the preparation checklist, payment terms, and deck below.</p></noscript>
+<section class="welcome-section" id="before-your-call"><div class="wrap-wide">
+<div class="watch-banner"><span aria-hidden="true">▶</span> Please watch this video before our call <span aria-hidden="true">↓</span></div>
+<div class="corsa-player"><div class="player-heading"><span>Before your call</span><span>Welcome video</span></div>
+<button class="main-video" data-video="0"><div class="video-points"><h2>We'll discuss</h2><p>Your ideal retirement client</p><p>Your licensed states</p><p>Your weekly appointment capacity</p><span class="video-play"><b aria-hidden="true">▶</b> Preview the welcome script</span></div><div class="video-host"><img src="../confirmed-booking/team/tanmay.jpg" alt="Tanmay Aul, co-founder of The Revenue Protocol" width="400" height="480"><div>Tanmay Aul <span>Co-Founder</span></div></div></button>
+<div class="recording-note">Recording pending · Read the complete script by selecting the video</div></div>
+<div class="prep">
+        <p class="prep-head">Before we talk</p>
+        <p class="prep-lead">Helpful information to have before the call.</p>
+        <div class="prep-list">
+          <div class="prep-item"><b>01</b><span>The states you are licensed in.</span></div>
+          <div class="prep-item"><b>02</b><span>The lowest asset level you want on your calendar. The floor is $250K; you can set it higher.</span></div>
+          <div class="prep-item"><b>03</b><span>How many appointments a week your calendar can hold.</span></div>
+        </div>
+      </div>
+<p class="partner-note">If someone else helps approve your marketing spend, invite them to the call too.</p>
 </div></section>
-<section class="payment-section wrap" id="payment"><div class="payment-label"><span class="eyebrow">CLEAR FROM THE START</span><h2>Payment is<br><em>upfront.</em></h2></div><div class="payment-body"><p>Payment is collected before we begin delivering appointments. Pay-per-show defines which qualified, held appointments count for billing.</p><p>On the call, we'll explain your applicable rates, the upfront amount, and how qualification and replacement terms work, so you can decide whether the arrangement fits your business.</p><button class="text-button" data-video="9">How payment works <span aria-hidden="true">↗</span></button></div></section>
-<section class="deck-section" id="deck"><div class="wrap">
-<div class="section-heading"><div><span class="eyebrow">03 / THE BIGGER PICTURE</span><h2>The company overview.<br><em>At your own pace.</em></h2></div><a class="button button-outline" href="../confirmed-booking/deck/trp-company-overview.pdf" target="_blank" rel="noopener">Open the PDF <span aria-hidden="true">↗</span></a></div>
-<div class="deck-viewer" role="region" aria-label="Corporate deck, nine slides" tabindex="0"><img id="deck-image" src="../confirmed-booking/deck/slide-1.jpg" alt="Slide 1 of 9: Company overview cover" width="1600" height="902" loading="lazy"><div class="deck-toolbar"><span id="deck-label" aria-live="polite">01 / 09 <span>Company overview</span></span><div><button id="deck-prev" aria-label="Previous slide">←</button><button id="deck-next" aria-label="Next slide">→</button></div></div></div>
-<p class="deck-note">Our current nine-slide overview. Payment is collected upfront before delivery; the pay-per-show terms explain which appointments count.</p>
-</div></section>
-<section class="faq-section wrap" id="faq"><div class="faq-intro"><span class="eyebrow">04 / THE DETAILS</span><h2>Good questions.<br><em>Plain answers.</em></h2><p>Keep these handy before our conversation.</p></div><div class="faq-list" id="faq-list"></div></section>
-<section class="closing wrap"><div><span class="eyebrow">SEE YOU SOON</span><h2>Let's see what<br><em>fits your business.</em></h2></div><div><p>Your profile. Your capacity. Your questions.<br>We'll work through them together.</p><button class="button button-dark" data-action="join">Your meeting details <span aria-hidden="true">↗</span></button></div></section>
+<section class="section alt" id="qualification"><div class="wrap-wide"><div class="section-head"><span class="label">Video FAQ</span><h2>We know you have questions.<br>Here are the answers.</h2><p class="sub">Choose a topic before we talk. Each video will answer one question.</p></div><div class="video-grid" id="video-grid"></div><noscript><p>Enable JavaScript to view the video script previews.</p></noscript></div></section>
+<section class="section" id="payment"><div class="wrap"><div class="section-head"><span class="label">Before you start</span><h2>Payment is collected upfront.</h2><p class="sub">Before appointment delivery starts, we collect payment upfront. Pay-per-show defines which qualified, held appointments count for billing.</p></div><div class="payment-card"><h3>We'll go through the terms together.</h3><p>On the call, we'll explain the rates for your target asset range, the upfront amount, and how qualification and replacement terms work.</p><button data-video="9" class="plain-link">Read the payment answer →</button></div></div></section>
+<section class="deck-section" id="deck">
+  <div class="wrap-wide">
+    <div class="section-head">
+      <span class="label">The deck</span>
+      <h2>Read the nine slides we walk through on the call.</h2>
+      <p class="sub">Use the arrows or swipe. Open it as a PDF if you want to keep it.</p>
+    </div>
+    <div class="deck-frame" id="deckFrame" tabindex="0" aria-roledescription="carousel" aria-label="The Revenue Protocol company overview">
+      <div class="deck-stage">
+        <img id="deckImg" src="../confirmed-booking/deck/slide-1.jpg" alt="Slide 1 of 9: Cover" width="1600" height="902">
+      </div>
+      <button class="deck-arrow prev" id="deckPrev" type="button" aria-label="Previous slide">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
+      </button>
+      <button class="deck-arrow next" id="deckNext" type="button" aria-label="Next slide">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+      </button>
+      <div class="deck-bar">
+        <p class="deck-caption" id="deckCaption">Cover <span>1 / 9</span></p>
+        <div class="deck-dots" id="deckDots" role="group" aria-label="Slides"></div>
+        <a class="deck-pdf" href="../confirmed-booking/deck/trp-company-overview.pdf" target="_blank" rel="noopener">Open the PDF</a>
+      </div>
+    </div>
+  </div>
+</section>
+<p class="deck-payment-note">Payment is collected upfront before delivery. The deck's pay-per-show wording describes which appointments count for billing.</p>
+<section class="section" id="faq"><div class="wrap-wide"><div class="section-head"><span class="label">Questions advisors ask</span><h2>Prefer to read? Start here.</h2><p class="sub">The same answers, in plain text.</p></div><div class="faq-list" id="faq-list"></div></div></section>
+<section class="footer-cta"><div class="wrap"><h3>Need to move the call?</h3><p>You can choose another time through your confirmation email.</p><button class="plain-link" data-action="reschedule">Preview rescheduling →</button></div></section>
 </main>
-<footer class="footer wrap"><span>The Revenue Protocol<span class="brand-period">.</span></span><span>© 2026 The Revenue Protocol</span><a href="#booking">Back to your booking ↑</a></footer>
-<dialog id="preview-dialog" aria-labelledby="dialog-title"><div class="dialog-top"><span class="eyebrow" id="dialog-eyebrow">VIDEO SCRIPT</span><button id="dialog-close" aria-label="Close dialog">×</button></div><h2 id="dialog-title"></h2><div id="dialog-content"></div></dialog>
+<footer>
+  <div class="wrap">
+    <a href="https://therevenueprotocol.com" class="f-logo">
+      <img src="https://framerusercontent.com/images/pbvYwK3r1tg6tglaoLkA8LMaeY.png" alt="TRP">
+      The Revenue Protocol
+    </a>
+    <p>&copy; 2026 The Revenue Protocol. All rights reserved.</p>
+  </div>
+</footer>
+<dialog id="preview-dialog" aria-labelledby="dialog-title"><div class="dialog-top"><span class="label">Draft preview</span><button id="dialog-close" aria-label="Close dialog">×</button></div><h2 id="dialog-title"></h2><div id="dialog-content"></div></dialog>
 </body></html>
