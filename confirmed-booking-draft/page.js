@@ -82,5 +82,5 @@ fetch('videos.json').then(r=>{if(!r.ok)throw Error('Script fetch failed');return
     if (Math.abs(dx) > 40) { go(dx < 0 ? i + 1 : i - 1); }
   }, { passive: true });
   preload(1);
-  setTimeout(() => SLIDES.forEach((_, n) => preload(n)), 2500);
+
 })();
