@@ -10,7 +10,7 @@ dialog.addEventListener('click',event=>{if(event.target===dialog){const r=dialog
 let videos=[];
 document.addEventListener('click',event=>{const video=event.target.closest('[data-video]');if(video){const v=videos[Number(video.dataset.video)];if(v)openDialog(v.title,v.paragraphs,'Recording pending. This is the exact script for this video.');else openDialog('Video script unavailable',['Please refresh the page and try again.']);return;}const calendar=event.target.closest('[data-calendar]');if(calendar){event.preventDefault();openDialog('Add to '+calendar.dataset.calendar,['Tuesday, September 22, 2026. 10:00–10:30 a.m. America/Chicago.','On the finished page, this button will add the actual booked appointment to your calendar.'],'Sample booking only. No calendar event has been created.');}const action=event.target.closest('[data-action]');if(action)openDialog(action.dataset.action==='join'?'Your meeting details':'Choose another time',['This design uses a sample appointment to show the confirmation experience. The finished page will use the meeting and rescheduling links from the actual booking.'],'Design preview. No live appointment is connected.');});
 
-fetch('videos.json?v=3').then(r=>{if(!r.ok)throw Error('Script fetch failed');return r.json();}).then(data=>{
+fetch('videos.json?v=4').then(r=>{if(!r.ok)throw Error('Script fetch failed');return r.json();}).then(data=>{
  videos=data;
  const grid=document.querySelector('#video-grid');const faq=document.querySelector('#faq-list');
  videos.slice(1).forEach((v,index)=>{
