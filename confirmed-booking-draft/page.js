@@ -10,7 +10,7 @@ dialog.addEventListener('click',event=>{if(event.target===dialog){const r=dialog
 let videos=[];
 document.addEventListener('click',event=>{const video=event.target.closest('[data-video]');if(video){const v=videos[Number(video.dataset.video)];if(v)openDialog(v.title,v.paragraphs,'Recording pending. This is the exact script for this video.');else openDialog('Video script unavailable',['Please refresh the page and try again.']);return;}const calendar=event.target.closest('[data-calendar]');if(calendar){event.preventDefault();openDialog('Add to '+calendar.dataset.calendar,['Tuesday, September 22, 2026. 10:00–10:30 a.m. America/Chicago.','On the finished page, this button will add the actual booked appointment to your calendar.'],'Sample booking only. No calendar event has been created.');}const action=event.target.closest('[data-action]');if(action)openDialog(action.dataset.action==='join'?'Your meeting details':'Choose another time',['This design uses a sample appointment to show the confirmation experience. The finished page will use the meeting and rescheduling links from the actual booking.'],'Design preview. No live appointment is connected.');});
 
-fetch('videos.json').then(r=>{if(!r.ok)throw Error('Script fetch failed');return r.json();}).then(data=>{
+fetch('videos.json?v=3').then(r=>{if(!r.ok)throw Error('Script fetch failed');return r.json();}).then(data=>{
  videos=data;
  const grid=document.querySelector('#video-grid');const faq=document.querySelector('#faq-list');
  videos.slice(1).forEach((v,index)=>{
@@ -22,7 +22,7 @@ fetch('videos.json').then(r=>{if(!r.ok)throw Error('Script fetch failed');return
   const bottom=document.createElement('div');bottom.className='faq-video-bottom';
   const label=document.createElement('span');label.textContent='Preview script';const runtime=document.createElement('span');runtime.textContent=v.runtime;bottom.append(label,runtime);
   frame.append(topline,question,play,bottom);button.append(frame);grid.append(button);
-  const details=document.createElement('details');details.className='faq';const summary=document.createElement('summary');const text=document.createElement('span');text.textContent=v.title;const plus=document.createElement('span');plus.className='pm';plus.textContent='+';plus.setAttribute('aria-hidden','true');summary.append(text,plus);const answer=document.createElement('div');answer.className='faq-a';v.paragraphs.slice(v.paragraphs[0]===v.title?1:0).forEach(t=>{const p=document.createElement('p');p.textContent=t;answer.append(p);});details.append(summary,answer);faq.append(details);
+  const details=document.createElement('details');details.className='faq';if(v.title==='Do I pay upfront?')details.id='payment';const summary=document.createElement('summary');const text=document.createElement('span');text.textContent=v.title;const plus=document.createElement('span');plus.className='pm';plus.textContent='+';plus.setAttribute('aria-hidden','true');summary.append(text,plus);const answer=document.createElement('div');answer.className='faq-a';v.paragraphs.slice(v.paragraphs[0]===v.title?1:0).forEach(t=>{const p=document.createElement('p');p.textContent=t;answer.append(p);});details.append(summary,answer);faq.append(details);
  });
 }).catch(()=>{document.querySelector('#video-grid').textContent='The scripts could not load. Please refresh to try again.';document.querySelector('#faq-list').textContent='The answers could not load. Please refresh to try again.';});
 (function deckCarousel() {
