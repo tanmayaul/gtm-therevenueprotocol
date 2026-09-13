@@ -44,7 +44,7 @@ fetch('videos.json?v=9').then(r=>{if(!r.ok)throw Error('Script fetch failed');re
   if (!frame || !img) { return; }
   let i = 0;
   const cache = {};
-  const preload = (n) => { const s = SLIDES[n] && SLIDES[n][0]; if (s && !cache[s]) { const im = new Image(); im.src = s; cache[s] = im; } };
+  const preload = (n) => { if (frame.getBoundingClientRect().top > innerHeight + 300) return; const s = SLIDES[n] && SLIDES[n][0]; if (s && !cache[s]) { const im = new Image(); im.src = s; cache[s] = im; } };
   SLIDES.forEach((s, n) => {
     const b = document.createElement('button');
     b.type = 'button'; b.setAttribute('aria-label', 'Slide ' + (n + 1) + ': ' + s[1]);
@@ -82,6 +82,7 @@ fetch('videos.json?v=9').then(r=>{if(!r.ok)throw Error('Script fetch failed');re
     if (Math.abs(dx) > 40) { go(dx < 0 ? i + 1 : i - 1); }
   }, { passive: true });
   render();
-  preload(1);
+  const observer = new IntersectionObserver(entries => { if (entries.some(e => e.isIntersecting)) { preload(1); observer.disconnect(); } }, {rootMargin: "300px"});
+  observer.observe(frame);
 
 })();
