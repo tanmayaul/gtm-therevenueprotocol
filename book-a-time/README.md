@@ -15,3 +15,7 @@ The operator supplied `https://cal.com/regency-leads/regency-leads-strategy-call
 GitHub Pages serves the main branch; the apex domain proxies this route. Only this page and its assets are in scope.
 
 Uses the Cal.com inline SDK so hiding event details, brand color, timezone selection and automatic frame sizing work on mobile. Calendar begins at approximately 162px on desktop and 187px on a 375px phone. The confirmation page’s fallback rescheduling URL also uses the supplied event.
+
+## Complete preparation section above booking
+
+All operator-supplied preparation text is visible above the calendar. The desktop calendar uses a proportional CSS transform with ResizeObserver-based sizing, preserving the full embedded surface and adapting to the available viewport height. At 1280×720 and 1440×900, the initial calendar and preparation page fit without vertical or horizontal scrolling. Mobile retains unscaled controls and natural page scrolling for readability. Form content can grow rather than being clipped.
