@@ -14,69 +14,55 @@
 <a class="skip" href="#calendar">Skip to calendar</a>
 <div class="wrap">
   <header>
-    <img class="brand" src="assets/regency-logo-small.png" srcset="assets/regency-logo-small.png 600w, assets/regency-logo.png 2400w" sizes="220px" width="220" height="77" alt="Regency Leads">
+    <img class="brand" src="assets/regency-logo-small.png" srcset="assets/regency-logo-small.png 600w, assets/regency-logo.png 2400w" sizes="172px" width="172" height="60" alt="Regency Leads">
     <span class="header-note">For annuity &amp; retirement advisors</span>
   </header>
   <main>
     <section class="intro" aria-labelledby="intro-title">
-      <div class="copy">
-        <p class="eyebrow">LET’S START WITH YOUR PRACTICE</p>
-        <h1 id="intro-title">Your next client introduction <br>starts with a conversation.</h1>
-        <p class="lede">Book an intro call to see whether our qualified, attended annuity appointments are a fit for your practice.</p>
-      </div>
-      <aside class="partner-note" aria-labelledby="partner-title">
-        <h2 id="partner-title">Bring the right people.</h2>
-        <p>If a partner or colleague helps decide how you grow your practice, add them as a guest so we can cover their questions together.</p>
-      </aside>
+      <h1 id="intro-title">Book your Regency Leads strategy call.</h1>
+      <p class="lede">Let’s review your ideal prospects, appointment screening and pay-per-show terms. Choose a time below.</p>
     </section>
-    <section class="agenda" aria-labelledby="agenda-title">
-      <h2 class="eyebrow" id="agenda-title">WHAT WE’LL COVER</h2>
+    <section class="booking" id="calendar" aria-labelledby="intro-title" tabindex="-1">
+      <div class="embed-shell" id="embed-shell">
+        <div id="cal-inline" aria-label="Book your Regency Leads strategy call"></div>
+        <div class="fallback" id="cal-fallback" aria-live="polite"><span>Loading available times…</span></div>
+      </div>
+      <p class="direct-link">Calendar not loading? <a href="https://cal.com/regency-leads/regency-leads-strategy-call" target="_blank" rel="noopener">Open the booking calendar in a new tab <span aria-hidden="true">↗</span></a></p>
+    </section>
+    <details class="agenda"><summary>What we’ll cover &amp; how to prepare</summary>
+
       <ol>
         <li><span class="number" aria-hidden="true">01</span><div><h3>Your ideal prospect</h3><p>Your licensed states, preferred client profile and investable-asset criteria.</p></div></li>
         <li><span class="number" aria-hidden="true">02</span><div><h3>How introductions work</h3><p>Our phone screening, appointment briefs and what counts as a qualified, attended meeting.</p></div></li>
         <li><span class="number" aria-hidden="true">03</span><div><h3>The fit for your practice</h3><p>Weekly capacity, delivery expectations and pay-per-show terms, including upfront package funding.</p></div></li>
       </ol>
       <p class="bring"><strong>Worth bringing:</strong> your preferred states, typical client asset range and the number of new conversations you can take each week.</p>
-    </section>
-    <section class="booking" id="calendar" aria-labelledby="calendar-title" tabindex="-1">
-      <div class="booking-heading"><h2 id="calendar-title">Choose a time to talk.</h2><p>Select an available date and time below.</p></div>
-      <div class="embed-shell" id="embed-shell">
-        <iframe id="cal-iframe" src="https://cal.com/trpgtm/therevenueprotocol-outbound-gtm-strategy-call-1-1?embed=true&amp;theme=light&amp;layout=month_view&amp;hideEventTypeDetails=true&amp;brandColor=114944" width="100%" allow="payment *; microphone *; camera *" title="Book your Regency Leads intro call"></iframe>
-        <div class="fallback" id="cal-fallback" aria-live="polite"><span>Loading available times…</span></div>
-      </div>
-      <p class="direct-link">Calendar not loading? <a href="https://cal.com/trpgtm/therevenueprotocol-outbound-gtm-strategy-call-1-1" target="_blank" rel="noopener">Open the booking calendar in a new tab <span aria-hidden="true">↗</span></a></p>
-    </section>
+      <p class="bring">If a partner or colleague helps decide, add them as a guest so we can cover their questions together.</p>
+    </details>
   </main>
   <footer><span>© Regency Leads</span><span>Qualified conversations. Personal introductions.</span></footer>
 </div>
-<!-- Raw iframe approach. Listens for Cal.com postMessage events for the
-     post-booking redirect (replaces Cal.com's paid Redirect-on-Booking feature). -->
-<script type="text/javascript">
-(function () {
-  var iframe = document.getElementById("cal-iframe");
-  var shell = document.getElementById("embed-shell");
-
-  if (iframe) {
-    iframe.addEventListener("load", function () {
-      if (shell) shell.classList.add("loaded");
-    });
-
-  }
-
-  // Cal.com posts messages on booking events. Multiple shapes across versions.
-  window.addEventListener("message", function (e) {
-    if (e.origin !== "https://cal.com" || e.source !== iframe.contentWindow) {
-      return;
-    }
-    var d = e.data || {};
-    var action = d.type || d.action || (d.payload && d.payload.action) || "";
-    if (action === "bookingSuccessful" || action === "booking_successful" || action === "bookingSuccessfulV2") {
-      // Pass the booking's uid, start, end and join link to /confirmed-booking/
-      // so it can build Google / Outlook / Apple add-to-calendar links.
-      // Cal.com has shipped several payload shapes; read them all. Never names or emails.
+<!-- Cal.com inline embed: responsive sizing and event-detail visibility use its supported API. -->
+<script>
+(function (C, A, L) {
+  var p = function (a, ar) { a.q.push(ar); };
+  var d = C.document;
+  C.Cal = C.Cal || function () {
+    var cal = C.Cal, ar = arguments;
+    if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; var script = d.createElement("script"); script.src = A; d.head.appendChild(script); cal.loaded = true; }
+    if (ar[0] === L) { var api = function () { p(api, arguments); }; var namespace = ar[1]; api.q = api.q || []; if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]); } else p(cal, ar); return; }
+    p(cal, ar);
+  };
+})(window, "https://cal.com/embed.js", "init");
+Cal("init", {origin: "https://cal.com"});
+Cal("inline", {elementOrSelector: "#cal-inline", calLink: "regency-leads/regency-leads-strategy-call", config: {layout: "month_view", theme: "light", showTimezoneWhenEventDetailsHidden: "true", iframeAttrs: {title: "Book your Regency Leads strategy call"}}});
+Cal("ui", {hideEventTypeDetails: true, layout: "month_view", styles: {branding: {brandColor: "#114944"}}});
+Cal("on", {action: "linkReady", callback: function () { document.getElementById("embed-shell").classList.add("loaded"); }});
+Cal("on", {action: "bookingSuccessfulV2", callback: function (event) { redirectBooking(event.detail.data); }});
+function redirectBooking(bookingData) {
       var params = [];
       try {
-        var data = d.data || d.payload || (d.detail && d.detail.data) || {};
+        var data = bookingData || {};
         var bk = data.booking || {};
         var toIso = function (v) { var t = v ? new Date(v) : null; return (t && !isNaN(t)) ? t.toISOString() : ""; };
         var uid = bk.uid || data.uid || bk.id || "";
@@ -95,9 +81,7 @@
       // Same-domain redirect: relative path is fine on the apex.
       var url = "/confirmed-booking/" + (params.length ? "?" + params.join("&") : "");
       window.location.href = url;
-    }
-  });
-})();
+}
 </script>
 
 <!-- Vercel Web Analytics. This page is static HTML on GitHub Pages, but it is
