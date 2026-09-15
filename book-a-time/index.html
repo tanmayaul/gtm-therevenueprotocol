@@ -8,7 +8,7 @@
 <meta name="theme-color" content="#114944">
 <link rel="icon" href="assets/regency-profile.png">
 <link rel="preload" href="assets/source-sans-3-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="styles.css?v=20260915-smaller-calendar">
+<link rel="stylesheet" href="styles.css?v=20260915-single-screen">
 </head>
 <body>
 <a class="skip" href="#calendar">Skip to calendar</a>
@@ -20,16 +20,8 @@
   <main>
     <section class="intro" aria-labelledby="intro-title">
       <h1 id="intro-title">Book your Regency Leads strategy call.</h1>
-      <p class="lede">Let’s review your ideal prospects, appointment screening and pay-per-show terms. Choose a time below.</p>
     </section>
-    <section class="booking" id="calendar" aria-labelledby="intro-title" tabindex="-1">
-      <div class="embed-shell" id="embed-shell">
-        <div id="cal-inline" aria-label="Book your Regency Leads strategy call"></div>
-        <div class="fallback" id="cal-fallback" aria-live="polite"><span>Loading available times…</span></div>
-      </div>
-      <p class="direct-link">Calendar not loading? <a href="https://cal.com/regency-leads/regency-leads-strategy-call" target="_blank" rel="noopener">Open the booking calendar in a new tab <span aria-hidden="true">↗</span></a></p>
-    </section>
-    <details class="agenda"><summary>What we’ll cover &amp; how to prepare</summary>
+    <section class="agenda" aria-labelledby="agenda-title"><h2 id="agenda-title">What we’ll cover &amp; how to prepare</h2>
 
       <ol>
         <li><span class="number" aria-hidden="true">01</span><div><h3>Your ideal prospect</h3><p>Your licensed states, preferred client profile and investable-asset criteria.</p></div></li>
@@ -38,11 +30,20 @@
       </ol>
       <p class="bring"><strong>Worth bringing:</strong> your preferred states, typical client asset range and the number of new conversations you can take each week.</p>
       <p class="bring">If a partner or colleague helps decide, add them as a guest so we can cover their questions together.</p>
-    </details>
+    </section>
+    <section class="booking" id="calendar" aria-labelledby="intro-title" tabindex="-1">
+      <div class="embed-shell" id="embed-shell">
+        <div id="cal-inline" aria-label="Book your Regency Leads strategy call"></div>
+        <div class="fallback" id="cal-fallback" aria-live="polite"><span>Loading available times…</span></div>
+      </div>
+      <p class="direct-link"><a href="https://cal.com/regency-leads/regency-leads-strategy-call" target="_blank" rel="noopener">Open calendar in a new tab <span aria-hidden="true">↗</span></a></p>
+    </section>
+
   </main>
   <footer><span>© Regency Leads</span><span>Qualified conversations. Personal introductions.</span></footer>
 </div>
 <!-- Cal.com inline embed: responsive sizing and event-detail visibility use its supported API. -->
+<script src="calendar-fit.js" defer></script>
 <script>
 (function (C, A, L) {
   var p = function (a, ar) { a.q.push(ar); };
