@@ -13,4 +13,4 @@ header{padding:0;gap:16px}.brand{width:172px;height:60px}.header-note{font-size:
 
 /* A smaller desktop booking panel, with full-size controls on phones. */
 .booking{max-width:850px;margin-inline:auto}
-@media(min-width:900px){#cal-inline{zoom:.85}}
+
