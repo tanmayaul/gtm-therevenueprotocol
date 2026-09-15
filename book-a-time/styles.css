@@ -10,3 +10,7 @@ header{padding:0;gap:16px}.brand{width:172px;height:60px}.header-note{font-size:
 @media(max-width:640px){header{justify-content:flex-start;padding:0}.brand{width:148px;height:52px}.intro{padding:12px 0}.intro h1{font-size:24px;margin-bottom:6px}.lede{font-size:14px;line-height:1.4}.booking{padding-top:0}.agenda ol{margin-top:12px}}
 
 .embed-shell{min-height:360px}#cal-inline{width:100%;min-height:360px}.embed-shell iframe{width:100%;border:0}
+
+/* A smaller desktop booking panel, with full-size controls on phones. */
+.booking{max-width:850px;margin-inline:auto}
+
