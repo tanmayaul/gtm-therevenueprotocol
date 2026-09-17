@@ -19,3 +19,7 @@ Uses the Cal.com inline SDK so hiding event details, brand color, timezone selec
 ## Complete preparation section above booking
 
 All operator-supplied preparation text is visible above the calendar. The desktop calendar uses a proportional CSS transform with ResizeObserver-based sizing, preserving the full embedded surface and adapting to the available viewport height. At 1280×720 and 1440×900, the initial calendar and preparation page fit without vertical or horizontal scrolling. Mobile retains unscaled controls and natural page scrolling for readability. Form content can grow rather than being clipped.
+
+## One-screen two-column layout (2026-09-16)
+
+The stylesheet was rewritten as one coherent sheet (the earlier file was several layered patches). Colour tokens, type and spacing follow regencyleads.com: cream page, forest headings in Playfair Display, gold kicker and note accent, Source Sans 3 body. From 1200px wide the page is a two-column screen, preparation on the left and the calendar card on the right, with page scrolling disabled; `calendar-fit.js` measures the space between header and footer and scales the whole Cal.com surface down only when the viewport is too short (floor 0.7). Below 1200px the columns stack, the page scrolls and the calendar keeps full size. Checked headless at 1920x1080, 1440x900, 1366x768, 1280x720 and 1200x700 (no scroll, calendar side-by-side), and at 1024x768 and 390x844 (stacked, scrolls).

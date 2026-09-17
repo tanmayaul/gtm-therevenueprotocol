@@ -8,7 +8,7 @@
 <meta name="theme-color" content="#114944">
 <link rel="icon" href="assets/regency-profile.png">
 <link rel="preload" href="assets/source-sans-3-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="styles.css?v=20260915-prep-spacing">
+<link rel="stylesheet" href="styles.css?v=20260916-one-screen">
 </head>
 <body>
 <a class="skip" href="#calendar">Skip to calendar</a>
@@ -18,32 +18,34 @@
     <span class="header-note">For annuity &amp; retirement advisors</span>
   </header>
   <main>
-    <section class="intro" aria-labelledby="intro-title">
-      <h1 id="intro-title">Book your Regency Leads strategy call.</h1>
-    </section>
-    <section class="agenda" aria-labelledby="agenda-title"><h2 id="agenda-title">What we’ll cover &amp; how to prepare</h2>
-
-      <ol>
-        <li><span class="number" aria-hidden="true">01</span><div><h3>Your ideal prospect</h3><p>Your licensed states, preferred client profile and investable-asset criteria.</p></div></li>
-        <li><span class="number" aria-hidden="true">02</span><div><h3>How introductions work</h3><p>Our phone screening, appointment briefs and what counts as a qualified, attended meeting.</p></div></li>
-        <li><span class="number" aria-hidden="true">03</span><div><h3>The fit for your practice</h3><p>Weekly capacity, delivery expectations and pay-per-show terms, including upfront package funding.</p></div></li>
-      </ol>
+    <section class="prep" aria-labelledby="intro-title">
+      <div class="intro">
+        <div class="kicker">Book a call</div>
+        <h1 id="intro-title">Book your Regency Leads strategy call.</h1>
+      </div>
+      <div class="agenda" aria-labelledby="agenda-title">
+        <h2 id="agenda-title">What we'll cover</h2>
+        <ol>
+          <li><span class="number" aria-hidden="true">01</span><div><h3>Your ideal prospect</h3><p>Your licensed states, preferred client profile and investable-asset criteria.</p></div></li>
+          <li><span class="number" aria-hidden="true">02</span><div><h3>How introductions work</h3><p>Our phone screening, appointment briefs and what counts as a qualified, attended meeting.</p></div></li>
+          <li><span class="number" aria-hidden="true">03</span><div><h3>The fit for your practice</h3><p>Weekly capacity, delivery expectations and pay-per-show terms, including upfront package funding.</p></div></li>
+        </ol>
+      </div>
       <p class="bring"><strong>Worth bringing:</strong> your preferred states, typical client asset range and the number of new conversations you can take each week.</p>
-      <p class="bring">If a partner or colleague helps decide, add them as a guest so we can cover their questions together.</p>
+      <p class="guests">If a partner or colleague helps decide, add them as a guest so we can cover their questions together.</p>
     </section>
-    <section class="booking" id="calendar" aria-labelledby="intro-title" tabindex="-1">
+    <section class="booking" id="calendar" aria-label="Pick a time" tabindex="-1">
       <div class="embed-shell" id="embed-shell">
         <div id="cal-inline" aria-label="Book your Regency Leads strategy call"></div>
         <div class="fallback" id="cal-fallback" aria-live="polite"><span>Loading available times…</span></div>
       </div>
       <p class="direct-link"><a href="https://cal.com/regency-leads/regency-leads-strategy-call" target="_blank" rel="noopener">Open calendar in a new tab <span aria-hidden="true">↗</span></a></p>
     </section>
-
   </main>
   <footer><span>© Regency Leads</span><span>Qualified conversations. Personal introductions.</span></footer>
 </div>
 <!-- Cal.com inline embed: responsive sizing and event-detail visibility use its supported API. -->
-<script src="calendar-fit.js" defer></script>
+<script src="calendar-fit.js?v=20260916-one-screen" defer></script>
 <script>
 (function (C, A, L) {
   var p = function (a, ar) { a.q.push(ar); };
