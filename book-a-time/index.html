@@ -3,95 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Book an Intro Call | Regency Leads</title>
-<meta name="description" content="Explore qualified, attended annuity appointments for your practice. Book a Regency Leads intro call to discuss screening, delivery and pay-per-show terms.">
-<meta name="theme-color" content="#114944">
-<link rel="icon" href="assets/regency-profile.png">
-<link rel="preload" href="assets/source-sans-3-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="styles.css?v=20260916-one-screen">
+<title>Redirecting to Regency Leads</title>
+<meta http-equiv="refresh" content="0;url=https://regencyleads.com/booked">
+<link rel="canonical" href="https://regencyleads.com/booked">
+<script>window.location.replace("https://regencyleads.com/booked" + window.location.search + window.location.hash);</script>
 </head>
 <body>
-<a class="skip" href="#calendar">Skip to calendar</a>
-<div class="wrap">
-  <header>
-    <img class="brand" src="assets/regency-logo-small.png" srcset="assets/regency-logo-small.png 600w, assets/regency-logo.png 2400w" sizes="172px" width="172" height="60" alt="Regency Leads">
-    <span class="header-note">For annuity &amp; retirement advisors</span>
-  </header>
-  <main>
-    <section class="prep" aria-labelledby="intro-title">
-      <div class="intro">
-        <div class="kicker">Book a call</div>
-        <h1 id="intro-title">Book your Regency Leads strategy call.</h1>
-      </div>
-      <div class="agenda" aria-labelledby="agenda-title">
-        <h2 id="agenda-title">What we'll cover</h2>
-        <ol>
-          <li><span class="number" aria-hidden="true">01</span><div><h3>Your ideal prospect</h3><p>Your licensed states, preferred client profile and investable-asset criteria.</p></div></li>
-          <li><span class="number" aria-hidden="true">02</span><div><h3>How introductions work</h3><p>Our phone screening, appointment briefs and what counts as a qualified, attended meeting.</p></div></li>
-          <li><span class="number" aria-hidden="true">03</span><div><h3>The fit for your practice</h3><p>Weekly capacity, delivery expectations and pay-per-show terms, including upfront package funding.</p></div></li>
-        </ol>
-      </div>
-      <p class="bring"><strong>Worth bringing:</strong> your preferred states, typical client asset range and the number of new conversations you can take each week.</p>
-      <p class="guests">If a partner or colleague helps decide, add them as a guest so we can cover their questions together.</p>
-    </section>
-    <section class="booking" id="calendar" aria-label="Pick a time" tabindex="-1">
-      <div class="embed-shell" id="embed-shell">
-        <div id="cal-inline" aria-label="Book your Regency Leads strategy call"></div>
-        <div class="fallback" id="cal-fallback" aria-live="polite"><span>Loading available times…</span></div>
-      </div>
-      <p class="direct-link"><a href="https://cal.com/regency-leads/regency-leads-strategy-call" target="_blank" rel="noopener">Open calendar in a new tab <span aria-hidden="true">↗</span></a></p>
-    </section>
-  </main>
-  <footer><span>© Regency Leads</span><span>Qualified conversations. Personal introductions.</span></footer>
-</div>
-<!-- Cal.com inline embed: responsive sizing and event-detail visibility use its supported API. -->
-<script src="calendar-fit.js?v=20260916-one-screen" defer></script>
-<script>
-(function (C, A, L) {
-  var p = function (a, ar) { a.q.push(ar); };
-  var d = C.document;
-  C.Cal = C.Cal || function () {
-    var cal = C.Cal, ar = arguments;
-    if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; var script = d.createElement("script"); script.src = A; d.head.appendChild(script); cal.loaded = true; }
-    if (ar[0] === L) { var api = function () { p(api, arguments); }; var namespace = ar[1]; api.q = api.q || []; if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]); } else p(cal, ar); return; }
-    p(cal, ar);
-  };
-})(window, "https://cal.com/embed.js", "init");
-Cal("init", {origin: "https://cal.com"});
-Cal("inline", {elementOrSelector: "#cal-inline", calLink: "regency-leads/regency-leads-strategy-call", config: {layout: "month_view", theme: "light", showTimezoneWhenEventDetailsHidden: "true", iframeAttrs: {title: "Book your Regency Leads strategy call"}}});
-Cal("ui", {hideEventTypeDetails: true, layout: "month_view", styles: {branding: {brandColor: "#114944"}}});
-Cal("on", {action: "linkReady", callback: function () { document.getElementById("embed-shell").classList.add("loaded"); }});
-Cal("on", {action: "bookingSuccessfulV2", callback: function (event) { redirectBooking(event.detail.data); }});
-function redirectBooking(bookingData) {
-      var params = [];
-      try {
-        var data = bookingData || {};
-        var bk = data.booking || {};
-        var toIso = function (v) { var t = v ? new Date(v) : null; return (t && !isNaN(t)) ? t.toISOString() : ""; };
-        var uid = bk.uid || data.uid || bk.id || "";
-        var start = toIso(bk.startTime || data.startTime || data.date);
-        var end = toIso(bk.endTime || data.endTime);
-        var dur = parseInt(data.duration || (data.eventType && data.eventType.length) || "", 10);
-        var loc = data.videoCallUrl || bk.videoCallUrl || (bk.metadata && bk.metadata.videoCallUrl) || "";
-        if (!loc && typeof bk.location === "string" && /^https?:/i.test(bk.location)) loc = bk.location;
-        if (uid) params.push("bid=" + encodeURIComponent(uid));
-        if (start) params.push("start=" + encodeURIComponent(start));
-        if (end) params.push("end=" + encodeURIComponent(end));
-        if (!end && dur > 0) params.push("dur=" + dur);
-        if (loc) params.push("loc=" + encodeURIComponent(loc));
-        if (start) { try { localStorage.setItem("trp_booking", JSON.stringify({ bid: uid, start: start, end: end, loc: loc })); } catch (e2) {} }
-      } catch (err) {}
-      // Same-domain redirect: relative path is fine on the apex.
-      var url = "/confirmed-booking/" + (params.length ? "?" + params.join("&") : "");
-      window.location.href = url;
-}
-</script>
-
-<!-- Vercel Web Analytics. This page is static HTML on GitHub Pages, but it is
-     served to visitors at therevenueprotocol.com via a Vercel rewrite, so the
-     root-relative path below resolves against the Vercel origin. Vercel does NOT
-     inject its script into proxied HTML, which is why the tag is hand-placed here
-     instead of coming from the Next.js layout. -->
-<script defer src="/_vercel/insights/script.js"></script>
+<p>Continue to <a href="https://regencyleads.com/booked">Regency Leads</a>.</p>
 </body>
 </html>
